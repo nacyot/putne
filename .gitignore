@@ -7,7 +7,7 @@
 /vendor/bundler/*
 
 /log/*.log
-/report/
+/report/*
 /tmp/*
 /doc/*
 *.swp
