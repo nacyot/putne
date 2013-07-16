@@ -15,16 +15,19 @@ Role.create([
 
 puts 'SETTING UP DEFAULT USER LOGIN'
 
-admin = User.create!(:email => 'admin@example.com',
-                     :password => 'abcd1234',
-                     :password_confirmation => 'abcd1234'
-                     )
+admin = User.new
+admin.email = "admin@example.com"
+admin.password = "adcd1234"
+admin.password_confirmation = "abcd1234"
+admin.save
+
 puts 'New user created: ' << admin.email
 
-user = User.create!(:email => 'user@example.com',
-                    :password => 'abcd1234',
-                    :password_confirmation => 'abcd1234'
-                    )
+user = User.new
+user.email = "user@example.com"
+user.password = "adcd1234"
+user.password_confirmation = "abcd1234"
+user.save
 
 puts 'New user created: ' << user.email
 admin.add_role :admin
