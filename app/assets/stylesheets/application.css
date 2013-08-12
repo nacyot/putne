@@ -14,6 +14,15 @@
 
 body {
     padding: 50px 40px;
+    background-color: black;
+}
+
+.main-contents{
+    margin: 15px 40px;
+}
+
+.project{
+
 }
 
 .stub-header h1{
@@ -37,58 +46,11 @@ body {
     color: green;    
 }
 
-.post{
-    margin-top: 20px;
-    margin-bottom: 80px;
+.project-sidebar li a{
+    background-color: #A5BA93;
+    font-size: 1.1em;
 }
 
-.posts-table-email{
-    width: 15%;
-}
-
-.posts-table-title{
-    width: 20%;
-}
-
-.posts-table-entry{
-    width: 55%;
-}
-
-.posts-table-edit{
-    width: 5%;
-}
-
-.post-info{
-    padding: 30px;
-}
-
-.post-info-item{
-    padding: 5px;
-}
-
-.post-main .entry{
-    text-align: justify;
-}
-
-.post-main .title{
-    margin-bottom: 25px;
-
-}
-
-.post-main .comment-button{
-    margin-top: 15px;
-}
-
-.post-main .comment-entry{
-    margin-top: 25px;
-}
-
-.pagination{
-
-}
-
-.pagination li{
-    font-size: 16px;
-    display: inline;
-    margin: 3px 10px;
+.project-sidebar li a:hover, .project-sidebar li a:focus{
+    color: black;
 }

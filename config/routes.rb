@@ -3,9 +3,23 @@ Putne::Application.routes.draw do
   get 'about' => "main#about"
 
   resources :projects do
+    get "synopsis" => "metrics#synopsis"
+    
+    get "files" => "metrics#files"
     get "classes" => "metrics#classes"
+    get "methods" => "metrics#methods"
+
+    get "churn" => "metrics#churn"
+    get "complexity" => "metrics#complexity"
+    get "duplicity" => "metrics#duplicity"
+    get "smells" => "metrics#smells"
+
+    get "report" => "metrics#report"
+    get "timeline" => "metrics#timeline"
   end
 
+  get "projects/:id/settings" => "projects#settings"
+  
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
   devise_for :users
 

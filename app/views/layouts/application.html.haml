@@ -25,5 +25,7 @@
           %ul.nav.navbar-nav.pull-right
             %li         
               %a{href: "#"}= "Hello, #{current_user.email}"
-    = yield
+    
+    .main-contents
+      = yield
 

@@ -1,21 +1,41 @@
+.row
+  .project.container.panel{style: "margin-top: 25px;"}
+    .project-body.col-lg-9
+      = current_user.email
+      = " / "
+      = @project.title
+      = " / master"
+      
+    .project-sidebar.col-lg-3
+      %ul.nav.nav-pills.nav-stacked
+        %li
+          = link_to "synopsis", project_synopsis_url(@project)
+        %br/
+        %li
+          = link_to "files", project_files_url(@project)
+        %li
+          = link_to "classes", project_classes_url(@project)
+        %li
+          = link_to "methods", project_methods_url(@project)
+        %br/
+        %li
+          = link_to "churn", project_churn_url(@project)
+        %li
+          = link_to "complexity", project_complexity_url(@project)
+        %li
+          = link_to "duplicity", project_duplicity_url(@project)
+        %li
+          = link_to "smells", project_smells_url(@project)
+        %br/
+        %li
+          = link_to "reports", project_report_url(@project)
+        %li
+          = link_to "timeline", project_timeline_url(@project)
+        %br/
+        %li
+          = link_to "repository", @project.repository_url
+        %li
+          = link_to "settings", url_for(controller: "projects", action: "settings", id: @project.id)
+
 %p#notice= notice
 
-%p
-  %b Title:
-  = @project.title
-%p
-  %b Description:
-  = @project.description
-%p
-  %b Language:
-  = @project.language
-%p
-  %b Repository type:
-  = @project.repository_type
-%p
-  %b Repository url:
-  = @project.repository_url
-
-= link_to 'Edit', edit_project_path(@project)
-\|
-= link_to 'Back', projects_path
