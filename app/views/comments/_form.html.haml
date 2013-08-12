@@ -1,0 +1,10 @@
+= simple_form_for @comment, url: new_post_comment_path(post_id: params[:post_id]) do |f|
+  = f.error_notification
+
+  .inputs
+    = f.hidden_field :user_id, value: current_user.id
+    = f.hidden_field :post_id, value: params[:post_id]
+    = f.input :entry
+
+  .actions
+    = f.button :submit

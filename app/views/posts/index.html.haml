@@ -1,0 +1,31 @@
+.row
+  .col-lg-12
+    %h1 Listing posts
+    
+    %br/
+
+    %table.table.table-striped
+      %tr
+        %th User
+        %th Title
+        %th Entry
+        %th
+        %th
+        %th
+
+      - @posts.each do |post|
+        %tr
+          %td.posts-table-email= post.user.email
+          %td.posts-table-title= link_to post.title, post
+          %td.posts-table-entry 
+            = post.entry[0..50]
+            = "..."
+          - if post.user.id == (current_user ? current_user.id : 0)
+            %td.posts-table-edit= link_to 'Edit', edit_post_path(post)
+            %td.posts-table-edit= link_to 'Destroy', post, :method => :delete, :data => { :confirm => 'Are you sure?' }
+          - else
+            %td.posts-table-edit
+            %td.posts-table-edit            
+
+    %br
+    -#.text-center= paginate @posts

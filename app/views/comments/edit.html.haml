@@ -1,0 +1,7 @@
+%h1 Editing comment
+
+= render 'form'
+
+= link_to 'Show', post_comments_path(@comment, post_id: params[:post_id], id: params[:id])
+\|
+= link_to 'Back', post_comments_path

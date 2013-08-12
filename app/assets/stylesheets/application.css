@@ -11,3 +11,84 @@
  *= require_self
  *= require_tree .
  */
+
+body {
+    padding: 50px 40px;
+}
+
+.stub-header h1{
+    font-size: 72px;
+}
+
+.stub-header p{
+    padding-top: 10px;
+    font-size: 30px;
+    line-height: 1.3em;
+}
+
+.stub-header li{
+    padding-top: 10px;
+    font-size: 20px;
+    list-style-type: none;
+}
+
+.stub-header li strong{
+    font-size: 35px;
+    color: green;    
+}
+
+.post{
+    margin-top: 20px;
+    margin-bottom: 80px;
+}
+
+.posts-table-email{
+    width: 15%;
+}
+
+.posts-table-title{
+    width: 20%;
+}
+
+.posts-table-entry{
+    width: 55%;
+}
+
+.posts-table-edit{
+    width: 5%;
+}
+
+.post-info{
+    padding: 30px;
+}
+
+.post-info-item{
+    padding: 5px;
+}
+
+.post-main .entry{
+    text-align: justify;
+}
+
+.post-main .title{
+    margin-bottom: 25px;
+
+}
+
+.post-main .comment-button{
+    margin-top: 15px;
+}
+
+.post-main .comment-entry{
+    margin-top: 25px;
+}
+
+.pagination{
+
+}
+
+.pagination li{
+    font-size: 16px;
+    display: inline;
+    margin: 3px 10px;
+}

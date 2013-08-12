@@ -1,0 +1,20 @@
+.row
+  .col-lg-6
+    = simple_form_for @post do |f|
+      = f.error_notification
+
+      = f.hidden_field :user_id, value: current_user.id
+
+      %fieldset
+        .form-group
+          %label Writer
+          %br/
+          = current_user.email
+          %br/
+          %br/
+          = f.input :title, input_html: { placeholder: "Title", class: "form-control" }
+          %br/
+          = f.input :entry, input_html: { placeholder: "Entry", class: "form-control", style: "height: 350px;" }
+          %br/
+          = f.button :submit, class: "btn btn-info comment-button"
+
