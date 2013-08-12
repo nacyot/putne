@@ -17,17 +17,17 @@ puts 'SETTING UP DEFAULT USER LOGIN'
 
 admin = User.new
 admin.email = "admin@example.com"
-admin.password = "adcd1234"
+admin.password = "abcd1234"
 admin.password_confirmation = "abcd1234"
-admin.save
+admin.save!
 
 puts 'New user created: ' << admin.email
 
 user = User.new
 user.email = "user@example.com"
-user.password = "adcd1234"
+user.password = "abcd1234"
 user.password_confirmation = "abcd1234"
-user.save
+user.save!
 
 puts 'New user created: ' << user.email
 admin.add_role :admin
