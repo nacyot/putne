@@ -1,0 +1,19 @@
+.navbar.navbar-fixed-top
+  %a.navbar-brand{href: "/"} Stub
+  %ul.nav.navbar-nav
+    %li 
+      = link_to "Projects", projects_path
+    %li 
+      = link_to "About", about_path
+    - if user_signed_in?
+      %li 
+        = link_to "Admin", rails_admin_path
+  - unless user_signed_in?
+    = login_form_for_header
+  - else
+    .pull-right
+      %a{href: destroy_user_session_path, "data-method" => "delete"}
+        %button.btn.btn-danger.navbar-btn.pull-right{type: "button", style: "margin-left: 10px;"} Sign out
+      %ul.nav.navbar-nav.pull-right
+        %li         
+          %a{href: "#"}= "Hello, #{current_user.email}"

@@ -22,7 +22,7 @@ body {
 }
 
 .project{
-
+    margin-top: 25px;
 }
 
 .stub-header h1{
@@ -46,11 +46,16 @@ body {
     color: green;    
 }
 
-.project-sidebar li a{
+.project .sidebar li a{
+
     background-color: #A5BA93;
     font-size: 1.1em;
 }
 
-.project-sidebar li a:hover, .project-sidebar li a:focus{
+.project .sidebar li a:hover, .project .sidebar li a:focus{
     color: black;
+}
+
+.project .main .info{
+    font-size: 1.4em;
 }
