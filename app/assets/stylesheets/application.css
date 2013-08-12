@@ -59,3 +59,7 @@ body {
 .project .main .info{
     font-size: 1.4em;
 }
+
+.project .sidebar{
+    padding: 5px 15px;
+}

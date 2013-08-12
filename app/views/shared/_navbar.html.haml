@@ -1,5 +1,5 @@
 .navbar.navbar-fixed-top
-  %a.navbar-brand{href: "/"} Stub
+  %a.navbar-brand{href: "/"} Putne
   %ul.nav.navbar-nav
     %li 
       = link_to "Projects", projects_path
@@ -16,4 +16,17 @@
         %button.btn.btn-danger.navbar-btn.pull-right{type: "button", style: "margin-left: 10px;"} Sign out
       %ul.nav.navbar-nav.pull-right
         %li         
-          %a{href: "#"}= "Hello, #{current_user.email}"
+          %a{href: "#"}= "Hello, "
+        %li.dropdown
+          %a.dropdown-toggle{"data-toggle" => "dropdown", href: "#"}
+            = current_user.email
+            %span.caret
+          %ul.dropdown-menu
+            %li
+              %a{href: "#"} My Profile
+            %li
+              %a{href: "#"} Create a New Project
+            %li
+              %a{href: "#"} Account Setting
+            
+            

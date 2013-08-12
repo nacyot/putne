@@ -1,13 +1,8 @@
 .row
-  .project.container.panel
+  .project.container
+    .main.col-lg-9.panel
+      = render "shared/project_info", locals: {project: @project}
     = render "shared/project_sidebar", locals: {project: @project}
-    .main.col-lg-9
-      .info
-        = current_user.email
-        = " / "
-        = @project.title
-        = " / master"
-
 
 %p#notice= notice
 
