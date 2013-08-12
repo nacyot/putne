@@ -9,33 +9,33 @@
     .project-sidebar.col-lg-3
       %ul.nav.nav-pills.nav-stacked
         %li
-          = link_to "synopsis", project_synopsis_url(@project)
+          = link_to "Synopsis", project_synopsis_url(@project)
         %br/
         %li
-          = link_to "files", project_files_url(@project)
+          = link_to "Files", project_files_url(@project)
         %li
-          = link_to "classes", project_classes_url(@project)
+          = link_to "Classes", project_classes_url(@project)
         %li
-          = link_to "methods", project_methods_url(@project)
+          = link_to "Methods", project_methods_url(@project)
         %br/
         %li
-          = link_to "churn", project_churn_url(@project)
+          = link_to "Churn", project_churn_url(@project)
         %li
-          = link_to "complexity", project_complexity_url(@project)
+          = link_to "Complexity", project_complexity_url(@project)
         %li
-          = link_to "duplicity", project_duplicity_url(@project)
+          = link_to "Duplicity", project_duplicity_url(@project)
         %li
-          = link_to "smells", project_smells_url(@project)
+          = link_to "Smells", project_smells_url(@project)
         %br/
         %li
-          = link_to "reports", project_report_url(@project)
+          = link_to "Reports", project_report_url(@project)
         %li
-          = link_to "timeline", project_timeline_url(@project)
+          = link_to "Timeline", project_timeline_url(@project)
         %br/
         %li
-          = link_to "repository", @project.repository_url
+          = link_to "Repository", @project.repository_url
         %li
-          = link_to "settings", url_for(controller: "projects", action: "settings", id: @project.id)
+          = link_to "Settings", url_for(controller: "projects", action: "settings", id: @project.id)
 
 %p#notice= notice
 
