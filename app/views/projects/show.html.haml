@@ -1,8 +1,7 @@
-.row
-  .project.container
-    .main.col-lg-9.panel
-      = render "shared/project_info", locals: {project: @project}
-    = render "shared/project_sidebar", locals: {project: @project}
+.project.container
+  .main.col-lg-9.panel
+    = render "shared/project_info", locals: {project: @project}
+  = render "shared/project_sidebar", locals: {project: @project}
 
-%p#notice= notice
+
 
