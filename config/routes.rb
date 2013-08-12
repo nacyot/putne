@@ -1,12 +1,10 @@
 Putne::Application.routes.draw do
+  resources :projects
+
   root "main#index"
   get 'about' => "main#about"
 
   get 'posts/blog'
-
-  resources :posts do
-    resources :comments
-  end
 
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
   devise_for :users

@@ -1,0 +1,21 @@
+%p#notice= notice
+
+%p
+  %b Title:
+  = @project.title
+%p
+  %b Description:
+  = @project.description
+%p
+  %b Language:
+  = @project.language
+%p
+  %b Repository type:
+  = @project.repository_type
+%p
+  %b Repository url:
+  = @project.repository_url
+
+= link_to 'Edit', edit_project_path(@project)
+\|
+= link_to 'Back', projects_path

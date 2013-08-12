@@ -1,0 +1,12 @@
+= simple_form_for(@project) do |f|
+  = f.error_notification
+
+  .inputs
+    = f.input :title
+    = f.input :description
+    = f.input :language
+    = f.input :repository_type
+    = f.input :repository_url
+
+  .actions
+    = f.button :submit
