@@ -19,10 +19,7 @@
           %li 
             = link_to "Admin", rails_admin_path
       - unless user_signed_in?
-        = simple_form_for resource, :as => resource_name, :url => session_path(resource_name), html: { class: "navbar-form pull-right"} do |f|
-          = f.input :email, wrapper: false, label: false, input_html: {style: "width: 200px;", placeholder: "ID", value: "admin@stub.lapisan"}
-          = f.input :password, wrapper: false, label: false, input_html: {style: "width: 200px;", placeholder: "Password", value: "abcd1234"}
-          = f.submit "Sign in", class: "btn btn-default navbar-btn", style: "margin-top: -3px;"
+        = login_form_for_header
       - else
         .pull-right
           %a{href: destroy_user_session_path, "data-method" => "delete"}
