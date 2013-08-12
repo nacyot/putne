@@ -5,37 +5,9 @@
       = " / "
       = @project.title
       = " / master"
-      
-    .project-sidebar.col-lg-3
-      %ul.nav.nav-pills.nav-stacked
-        %li
-          = link_to "Synopsis", project_synopsis_url(@project)
-        %br/
-        %li
-          = link_to "Files", project_files_url(@project)
-        %li
-          = link_to "Classes", project_classes_url(@project)
-        %li
-          = link_to "Methods", project_methods_url(@project)
-        %br/
-        %li
-          = link_to "Churn", project_churn_url(@project)
-        %li
-          = link_to "Complexity", project_complexity_url(@project)
-        %li
-          = link_to "Duplicity", project_duplicity_url(@project)
-        %li
-          = link_to "Smells", project_smells_url(@project)
-        %br/
-        %li
-          = link_to "Report", project_report_url(@project)
-        %li
-          = link_to "Timeline", project_timeline_url(@project)
-        %br/
-        %li
-          = link_to "Repository", @project.repository_url
-        %li
-          = link_to "Settings", url_for(controller: "projects", action: "settings", id: @project.id)
+
+    = render "shared/project_sidebar", locals: {project: @project}
+    
 
 %p#notice= notice
 
