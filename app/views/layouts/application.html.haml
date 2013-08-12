@@ -10,9 +10,7 @@
       %a.navbar-brand{href: "/"} Stub
       %ul.nav.navbar-nav
         %li 
-          = link_to "Posts", posts_path
-        %li
-          = link_to "Blogs", posts_blog_path
+          = link_to "Projects", projects_path
         %li 
           = link_to "About", about_path
         - if user_signed_in?
@@ -24,8 +22,6 @@
         .pull-right
           %a{href: destroy_user_session_path, "data-method" => "delete"}
             %button.btn.btn-danger.navbar-btn.pull-right{type: "button", style: "margin-left: 10px;"} Sign out
-          %a{href: new_post_path}
-            %button.btn.btn-primary.navbar-btn.pull-right{type: "button"} New post
           %ul.nav.navbar-nav.pull-right
             %li         
               %a{href: "#"}= "Hello, #{current_user.email}"
