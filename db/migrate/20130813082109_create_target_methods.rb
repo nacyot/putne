@@ -3,6 +3,7 @@ class CreateTargetMethods < ActiveRecord::Migration
     create_table :target_methods do |t|
       t.string :name
       t.integer :report_id
+      t.integer :class_id
 
       t.timestamps
     end

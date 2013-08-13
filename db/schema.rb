@@ -11,12 +11,35 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130813011819) do
+ActiveRecord::Schema.define(version: 20130813083106) do
+
+  create_table "branches", force: true do |t|
+    t.string   "name"
+    t.integer  "repository_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "churns", force: true do |t|
+    t.integer  "times_change"
+    t.integer  "report_id"
+    t.integer  "targetable_id"
+    t.string   "targetable_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "comments", force: true do |t|
     t.integer  "user_id"
     t.integer  "post_id"
     t.text     "entry"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "commits", force: true do |t|
+    t.string   "hash"
+    t.integer  "repository_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -53,6 +76,24 @@ ActiveRecord::Schema.define(version: 20130813011819) do
 
   add_index "rails_admin_histories", ["item", "table", "month", "year"], name: "index_rails_admin_histories"
 
+  create_table "reports", force: true do |t|
+    t.integer  "repository_id"
+    t.integer  "branch_id"
+    t.integer  "commit_id"
+    t.integer  "project_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "repositories", force: true do |t|
+    t.string   "name"
+    t.string   "repository_type"
+    t.string   "repository_url"
+    t.integer  "project_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "roles", force: true do |t|
     t.string   "name"
     t.integer  "resource_id"
@@ -63,6 +104,28 @@ ActiveRecord::Schema.define(version: 20130813011819) do
 
   add_index "roles", ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id"
   add_index "roles", ["name"], name: "index_roles_on_name"
+
+  create_table "target_classes", force: true do |t|
+    t.string   "name"
+    t.integer  "report_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "target_files", force: true do |t|
+    t.string   "name"
+    t.string   "path"
+    t.string   "report_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "target_methods", force: true do |t|
+    t.string   "name"
+    t.integer  "report_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
