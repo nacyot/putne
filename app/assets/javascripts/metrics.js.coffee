@@ -41,7 +41,7 @@ $ ->
                 "Duplicity help",
                 "This is project overview")
         popoverForSidebar(
-                $('#smell-help'),
+                $('#smells-help'),
                 "Smells help",
                 "This is project overview")
         popoverForSidebar(
