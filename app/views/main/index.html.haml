@@ -1,13 +1,5 @@
-.row
-  .col-lg-8
-    .stub-header
-      .container
-        %h1 Putne
-        %p This is awesome Stub Application. You can freely sign in and write posts. Thank you!
+- unless user_signed_in?
+  = render "description"
+- else
+  = render "dashboard"
 
-    %br/
-    .container
-      %p
-        Test User ID: admin@sutb.lapisan
-        %br/
-        Test Password: abcd1234

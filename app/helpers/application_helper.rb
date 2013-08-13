@@ -21,7 +21,7 @@ module ApplicationHelper
                  class: "form-control",
                  style: "width: 200px;",
                  placeholder: "ID",
-                 value: "admin@stub.lapisan"})
+                 value: "admin@example.com"})
   end
 
   def password_input(form)
