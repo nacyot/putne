@@ -1,7 +1,4 @@
 class MetricsController < ApplicationController
-  def synopsis
-    @project = Project.find(params[:project_id])
-  end
 
   def files
     @project = Project.find(params[:project_id])
