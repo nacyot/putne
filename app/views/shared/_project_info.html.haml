@@ -4,12 +4,13 @@
     = " / "
     = @project.title
     = " / master"
-  .divider
+
   .row
     .description
       .col-lg-7
         = @project.description
-      .col-lg-5
-        = @project.homepage
+      .col-lg-5.text-right
+        = link_to "Homepage", @project.homepage
+
       
   

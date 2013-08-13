@@ -73,3 +73,7 @@ body {
     margin: 0;
     padding: 0;
 }
+
+.gravatar-profile{
+    margin: 25px;
+}

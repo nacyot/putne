@@ -1,6 +1,8 @@
 .project.container
   .main.col-lg-9.panel
     = render "shared/project_info", locals: {project: @project}
+    .page-header
+      %h1 Synopsis
   = render "shared/project_sidebar", locals: {project: @project}
   
 

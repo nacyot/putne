@@ -48,4 +48,11 @@ module ApplicationHelper
                        gravatar: { size: 25 })
                        
   end
+
+  def gravatar_image_for_profile
+        gravatar_image_tag(current_user.email,
+                       alt: "gravatar image",
+                       class: "img-circle gravatar",
+                       gravatar: { size: 120 })
+  end
 end
