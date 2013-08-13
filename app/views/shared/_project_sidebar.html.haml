@@ -7,28 +7,60 @@
         Synopsis
     %br/
     %li
-      = link_to "Files", project_files_url(@project)
+      = link_to project_files_url(@project) do
+        %span.badge.pull-right#files-help ?
+        %span.badge.pull-right 43
+        Files
     %li
-      = link_to "Classes", project_classes_url(@project)
+      = link_to project_classes_url(@project) do
+        %span.badge.pull-right#classes-help ?
+        %span.badge.pull-right 43
+        Classes
     %li
-      = link_to "Methods", project_methods_url(@project)
+      = link_to project_methods_url(@project) do
+        %span.badge.pull-right#methods-help ?
+        %span.badge.pull-right 43
+        Methods
     %br/
     %li
-      = link_to "Churn", project_churn_url(@project)
+      = link_to project_churn_url(@project) do
+        %span.badge.pull-right#churn-help ?
+        %span.badge.pull-right 43
+        Churn
     %li
-      = link_to "Complexity", project_complexity_url(@project)
+      = link_to project_complexity_url(@project) do 
+        %span.badge.pull-right#complexity-help ?
+        %span.badge.pull-right 43
+        Complexity
     %li
-      = link_to "Duplicity", project_duplicity_url(@project)
+      = link_to project_duplicity_url(@project) do
+        %span.badge.pull-right#duplicity-help ?
+        %span.badge.pull-right 43
+        Duplicity
     %li
-      = link_to "Smells", project_smells_url(@project)
+      = link_to project_smells_url(@project) do
+        %span.badge.pull-right#smells-help ?
+        %span.badge.pull-right 43
+        Smells
     %br/
     %li
-      = link_to "Report", project_report_url(@project)
+      = link_to project_report_url(@project) do
+        %span.badge.pull-right#report-help ?
+        %span.badge.pull-right 43
+        Report
     %li
-      = link_to "Timeline", project_timeline_url(@project)
+      = link_to project_timeline_url(@project) do
+        %span.badge.pull-right#timeline-help ?
+        %span.badge.pull-right 43
+        Timeline
     %br/
     %li
-      = link_to "Repository", @project.repository_url
+      = link_to @project.repository_url do
+        %span.badge.pull-right#repository-help ?
+        %span.badge.pull-right 43
+        Repository
     %li
-      = link_to "Settings", url_for(controller: "projects", action: "settings", id: @project.id)
-
+      = link_to url_for(controller: "projects", action: "settings", id: @project.id) do
+        %span.badge.pull-right#settings-help ?
+        %span.badge.pull-right 43
+        Settings
