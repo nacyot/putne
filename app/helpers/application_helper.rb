@@ -40,4 +40,12 @@ module ApplicationHelper
                 class: "btn btn-default navbar-btn",
                 style: "margin-top: -3px;")
   end
+
+  def gravatar_image_for_navbar
+    gravatar_image_tag(current_user.email,
+                       alt: "gravatar image",
+                       class: "img-rounded gravatar",
+                       gravatar: { size: 25 })
+                       
+  end
 end

@@ -1,11 +1,12 @@
-.navbar.navbar-fixed-top
+.navbar.navbar-fixed-top.header
   %a.navbar-brand{href: "/"} Putne
   %ul.nav.navbar-nav
     %li 
       = link_to "Projects", projects_path
-    - if user_signed_in?
-      %li 
-        = link_to "Admin", rails_admin_path
+    %li 
+      = link_to "Help desk", help_path
+    %li 
+      = link_to "About", about_path
   - unless user_signed_in?
     = login_form_for_header
   - else
@@ -13,19 +14,22 @@
       %a{href: destroy_user_session_path, "data-method" => "delete"}
         %button.btn.btn-danger.navbar-btn.pull-right{type: "button", style: "margin-left: 10px;"} Sign out
       %ul.nav.navbar-nav.pull-right
-        %li         
-          %a{href: "#"}= "Hello, "
         %li.dropdown
           %a.dropdown-toggle{"data-toggle" => "dropdown", href: "#"}
+            = gravatar_image_for_navbar
             = current_user.email
             %span.caret
           %ul.dropdown-menu
             %li
               %a{href: "#"} My Profile
             %li
-              %a{href: "#"} Create a New Project
+              = link_to "Create a New Project", new_project_path
             %li
               %a{href: "#"} Account Setting
             %li.divider
+            - if current_user.has_role?(:admin)
+              %li
+                = link_to "Administration", rails_admin_path
+
             
             

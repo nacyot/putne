@@ -63,3 +63,8 @@ body {
 .project .sidebar{
     padding: 5px 15px;
 }
+
+.header .gravatar img{
+    margin: 0;
+    padding: 0;
+}
