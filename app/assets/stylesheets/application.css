@@ -56,9 +56,14 @@ body {
     color: black;
 }
 
-.project .main .info{
-    font-size: 1.4em;
+.project .main .info .address{
+
 }
+
+.project .main .info .description{
+
+}
+
 
 .project .sidebar{
     padding: 5px 15px;

@@ -1,5 +1,15 @@
 .info
-  = current_user.email
-  = " / "
-  = @project.title
-  = " / master"
+  .address.lead
+    = current_user.email
+    = " / "
+    = @project.title
+    = " / master"
+  .divider
+  .row
+    .description
+      .col-lg-7
+        = @project.description
+      .col-lg-5
+        = @project.homepage
+      
+  
