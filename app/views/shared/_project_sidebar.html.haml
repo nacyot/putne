@@ -7,49 +7,49 @@
         Synopsis
     %br/
     %li
-      = link_to project_files_url(@project) do
+      = link_to project_report_files_url(@project, @project.reports.last) do
         %span.badge.pull-right#files-help ?
         %span.badge.pull-right 43
         Files
     %li
-      = link_to project_classes_url(@project) do
+      = link_to project_report_classes_url(@project, @project.reports.last) do
         %span.badge.pull-right#classes-help ?
         %span.badge.pull-right 43
         Classes
     %li
-      = link_to project_methods_url(@project) do
+      = link_to project_report_methods_url(@project, @project.reports.last) do
         %span.badge.pull-right#methods-help ?
         %span.badge.pull-right 43
         Methods
     %br/
     %li
-      = link_to project_churn_url(@project) do
+      = link_to project_report_churn_url(@project, @project.reports.last) do
         %span.badge.pull-right#churn-help ?
         %span.badge.pull-right 43
         Churn
     %li
-      = link_to project_complexity_url(@project) do 
+      = link_to project_report_complexity_url(@project, @project.reports.last) do
         %span.badge.pull-right#complexity-help ?
         %span.badge.pull-right 43
         Complexity
     %li
-      = link_to project_duplicity_url(@project) do
+      = link_to project_report_duplicity_url(@project, @project.reports.last) do
         %span.badge.pull-right#duplicity-help ?
         %span.badge.pull-right 43
         Duplicity
     %li
-      = link_to project_smells_url(@project) do
+      = link_to project_report_smells_url(@project, @project.reports.last) do
         %span.badge.pull-right#smells-help ?
         %span.badge.pull-right 43
         Smells
     %br/
     %li
-      = link_to project_report_url(@project) do
+      = link_to project_report_url(@project, @project.reports.last) do
         %span.badge.pull-right#report-help ?
         %span.badge.pull-right 43
         Report
     %li
-      = link_to project_timeline_url(@project) do
+      = link_to project_report_timeline_url(@project, @project.reports.last) do
         %span.badge.pull-right#timeline-help ?
         %span.badge.pull-right 43
         Timeline

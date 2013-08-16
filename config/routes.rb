@@ -4,7 +4,7 @@ Putne::Application.routes.draw do
   get "help" => "main#help"
   
   resources :projects do
-    resource :reports do
+    resources :reports do
       get "files" => "metrics#files"
       get "classes" => "metrics#classes"
       get "methods" => "metrics#methods"
