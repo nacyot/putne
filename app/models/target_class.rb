@@ -1,4 +1,4 @@
 class TargetClass < ActiveRecord::Base
   belongs_to :report
-  has_many :churns, as: :targetable
+  has_one :churn, as: :targetable
 end

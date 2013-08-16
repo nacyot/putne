@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130816145353) do
+ActiveRecord::Schema.define(version: 20130816150146) do
 
   create_table "branches", force: true do |t|
     t.string   "name"
@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 20130816145353) do
   end
 
   create_table "churns", force: true do |t|
-    t.integer  "times_change"
+    t.integer  "times_changed"
     t.integer  "report_id"
     t.integer  "targetable_id"
     t.string   "targetable_type"

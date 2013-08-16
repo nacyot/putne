@@ -21,7 +21,6 @@ class Report < ActiveRecord::Base
                          path: file_path,
                          report: self,
                          churn: Churn.create!(times_changed: times_changed,
-                                              report: self
                                               )
                          )
 
