@@ -2,13 +2,27 @@
   .main.col-lg-9.panel
     = render "shared/project_info", locals: {project: @project}
     %table.table.table-striped
-      %th
-        File path
-      %th
-        Times changed
+      %th File path
+      %th Times changed
       - @report.target_files.each do |file|
         %tr
           %td= file.path
-          %td= file.churn.times_changed
+          %td= file.churn.times_changed unless file.churn.nil?
             
+
+    %table.table.table-striped
+      %th Class name
+      %th Times changed
+      - @report.target_classes.each do |klass|
+        %tr
+          %td= klass.name
+          %td= klass.churn.times_changed unless klass.churn.nil?
+
+    %table.table.table-striped
+      %th Method name
+      %th Times changed
+      - @report.target_methods.each do |method|
+        %tr
+          %td= method.name
+          %td= method.churn.times_changed unless method.churn.nil?
   = render "shared/project_sidebar", locals: {project: @project}

@@ -2,6 +2,7 @@ class MetricsController < ApplicationController
 
   def files
     @project = Project.find(params[:project_id])
+    @report = Report.find(params[:report_id])
   end
 
   def classes

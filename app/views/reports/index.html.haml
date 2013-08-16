@@ -9,7 +9,7 @@
       %th Commit
       - @reports.each do |report|
         %tr
-          %td= link_to report.id, project_report_path(report.project, reportb
+          %td= link_to report.id, project_report_path(report.project, report)
           %td
             %td
 
