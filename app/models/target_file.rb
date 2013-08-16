@@ -1,4 +1,4 @@
 class TargetFile < ActiveRecord::Base
   belongs_to :report
-  has_many :churns, as: :targetable
+  has_one :churns, as: :targetable
 end

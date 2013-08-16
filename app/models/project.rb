@@ -9,8 +9,12 @@ class Project < ActiveRecord::Base
       report.branch = Branch.create!
       report.repository = project.repository
       report.commit = Commit.create!
-    end
 
-    report.register_churn
+      report.save!
+      report.register_churn
+    end
+    
+    
+    
   end
 end
