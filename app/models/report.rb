@@ -7,5 +7,7 @@ class Report < ActiveRecord::Base
   has_many :target_files
   has_many :target_classes
   has_many :target_methods
-  
+
+  validates_presence_of :project, :branch, :commit, :repository
+
 end
