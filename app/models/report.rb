@@ -77,7 +77,20 @@ class Report < ActiveRecord::Base
   def register_reeks(target: nil)
     report = MetricFuReport::ReekParser.new(target: target)
     report.matches.each do |match|
-      pp match
+      file_path = match[:file_path]
+
+      target_file = TargetFile.find_or_create_by path: file_path, report: self, name: File.basename(file_path)
+
+      match[:code_smells].each do |smell|
+        method_name = smell[:method]
+        klass_name = smell[:method].split("#")[0]
+        messages = smell[:message]
+        type = smell[:type]
+        
+        target_class = TargetClass.find_or_create_by name: klass_name, report: self, target_file_id: target_file.id
+        target_method = TargetMethod.find_or_create_by name: method_name, report: self, target_class_id: target_class.id
+        terget_method.reek = ReekSmell.create :message = message, type: type
+      end
     end
   end
 end

@@ -19,9 +19,9 @@ GIT
 
 GIT
   remote: git://github.com/nacyot/metric-fu-report-parser.git
-  revision: 5a163815281b0034667ffe1a190f9203aa7dfba7
+  revision: 3d8b7087897675466798a84a9a397434102741e6
   specs:
-    metric_fu_report_parser (0.0.4)
+    metric_fu_report_parser (0.0.5)
 
 GIT
   remote: git://github.com/sferik/rails_admin.git
