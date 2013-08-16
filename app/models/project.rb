@@ -5,16 +5,11 @@ class Project < ActiveRecord::Base
   def register_report
     unless id.nil?
       report = Report.new
-      report.projcet = self
+      report.project = self
       report.branch = Branch.create!
-      report.repository = project.repository
+      report.repository = Repository.create!
       report.commit = Commit.create!
-
       report.save!
-      report.register_churn
     end
-    
-    
-    
   end
 end
