@@ -28,10 +28,6 @@ class MetricsController < ApplicationController
     @project = Project.find(params[:project_id])
   end
 
-  def report
-    @project = Project.find(params[:project_id])
-  end
-
   def timeline
     @project = Project.find(params[:project_id])
   end
