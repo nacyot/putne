@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130816150146) do
+ActiveRecord::Schema.define(version: 20130816171044) do
 
   create_table "branches", force: true do |t|
     t.string   "name"
@@ -77,10 +77,10 @@ ActiveRecord::Schema.define(version: 20130816150146) do
   add_index "rails_admin_histories", ["item", "table", "month", "year"], name: "index_rails_admin_histories"
 
   create_table "reports", force: true do |t|
-    t.integer  "repository_id"
-    t.integer  "branch_id"
-    t.integer  "commit_id"
-    t.integer  "project_id"
+    t.string   "repository_id"
+    t.string   "branch_id"
+    t.string   "commit_id"
+    t.string   "project_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -108,8 +108,10 @@ ActiveRecord::Schema.define(version: 20130816150146) do
   create_table "target_classes", force: true do |t|
     t.string   "name"
     t.integer  "report_id"
+    t.integer  "file_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "target_file_id"
   end
 
   create_table "target_files", force: true do |t|
@@ -122,9 +124,12 @@ ActiveRecord::Schema.define(version: 20130816150146) do
 
   create_table "target_methods", force: true do |t|
     t.string   "name"
+    t.string   "full_name"
     t.integer  "report_id"
+    t.integer  "class_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "target_class_id"
   end
 
   create_table "users", force: true do |t|
