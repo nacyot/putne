@@ -10,6 +10,8 @@ class Project < ActiveRecord::Base
       report.repository = Repository.create!
       report.commit = Commit.create!
       report.save!
+
+      report.register_churn
     end
   end
 end

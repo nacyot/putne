@@ -12,7 +12,8 @@ class Report < ActiveRecord::Base
 
   def register_churn
     report = MetricFuReport::ChurnParser.new(target: Rails.root.join('tmp', 'metric_fu', 'sample_data.yml'))
-    report.parse_class_churns.each do |churn|
+    report.parse_file_churns.each do |churn|
+      pp churn
       file_path = churn[:file_path]
       times_changed = churn[:times_changed]
 
