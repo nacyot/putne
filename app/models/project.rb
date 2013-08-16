@@ -31,7 +31,9 @@ class Project < ActiveRecord::Base
       report.save!
 
       # create_reports
+      report.register_flogs target: target
       report.register_reeks target: target
+      report.register_saikuro target: target
       
       rm_github_repository
     end
@@ -41,7 +43,7 @@ class Project < ActiveRecord::Base
     report.register_files_churn target: target
     report.register_classes_churn target: target
     report.register_methods_churn target: target
-    report.register_flogs target: target
+
   end
   
   def get_metrics_from_github

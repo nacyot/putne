@@ -99,5 +99,34 @@ class Report < ActiveRecord::Base
 
   def register_saikuro(target: nil)
     report = MetricFuReport::SaikuroParser.new(target: target)
+    report.methods.each do |method|
+      method_name = method[:name]
+      class_name = method[:name].split("#")[0]
+      lines = method[:lines]
+      saikuro_score = method[:complexity]
+
+      target_class = TargetClass.find_or_create_by name: class_name, report: self
+      target_method = TargetMethod.find_or_create_by name: method_name, report: self, target_class_id: target_class.id
+      if target_method.complexity_score.nil?
+        target_method.complexity_score = ComplexityScore.create saikuro_score: saikuro_score, lines: lines
+      else
+        target_method.complexity_score.saikuro_score = saikuro_score
+        target_method.complexity_score.lines = lines
+        target_method.complexity_score.save
+      end
+    end
+  end
+
+  def register_roodi(target: nil)
+    report = MetricFuReport::RoodiParser.new(target: target)
+    report.ploblems.each do |problem|
+      file_path = problem[:file]
+      line_num = problem[:line]
+      message = problem[:problem]
+
+      target_file = TargetFile.find_or_create_by path: file_path, report: self, name: File.basename(file_path)
+    end
   end
 end
+
+ 
