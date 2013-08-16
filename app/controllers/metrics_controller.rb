@@ -14,6 +14,7 @@ class MetricsController < ApplicationController
   
   def churn
     @project = Project.find(params[:project_id])
+    @report = Report.find(params[:report_id])
   end
 
   def complexity

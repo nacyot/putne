@@ -1,5 +1,14 @@
 .project.container
   .main.col-lg-9.panel
     = render "shared/project_info", locals: {project: @project}
-    
+    %table.table.table-striped
+      %th
+        File path
+      %th
+        Times changed
+      - @report.target_files.each do |file|
+        %tr
+          %td= file.path
+          %td= file.churn.times_changed
+            
   = render "shared/project_sidebar", locals: {project: @project}

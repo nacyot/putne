@@ -4,7 +4,8 @@ class ReportsController < ApplicationController
   # GET /reports
   # GET /reports.json
   def index
-    @reports = Report.all
+    @project = Project.find params[:project_id]
+    @reports = @project.reports
   end
 
   # GET /reports/1
