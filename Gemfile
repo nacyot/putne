@@ -79,7 +79,7 @@ gem 'simplecov-rcov', :require => false
 gem 'ci_reporter'
 gem 'metric_fu'
 #gem 'rcov', '0.9.11'
-gem 'metric_fu_report_parser'
+gem 'metric_fu_report_parser', github: 'nacyot/metric-fu-report-parser'
 
 group  :development do
   gem 'erb2haml'

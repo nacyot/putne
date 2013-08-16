@@ -18,6 +18,12 @@ GIT
       rake
 
 GIT
+  remote: git://github.com/nacyot/metric-fu-report-parser.git
+  revision: d37f86ca17e5946eabe3aabe093ae7236492cfa7
+  specs:
+    metric_fu_report_parser (0.0.1)
+
+GIT
   remote: git://github.com/sferik/rails_admin.git
   revision: 967efc6f875c5f2075c697e22e894cad2fbc99b1
   branch: rails-4
@@ -280,7 +286,6 @@ GEM
     metric_fu-Saikuro (1.1.1.0)
     metric_fu-roodi (2.2.2)
       ruby_parser
-    metric_fu_report_parser (0.0.1)
     mime-types (1.23)
     mini_portile (0.5.1)
     minitest (4.7.5)
@@ -477,7 +482,7 @@ DEPENDENCIES
   less-rails
   letter_opener
   metric_fu
-  metric_fu_report_parser
+  metric_fu_report_parser!
   paper_trail!
   pg
   piwik_analytics
