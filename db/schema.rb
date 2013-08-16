@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130816212632) do
+ActiveRecord::Schema.define(version: 20130816213432) do
 
   create_table "branches", force: true do |t|
     t.string   "name"
@@ -51,6 +51,7 @@ ActiveRecord::Schema.define(version: 20130816212632) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "saikuro_score"
+    t.integer  "lines"
   end
 
   create_table "duplications", force: true do |t|
