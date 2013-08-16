@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
+source 'http://rubygems.nacyot.lapisan'
 
+ruby '2.0.0'
 gem 'rails', '4.0.0'
 
 gem 'protected_attributes'
@@ -70,6 +72,15 @@ gem 'paper_trail', github: 'airblade/paper_trail', branch: 'rails4'
 gem 'htmlentities'
 gem 'faker'
 
+# metrics
+gem 'rails_best_practices'  
+gem 'simplecov', :require => false
+gem 'simplecov-rcov', :require => false
+gem 'ci_reporter'
+gem 'metric_fu'
+#gem 'rcov', '0.9.11'
+gem 'metric_fu_report_parser'
+
 group  :development do
   gem 'erb2haml'
   gem 'annotate'
@@ -104,14 +115,6 @@ group :test do
   # data
   gem 'factory_girl', :require => false
   gem 'factory_girl_rails', :require => false
-
-  # metrics
-  gem 'rails_best_practices'  
-  gem 'simplecov', :require => false
-  gem 'simplecov-rcov', :require => false
-  gem 'ci_reporter'
-  gem 'metric_fu'
-  #gem 'rcov', '0.9.11'
 end
 
 group :development, :test do
