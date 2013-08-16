@@ -1,0 +1,11 @@
+= simple_form_for(@report) do |f|
+  = f.error_notification
+
+  .inputs
+    = f.input :repository_id
+    = f.input :branch_id
+    = f.input :commit_id
+    = f.input :project_id
+
+  .actions
+    = f.button :submit

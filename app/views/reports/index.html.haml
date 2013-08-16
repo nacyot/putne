@@ -1,0 +1,25 @@
+%h1 Listing reports
+
+%table
+  %tr
+    %th Repository
+    %th Branch
+    %th Commit
+    %th Project
+    %th
+    %th
+    %th
+
+  - @reports.each do |report|
+    %tr
+      %td= report.repository_id
+      %td= report.branch_id
+      %td= report.commit_id
+      %td= report.project_id
+      %td= link_to 'Show', report
+      %td= link_to 'Edit', edit_report_path(report)
+      %td= link_to 'Destroy', report, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Report', new_report_path

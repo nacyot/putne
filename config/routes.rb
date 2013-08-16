@@ -1,4 +1,6 @@
 Putne::Application.routes.draw do
+  resources :reports
+
   root "main#index"
   get "about" => "main#about"
   get "help" => "main#help"
