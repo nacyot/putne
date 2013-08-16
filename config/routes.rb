@@ -1,22 +1,21 @@
 Putne::Application.routes.draw do
-  resources :reports
-
   root "main#index"
   get "about" => "main#about"
   get "help" => "main#help"
   
   resources :projects do
-    get "files" => "metrics#files"
-    get "classes" => "metrics#classes"
-    get "methods" => "metrics#methods"
+    resource :reports do
+      get "files" => "metrics#files"
+      get "classes" => "metrics#classes"
+      get "methods" => "metrics#methods"
 
-    get "churn" => "metrics#churn"
-    get "complexity" => "metrics#complexity"
-    get "duplicity" => "metrics#duplicity"
-    get "smells" => "metrics#smells"
+      get "churn" => "metrics#churn"
+      get "complexity" => "metrics#complexity"
+      get "duplicity" => "metrics#duplicity"
+      get "smells" => "metrics#smells"
 
-    get "report" => "metrics#report"
-    get "timeline" => "metrics#timeline"
+      get "timeline" => "metrics#timeline"
+    end
   end
 
   get "projects/:id/settings" => "projects#settings"
