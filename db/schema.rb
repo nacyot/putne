@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130816193611) do
+ActiveRecord::Schema.define(version: 20130816211230) do
 
   create_table "branches", force: true do |t|
     t.string   "name"
@@ -40,6 +40,21 @@ ActiveRecord::Schema.define(version: 20130816193611) do
   create_table "commits", force: true do |t|
     t.string   "commit_hash"
     t.integer  "repository_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "duplications", force: true do |t|
+    t.integer  "report_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "file_line_infos", force: true do |t|
+    t.integer  "target_file_id"
+    t.integer  "line_num"
+    t.string   "lineable_type"
+    t.integer  "lineable_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
