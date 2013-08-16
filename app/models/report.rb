@@ -73,4 +73,11 @@ class Report < ActiveRecord::Base
       end
     end
   end
+
+  def register_reeks(target: nil)
+    report = MetricFuReport::ReekParser.new(target: target)
+    report.matches.each do |match|
+      pp match
+    end
+  end
 end

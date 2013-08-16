@@ -20,7 +20,7 @@ class Project < ActiveRecord::Base
 
   def register_report
     unless id.nil?
-      target = get_metrics_from_github
+      target = report_directory
       puts target
       
       report = Report.new
@@ -30,15 +30,20 @@ class Project < ActiveRecord::Base
       report.commit = Commit.create!
       report.save!
 
-      report.register_files_churn target: target
-      report.register_classes_churn target: target
-      report.register_methods_churn target: target
-      report.register_flogs target: target
-
+      # create_reports
+      report.register_reeks target: target
+      
       rm_github_repository
     end
   end
 
+  def create_reports
+    report.register_files_churn target: target
+    report.register_classes_churn target: target
+    report.register_methods_churn target: target
+    report.register_flogs target: target
+  end
+  
   def get_metrics_from_github
     Dir.chdir Rails.root
     `mkdir -p tmp/workspace`
@@ -47,11 +52,13 @@ class Project < ActiveRecord::Base
     puts Dir.pwd
     Dir.chdir "#{ project_name }"
     puts Dir.pwd
-    `metric_fu -r `
-
-    Rails.root.join("tmp", "workspace", project_name, "tmp", "metric_fu", "report.yml")
+    `metric_fu -r --format yaml`
   end
 
+  def report_directory
+    Rails.root.join("tmp", "workspace", project_name, "tmp", "metric_fu", "report.yml") 
+  end
+  
   def rm_github_repository
     Dir.chdir Rails.root
     #`rm -rf tmp/workspace/#{ project_name }`
