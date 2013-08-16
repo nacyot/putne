@@ -84,12 +84,12 @@ class Report < ActiveRecord::Base
       match[:code_smells].each do |smell|
         method_name = smell[:method]
         klass_name = smell[:method].split("#")[0]
-        messages = smell[:message]
-        type = smell[:type]
+        message = smell[:message]
+        warn_type = smell[:type]
         
         target_class = TargetClass.find_or_create_by name: klass_name, report: self, target_file_id: target_file.id
         target_method = TargetMethod.find_or_create_by name: method_name, report: self, target_class_id: target_class.id
-        terget_method.reek = ReekSmell.create :message = message, type: type
+        target_method.reek_smells << ReekSmell.create(message: message, warn_type: warn_type)
       end
     end
   end
