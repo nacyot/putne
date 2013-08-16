@@ -69,7 +69,7 @@ class Report < ActiveRecord::Base
       klass[:methods].each do |method|
 
         target_method = TargetMethod.find_or_create_by name: method[0], report: self, target_class_id: target_class.id
-        target_method.flog_score = FlogScore.create score: method[1][:score]
+        target_method.complexity_score = ComplexityScore.create flog_score: method[1][:score]
       end
     end
   end

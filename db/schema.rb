@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130816211230) do
+ActiveRecord::Schema.define(version: 20130816211857) do
 
   create_table "branches", force: true do |t|
     t.string   "name"
@@ -40,6 +40,14 @@ ActiveRecord::Schema.define(version: 20130816211230) do
   create_table "commits", force: true do |t|
     t.string   "commit_hash"
     t.integer  "repository_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "complexity_scores", force: true do |t|
+    t.integer  "score"
+    t.integer  "target_method_id"
+    t.text     "operators"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

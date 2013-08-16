@@ -7,5 +7,5 @@
       - @report.target_methods.each do |method|
         %tr
           %td= method.name
-          %td= method.flog_score.score
+          %td= method.complexity_score.flog_score
   = render "shared/project_sidebar", locals: {project: @project}
