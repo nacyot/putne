@@ -54,7 +54,7 @@ class Project < ActiveRecord::Base
 
   def rm_github_repository
     Dir.chdir Rails.root
-    `rm -rf tmp/workspace/#{ project_name }`
+    #`rm -rf tmp/workspace/#{ project_name }`
   end
 
   def project_name
