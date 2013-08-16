@@ -8,6 +8,9 @@ class Report < ActiveRecord::Base
   has_many :target_classes
   has_many :target_methods
 
+  has_many :churns
+  has_many :reek_smells
+
   validates_presence_of :project, :branch, :commit, :repository
 
   def register_files_churn(target: nil)
@@ -50,7 +53,7 @@ class Report < ActiveRecord::Base
       target_file = TargetFile.find_or_create_by path: file_path, report: self, name: File.basename(file_path)
       target_class = TargetClass.find_or_create_by name: class_name, report: self, target_file_id: target_file.id
       target_method = TargetMethod.create name: method_name, report: self, target_class_id: target_class.id
-      target_method.churn = Churn.create(times_changed: times_changed)
+      target_method.churn = Churn.create(times_changed: times_changed, report: self)
     end
   end
 
@@ -89,8 +92,12 @@ class Report < ActiveRecord::Base
         
         target_class = TargetClass.find_or_create_by name: klass_name, report: self, target_file_id: target_file.id
         target_method = TargetMethod.find_or_create_by name: method_name, report: self, target_class_id: target_class.id
-        target_method.reek_smells << ReekSmell.create(message: message, warn_type: warn_type)
+        target_method.reek_smells << ReekSmell.create(message: message, warn_type: warn_type, report: self)
       end
     end
+  end
+
+  def register_saikuro(target: nil)
+    report = MetricFuReport::SaikuroParser.new(target: target)
   end
 end

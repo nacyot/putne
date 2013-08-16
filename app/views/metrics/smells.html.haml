@@ -1,4 +1,15 @@
 .project.container
   .main.col-lg-9.panel
     = render "shared/project_info", locals: {project: @project}
+    %table.table.table-striped
+      %th Method name
+      %th Small type
+      %th Message
+      - @report.reek_smells.each do |smell|
+        %tr
+          %td= smell.target_method.name
+          %td= smell.warn_type
+          %td= smell.message
+            
   = render "shared/project_sidebar", locals: {project: @project}
+

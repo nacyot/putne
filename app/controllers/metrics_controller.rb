@@ -27,14 +27,17 @@ class MetricsController < ApplicationController
 
   def duplicity
     @project = Project.find(params[:project_id])
+    @report = Report.find(params[:report_id])
   end
 
   def smells
     @project = Project.find(params[:project_id])
+    @report = Report.find(params[:report_id])
   end
 
   def timeline
     @project = Project.find(params[:project_id])
+    @report = Report.find(params[:report_id])
   end
 
 end
