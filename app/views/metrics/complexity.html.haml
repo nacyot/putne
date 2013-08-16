@@ -1,4 +1,11 @@
 .project.container
   .main.col-lg-9.panel
     = render "shared/project_info", locals: {project: @project}
+    %table.table.table-striped
+      %th Methods
+      %th Flog score
+      - @report.target_methods.each do |method|
+        %tr
+          %td= method.name
+          %td= method.flog_score.score
   = render "shared/project_sidebar", locals: {project: @project}

@@ -67,8 +67,9 @@ class Report < ActiveRecord::Base
       target_class = TargetClass.find_or_create_by name: klass_name, report: self, target_file_id: target_file.id
 
       klass[:methods].each do |method|
+
         target_method = TargetMethod.find_or_create_by name: method[0], report: self, target_class_id: target_class.id
-        
+        target_method.flog_score = FlogScore.create score: method[1][:score]
       end
     end
   end

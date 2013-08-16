@@ -5,7 +5,7 @@ class TargetFile < ActiveRecord::Base
 
   validates :path, :uniqueness => {
     :scope => :report_id,
-    :message => 'cannot have two category with same path and report_id
-'}
+    :message => 'cannot have two category with same path and report_id'}
 
+  default_scope order('path')
 end

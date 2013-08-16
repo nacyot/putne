@@ -7,10 +7,12 @@ class MetricsController < ApplicationController
 
   def classes
     @project = Project.find(params[:project_id])
+    @report = Report.find(params[:report_id])
   end
 
   def methods
     @project = Project.find(params[:project_id])
+    @report = Report.find(params[:report_id])
   end
   
   def churn
@@ -20,6 +22,7 @@ class MetricsController < ApplicationController
 
   def complexity
     @project = Project.find(params[:project_id])
+    @report = Report.find(params[:report_id])
   end
 
   def duplicity
