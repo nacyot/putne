@@ -14,6 +14,7 @@ class Project < ActiveRecord::Base
       report.register_files_churn
       report.register_classes_churn
       report.register_methods_churn
+      report.register_flogs
     end
   end
 end

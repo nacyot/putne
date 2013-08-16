@@ -53,4 +53,23 @@ class Report < ActiveRecord::Base
       target_method.churn = Churn.create(times_changed: times_changed)
     end
   end
+
+  def register_flogs
+    report = MetricFuReport::FlogParser.new(target: Rails.root.join('tmp', 'metric_fu', 'sample_data.yml'))
+    report.klasses.each do |klass|
+      klass_name = klass[:name]
+      file_path = klass[:path]
+      total_score = klass[:total_score]
+      highest_score = klass[:highist_score]
+      average_score = klass[:average_score]
+
+      target_file = TargetFile.find_or_create_by path: file_path, report: self, name: File.basename(file_path)
+      target_class = TargetClass.find_or_create_by name: klass_name, report: self, target_file_id: target_file.id
+
+      klass[:methods].each do |method|
+        target_method = TargetMethod.find_or_create_by name: method[0], report: self, target_class_id: target_class.id
+        
+      end
+    end
+  end
 end
