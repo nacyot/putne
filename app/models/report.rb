@@ -10,7 +10,7 @@ class Report < ActiveRecord::Base
 
   validates_presence_of :project, :branch, :commit, :repository
 
-  def register_churn
+  def register_files_churn
     report = MetricFuReport::ChurnParser.new(target: Rails.root.join('tmp', 'metric_fu', 'sample_data.yml'))
     report.parse_file_churns.each do |churn|
       pp churn
@@ -25,5 +25,7 @@ class Report < ActiveRecord::Base
                          )
 
     end
+
+    report.parse_class
   end
 end

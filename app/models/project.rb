@@ -11,7 +11,9 @@ class Project < ActiveRecord::Base
       report.commit = Commit.create!
       report.save!
 
-      report.register_churn
+      report.register_files_churn
+      report.register_classes_churn
+      report.register_methods_churn
     end
   end
 end
