@@ -20,6 +20,9 @@ class Project < ActiveRecord::Base
 
   def register_report
     unless id.nil?
+      target = get_metrics_from_github
+      puts target
+      
       report = Report.new
       report.project = self
       report.branch = Branch.create!
@@ -27,27 +30,37 @@ class Project < ActiveRecord::Base
       report.commit = Commit.create!
       report.save!
 
-      report.register_files_churn target: get_metrics_from_github
-      report.register_classes_churn target: get_metrics_from_github
-      report.register_methods_churn target: get_metrics_from_github
-      report.register_flogs target: get_metrics_from_github
+      report.register_files_churn target: target
+      report.register_classes_churn target: target
+      report.register_methods_churn target: target
+      report.register_flogs target: target
+
+      rm_github_repository
     end
   end
 
   def get_metrics_from_github
-    project_name = extract_project_name(repository_url)
-    
-    `cd #{ Rails.root }`
+    Dir.chdir Rails.root
     `mkdir -p tmp/workspace`
-    `cd tmp/workspace`
-    `rm -rf #{ project_name }`
+    Dir.chdir 'tmp/workspace'
     `git clone #{ repository_url }`
-    `cd #{ project_name }`
-    `metric_fu -r`
+    puts Dir.pwd
+    Dir.chdir "#{ project_name }"
+    puts Dir.pwd
+    `metric_fu -r `
 
-    Rails.root.join("tmp", "workspace", project_name, "tmp", "metric_fu", "output.yml")
+    Rails.root.join("tmp", "workspace", project_name, "tmp", "metric_fu", "report.yml")
   end
 
+  def rm_github_repository
+    Dir.chdir Rails.root
+    `rm -rf tmp/workspace/#{ project_name }`
+  end
+
+  def project_name
+    extract_project_name(repository_url)
+  end
+  
   def extract_project_name(target)
     target.split("/")[-1].split(".git")[0]
   end

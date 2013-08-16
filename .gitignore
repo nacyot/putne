@@ -11,6 +11,8 @@
 /log/*.log
 /report/*
 /tmp/*
+/tmp/**/*
+/tmp/**
 /doc/*
 *.swp
 *~
