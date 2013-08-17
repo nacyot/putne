@@ -9,6 +9,7 @@ Putne::Application.routes.draw do
       get "commits" => "git#commits"
       
       get "files" => "metrics#files"
+      get "file/:id" => "metrics#file"
       get "classes" => "metrics#classes"
       get "methods" => "metrics#methods"
 

@@ -5,7 +5,6 @@ class GitController < ApplicationController
 
   def commits
     @project = Project.find params[:project_id]
-    repo = Grit::Repo.new("./tmp/workspace/resque/")
-    @commits = repo.commits("master", 5)
+    @repository = Git.new(@project.title)
   end
 end

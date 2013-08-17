@@ -49,10 +49,11 @@ module ApplicationHelper
                        
   end
 
-  def gravatar_image_for_profile
-        gravatar_image_tag(current_user.email,
+  def gravatar_image_for_profile(user = current_user.email)
+        gravatar_image_tag(user,
                        alt: "gravatar image",
                        class: "img-circle gravatar",
                        gravatar: { size: 120 })
   end
+
 end
