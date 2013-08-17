@@ -1,5 +1,17 @@
-%h1 New project
+%h3
+  새로운 프로젝트 만들기
+  %span.label.label-danger Ruby
+  %span.label.label-success Git
+.col-lg-8
+  .container
+    = render 'form'
+.col-lg-4
+  .panel
+    .panel-heading 
+      %h4 새 프로젝트 만들기.
+    .panel-body
+      %p 이 페이지에서 새로운 Putne 프로젝트를 생성할 수 있습니다. 여러분의 Ruby 소스코드를 Putne에 등록하면 서버에서 자동적으로 코드의 변경사항을 확인하고, 코드의 품질을 측정해줍니다. 코드의 품질은 사람의 건강상태와 같습니다. 
+      %p 잘 관리된 프로젝트일 수록 오랜 기간 개발에도 버틸 수 있으며 유지보수 또한 쉬워집니다. 
+      %p.alert.alert-danger
+        현재는 Ruby와 Git 저장소만을 지원합니다.
 
-= render 'form'
-
-= link_to 'Back', projects_path

@@ -2,15 +2,15 @@
   %a.navbar-brand{href: "/"} Putne
   %ul.nav.navbar-nav
     -#%li= link_to "Projects", projects_path if signed_in?
-    %li= link_to "New project",new_project_path
-    %li= link_to "Help desk", help_path
-    %li= link_to "About", about_path
+    %li= link_to "새로운 프로젝트",new_project_path
+    %li= link_to "도움말", help_path
+    %li= link_to "Putne에 관하여", about_path
   - unless user_signed_in?
     = login_form_for_header
   - else
     .pull-right
       %a{href: destroy_user_session_path, "data-method" => "delete"}
-        %button.btn.btn-danger.navbar-btn.pull-right{type: "button", style: "margin-left: 10px;"} Sign out
+        %button.btn.btn-danger.navbar-btn.pull-right{type: "button", style: "margin-left: 10px;"} 로그 아웃
       %ul.nav.navbar-nav.pull-right{style: "margin-right: 25px"}
         %li.dropdown
           %a.dropdown-toggle{"data-toggle" => "dropdown", href: "#"}
@@ -22,15 +22,15 @@
               = gravatar_image_for_profile
             %li.divider
             %li
-              %a{href: "#"} My Profile
+              %a{href: "#"} 프로필
             %li
-              = link_to "Create a New Project", new_project_path
+              = link_to "새로운 프로젝트 만들기", new_project_path
             %li
-              %a{href: "#"} Account Setting
+              %a{href: "#"} 계정 관리
             %li.divider
             - if current_user.has_role?(:admin)
               %li
-                = link_to "Administration", rails_admin_path
+                = link_to "관리자 페이지", rails_admin_path
 
             
             

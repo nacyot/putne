@@ -1,12 +1,11 @@
 = simple_form_for(@project) do |f|
   = f.error_notification
-
-  .inputs
-    = f.input :title
-    = f.input :description
-    = f.input :language
-    = f.input :repository_type
-    = f.input :repository_url
-
+  = f.hidden_field :user_id, value: current_user.id
+  = f.hidden_field :language, value: "ruby"
+  = f.hidden_field :repository_type, value: "git"
+  .form-group= f.input :title, label: "프로젝트 이름", input_html: {class: "form-control", placeholder: "Title"}
+  .form-group= f.input :description, label: "프로젝트 설명", input_html: {class: "form-control", style: "height: 250px;", placeholder: "Description"}
+  .form-group= f.input :repository_url, label: "버전관리 저장소 URL(Git)", input_html: {class: "form-control", placeholder: "Repository"}
+  %br/
   .actions
-    = f.button :submit
+    = f.button :submit, class: "btn btn-info"
