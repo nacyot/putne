@@ -87,7 +87,7 @@ class Report < ActiveRecord::Base
         end
 
         target_method = TargetMethod.find_or_create_by name: method_name, report: self, target_class_id: target_class.id
-        target_method.complexity_score = ComplexityScore.create! flog_score: method[1][:score]
+        target_method.complexity_score = ComplexityScore.create! flog_score: method[1][:score], report: self
       end
     end
   end
@@ -153,7 +153,7 @@ class Report < ActiveRecord::Base
       target_class = TargetClass.find_or_create_by name: class_name, report: self
       target_method = TargetMethod.find_or_create_by name: method_name, report: self, target_class_id: target_class.id
       if target_method.complexity_score.nil?
-        target_method.complexity_score = ComplexityScore.create saikuro_score: saikuro_score, lines: lines
+        target_method.complexity_score = ComplexityScore.create saikuro_score: saikuro_score, lines: lines, report: self
       else
         target_method.complexity_score.saikuro_score = saikuro_score
         target_method.complexity_score.lines = lines

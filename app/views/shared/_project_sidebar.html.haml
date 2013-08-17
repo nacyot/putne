@@ -52,27 +52,27 @@
     %li
       = link_to project_report_smells_url(@project, @project.reports.last) do
         %span.badge.pull-right#smells-help ?
-        %span.badge.pull-right 43
+        %span.badge.pull-right= @project.reports.last.reek_smells.count
         Smells
     %br/
     %li
       = link_to project_reports_url(@project) do
         %span.badge.pull-right#report-help ?
-        %span.badge.pull-right 43
+        %span.badge.pull-right= @project.reports.count
         Report
     %li
       = link_to project_report_timeline_url(@project, @project.reports.last) do
         %span.badge.pull-right#timeline-help ?
-        %span.badge.pull-right 43
+        %span.badge.pull-right
         Timeline
     %br/
     %li
       = link_to @project.repository_url do
         %span.badge.pull-right#repository-help ?
-        %span.badge.pull-right 43
+        %span.badge.pull-right
         Repository
     %li
       = link_to url_for(controller: "projects", action: "settings", id: @project.id) do
         %span.badge.pull-right#settings-help ?
-        %span.badge.pull-right 43
+        %span.badge.pull-right
         Settings
