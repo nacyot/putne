@@ -1,0 +1,6 @@
+.project.container
+  .main.col-lg-9.panel
+    = render "shared/project_info", locals: {project: @project}
+    %ol
+      %li= pp @commits
+  = render "shared/project_sidebar", locals: {project: @project}
