@@ -33,6 +33,7 @@ class Project < ActiveRecord::Base
       # create_reports
 
       report.register_roodi target: target
+      report.register_duplication target: target
       
       rm_github_repository
     end

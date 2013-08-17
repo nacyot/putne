@@ -11,6 +11,7 @@ class Report < ActiveRecord::Base
   has_many :churns
   has_many :reek_smells
   has_many :roodis
+  has_many :duplications
 
   validates_presence_of :project, :branch, :commit, :repository
 
@@ -129,6 +130,23 @@ class Report < ActiveRecord::Base
       target_file = TargetFile.find_or_create_by path: file_path, report: self, name: File.basename(file_path)
       Roodi.create report: self, message: message, file_line_info: FileLineInfo.create(line_num: line_num, target_file_id: target_file.id)
 
+    end
+  end
+
+  def register_duplication(target: nil)
+    report = MetricFuReport::FlayParser.new(target: target)
+    report.matches.each do |match|
+      reason = match[:reason]
+
+      dup = Duplication.create report: self, message: reason
+       
+      match[:matches].each do |file|
+        file_path = file[:name]
+        line_num = file[:line]
+
+        target_file = TargetFile.find_or_create_by path: file_path, report: self, name: File.basename(file_path)
+        dup.file_line_infos << FileLineInfo.create(line_num: line_num, target_file_id: target_file.id)
+      end
     end
   end
 end
