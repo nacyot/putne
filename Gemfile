@@ -74,7 +74,6 @@ gem 'htmlentities'
 gem 'faker'
 
 gem 'sidekiq'
-gem 'method_source'
 
 # metrics
 gem 'rails_best_practices'  
@@ -87,6 +86,8 @@ gem 'metric_fu_report_parser', github: 'nacyot/metric-fu-report-parser'
 
 # code
 gem 'coderay'
+gem 'parser'
+gem 'ruby2ruby'
 
 # git
 gem 'grit'

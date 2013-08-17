@@ -3,7 +3,9 @@
     = render "shared/project_info", locals: {project: @project}
     %table.table.table-striped
       %th Class
+      %th File
       - @report.target_classes.each do |klass|
         %tr
           %td= klass.name
+          %td= klass.target_file.path
   = render "shared/project_sidebar", locals: {project: @project}

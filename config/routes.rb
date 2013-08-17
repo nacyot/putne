@@ -12,7 +12,10 @@ Putne::Application.routes.draw do
       get "file" => "metrics#file"
       
       get "classes" => "metrics#classes"
+      get "klass" => "metrics#klass"
+
       get "methods" => "metrics#methods"
+      get "method" => "metrics#method"
 
       get "churn" => "metrics#churn"
       get "complexity" => "metrics#complexity"

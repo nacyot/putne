@@ -5,5 +5,5 @@
       %th Methods
       - @report.target_methods.each do |method|
         %tr
-          %td= method.name
+          %td= link_to method.name, project_report_method_path(@project, @report, method_id: method)
   = render "shared/project_sidebar", locals: {project: @project}

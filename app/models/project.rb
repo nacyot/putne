@@ -22,6 +22,8 @@ class Project < ActiveRecord::Base
   end
 
   def register_report
+    #get_metrics_from_github
+    
     unless id.nil?
       target = report_directory
       
@@ -34,7 +36,7 @@ class Project < ActiveRecord::Base
 
       create_reports report, target
      
-      rm_github_repository
+      #rm_github_repository
     end
   end
 
@@ -44,6 +46,7 @@ class Project < ActiveRecord::Base
     report.register_methods_churn target
     report.register_flogs target
     report.register_saikuro target
+
     report.register_reeks target
     report.register_roodi target
     report.register_duplication target

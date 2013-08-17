@@ -1,0 +1,6 @@
+.project.container
+  .main.col-lg-9.panel
+    = render "shared/project_info", locals: {project: @project}
+    = CodeRay.scan("  "+ @method, :ruby).div.html_safe
+    = @method_name
+  = render "shared/project_sidebar", locals: {project: @project}

@@ -8,5 +8,9 @@ class TargetFile < ActiveRecord::Base
     :scope => :report_id,
     :message => 'cannot have two category with same path and report_id'}
 
+  validates_presence_of :path, :report, :name
+
+  
   default_scope order('path')
+
 end

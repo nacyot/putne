@@ -39,7 +39,7 @@ class Report < ActiveRecord::Base
       times_changed = churn["times_changed"]
 
       target_file = TargetFile.find_or_create_by path: file_path, report: self, name: File.basename(file_path)
-      target_class = TargetClass.create name: class_name, report: self, target_file: target_file
+      target_class = TargetClass.create name: class_name, report: self, target_file_id: target_file.id
       target_class.churn = Churn.create(times_changed: times_changed)
     end
   end
@@ -68,11 +68,14 @@ class Report < ActiveRecord::Base
       highest_score = klass[:highist_score]
       average_score = klass[:average_score]
 
+      unless klass_name.split("::")[-1] =~ /[A-Z]/
+        klass_name = klass_name.split("::")[0..-2].join("::")
+      end
+      
       target_file = TargetFile.find_or_create_by path: file_path, report: self, name: File.basename(file_path)
       target_class = TargetClass.find_or_create_by name: klass_name, report: self, target_file_id: target_file.id
 
       klass[:methods].each do |method|
-
         target_method = TargetMethod.find_or_create_by name: method[0], report: self, target_class_id: target_class.id
         target_method.complexity_score = ComplexityScore.create flog_score: method[1][:score]
       end
@@ -101,23 +104,44 @@ class Report < ActiveRecord::Base
 
   def register_saikuro(target = nil)
     report = MetricFuReport::SaikuroParser.new(target)
-    report.methods.each do |method|
-      method_name = method[:name]
-      class_name = method[:name].split("#")[0]
-      lines = method[:lines]
-      saikuro_score = method[:complexity]
+    report.files.each do |method|
+      pp method
+      # method_name = method[:name]
+      # class_name = method[:name].split("#")[0]
+      # lines = method[:lines]
+      # saikuro_score = method[:complexity]
 
-      target_class = TargetClass.find_or_create_by name: class_name, report: self
-      target_method = TargetMethod.find_or_create_by name: method_name, report: self, target_class_id: target_class.id
-      if target_method.complexity_score.nil?
-        target_method.complexity_score = ComplexityScore.create saikuro_score: saikuro_score, lines: lines
-      else
-        target_method.complexity_score.saikuro_score = saikuro_score
-        target_method.complexity_score.lines = lines
-        target_method.complexity_score.save
-      end
+      # target_class = TargetClass.find_or_create_by name: class_name, report: self
+      # target_method = TargetMethod.find_or_create_by name: method_name, report: self, target_class_id: target_class.id
+      # if target_method.complexity_score.nil?
+      #   target_method.complexity_score = ComplexityScore.create saikuro_score: saikuro_score, lines: lines
+      # else
+      #   target_method.complexity_score.saikuro_score = saikuro_score
+      #   target_method.complexity_score.lines = lines
+      #   target_method.complexity_score.save
+      # end
     end
   end
+
+  # def register_saikuro(target = nil)
+  #   report = MetricFuReport::SaikuroParser.new(target)
+  #   report.methods.each do |method|
+  #     method_name = method[:name]
+  #     class_name = method[:name].split("#")[0]
+  #     lines = method[:lines]
+  #     saikuro_score = method[:complexity]
+
+  #     target_class = TargetClass.find_or_create_by name: class_name, report: self
+  #     target_method = TargetMethod.find_or_create_by name: method_name, report: self, target_class_id: target_class.id
+  #     if target_method.complexity_score.nil?
+  #       target_method.complexity_score = ComplexityScore.create saikuro_score: saikuro_score, lines: lines
+  #     else
+  #       target_method.complexity_score.saikuro_score = saikuro_score
+  #       target_method.complexity_score.lines = lines
+  #       target_method.complexity_score.save
+  #     end
+  #   end
+  # end
 
   def register_roodi(target = nil)
     report = MetricFuReport::RoodiParser.new(target)
