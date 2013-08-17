@@ -31,9 +31,8 @@ class Project < ActiveRecord::Base
       report.save!
 
       # create_reports
-      report.register_flogs target: target
-      report.register_reeks target: target
-      report.register_saikuro target: target
+
+      report.register_roodi target: target
       
       rm_github_repository
     end
@@ -43,6 +42,9 @@ class Project < ActiveRecord::Base
     report.register_files_churn target: target
     report.register_classes_churn target: target
     report.register_methods_churn target: target
+    report.register_flogs target: target
+    report.register_saikuro target: target
+    report.register_reeks target: target
 
   end
   
@@ -56,7 +58,7 @@ class Project < ActiveRecord::Base
     puts Dir.pwd
     `metric_fu -r --format yaml`
   end
-
+  
   def report_directory
     Rails.root.join("tmp", "workspace", project_name, "tmp", "metric_fu", "report.yml") 
   end

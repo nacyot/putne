@@ -4,3 +4,4 @@ class RenameTypeToWarnTypeInReekSmeels < ActiveRecord::Migration
   end
   rename_column :reek_smells, :type, :warn_type
 end
+rename_column :reek_smells, :type, :warn_type

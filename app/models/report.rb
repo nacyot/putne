@@ -10,6 +10,7 @@ class Report < ActiveRecord::Base
 
   has_many :churns
   has_many :reek_smells
+  has_many :roodis
 
   validates_presence_of :project, :branch, :commit, :repository
 
@@ -119,12 +120,15 @@ class Report < ActiveRecord::Base
 
   def register_roodi(target: nil)
     report = MetricFuReport::RoodiParser.new(target: target)
-    report.ploblems.each do |problem|
+    report.problems.each do |problem|
+
       file_path = problem[:file]
       line_num = problem[:line]
       message = problem[:problem]
 
       target_file = TargetFile.find_or_create_by path: file_path, report: self, name: File.basename(file_path)
+      Roodi.create report: self, message: message, file_line_info: FileLineInfo.create(line_num: line_num, target_file_id: target_file.id)
+
     end
   end
 end

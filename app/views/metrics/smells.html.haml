@@ -11,5 +11,15 @@
           %td= smell.warn_type
           %td= smell.message
             
+    %table.table.table-striped
+      %th File path
+      %th Line num
+      %th Message
+      - @report.roodis.each do |roodi|
+        %tr
+          %td= roodi.file_line_info.target_file.path
+          %td= roodi.file_line_info.line_num
+          %td= roodi.message
+
   = render "shared/project_sidebar", locals: {project: @project}
 
