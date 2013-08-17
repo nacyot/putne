@@ -32,20 +32,20 @@ class Project < ActiveRecord::Base
 
       # create_reports
 
-      report.register_roodi target: target
-      report.register_duplication target: target
+      report.register_roodi target
+      report.register_duplication target
       
       rm_github_repository
     end
   end
 
   def create_reports
-    report.register_files_churn target: target
-    report.register_classes_churn target: target
-    report.register_methods_churn target: target
-    report.register_flogs target: target
-    report.register_saikuro target: target
-    report.register_reeks target: target
+    report.register_files_churn target
+    report.register_classes_churn target
+    report.register_methods_churn target
+    report.register_flogs target
+    report.register_saikuro target
+    report.register_reeks target
 
   end
   

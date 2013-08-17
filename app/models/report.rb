@@ -15,8 +15,8 @@ class Report < ActiveRecord::Base
 
   validates_presence_of :project, :branch, :commit, :repository
 
-  def register_files_churn(target: nil)
-    report = MetricFuReport::ChurnParser.new(target: target)
+  def register_files_churn(target = nil)
+    report = MetricFuReport::ChurnParser.new(target)
     report.parse_files_churn.each do |churn|
       file_path = churn[:file_path]
       times_changed = churn[:times_changed]
@@ -31,8 +31,8 @@ class Report < ActiveRecord::Base
     end
   end
 
-  def register_classes_churn(target: nil)
-    report = MetricFuReport::ChurnParser.new(target: target)   
+  def register_classes_churn(target = nil)
+    report = MetricFuReport::ChurnParser.new(target)   
     report.parse_classes_churn.each do |churn|
       file_path = churn["klass"]["file"]
       class_name = churn["klass"]["klass"]
@@ -44,8 +44,8 @@ class Report < ActiveRecord::Base
     end
   end
 
-  def register_methods_churn(target: nil)
-    report = MetricFuReport::ChurnParser.new(target: target)
+  def register_methods_churn(target = nil)
+    report = MetricFuReport::ChurnParser.new(target)
     report.parse_methods_churn.each do |churn|
       file_path = churn["method"]["file"]
       class_name = churn["method"]["klass"]
@@ -59,8 +59,8 @@ class Report < ActiveRecord::Base
     end
   end
 
-  def register_flogs(target: nil)
-    report = MetricFuReport::FlogParser.new(target: target)
+  def register_flogs(target = nil)
+    report = MetricFuReport::FlogParser.new(target)
     report.klasses.each do |klass|
       klass_name = klass[:name]
       file_path = klass[:path]
@@ -79,8 +79,8 @@ class Report < ActiveRecord::Base
     end
   end
 
-  def register_reeks(target: nil)
-    report = MetricFuReport::ReekParser.new(target: target)
+  def register_reeks(target = nil)
+    report = MetricFuReport::ReekParser.new(target)
     report.matches.each do |match|
       file_path = match[:file_path]
 
@@ -99,8 +99,8 @@ class Report < ActiveRecord::Base
     end
   end
 
-  def register_saikuro(target: nil)
-    report = MetricFuReport::SaikuroParser.new(target: target)
+  def register_saikuro(target = nil)
+    report = MetricFuReport::SaikuroParser.new(target)
     report.methods.each do |method|
       method_name = method[:name]
       class_name = method[:name].split("#")[0]
@@ -119,8 +119,8 @@ class Report < ActiveRecord::Base
     end
   end
 
-  def register_roodi(target: nil)
-    report = MetricFuReport::RoodiParser.new(target: target)
+  def register_roodi(target = nil)
+    report = MetricFuReport::RoodiParser.new(target)
     report.problems.each do |problem|
 
       file_path = problem[:file]
@@ -133,8 +133,8 @@ class Report < ActiveRecord::Base
     end
   end
 
-  def register_duplication(target: nil)
-    report = MetricFuReport::FlayParser.new(target: target)
+  def register_duplication(target = nil)
+    report = MetricFuReport::FlayParser.new(target)
     report.matches.each do |match|
       reason = match[:reason]
 
