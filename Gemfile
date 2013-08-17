@@ -73,6 +73,9 @@ gem 'paper_trail', github: 'airblade/paper_trail', branch: 'rails4'
 gem 'htmlentities'
 gem 'faker'
 
+gem 'sidekiq'
+gem 'method_source'
+
 # metrics
 gem 'rails_best_practices'  
 gem 'simplecov', :require => false
@@ -81,6 +84,12 @@ gem 'ci_reporter'
 gem 'metric_fu'
 #gem 'rcov', '0.9.11'
 gem 'metric_fu_report_parser', github: 'nacyot/metric-fu-report-parser'
+
+# code
+gem 'coderay'
+
+# git
+gem 'grit'
 
 group  :development do
   gem 'erb2haml'

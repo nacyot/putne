@@ -7,6 +7,17 @@
         Synopsis
     %br/
     %li
+      = link_to project_report_branches_url(@project, @project.reports.last) do
+        %span.badge.pull-right#files-help ?
+        %span.badge.pull-right 43
+        Branches
+    %li
+      = link_to project_report_commits_url(@project, @project.reports.last) do
+        %span.badge.pull-right#files-help ?
+        %span.badge.pull-right 43
+        Commits
+    %br/
+    %li
       = link_to project_report_files_url(@project, @project.reports.last) do
         %span.badge.pull-right#files-help ?
         %span.badge.pull-right 43

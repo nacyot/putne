@@ -5,6 +5,9 @@ Putne::Application.routes.draw do
   
   resources :projects do
     resources :reports do
+      get "branches" => "git#branches"
+      get "commits" => "git#commits"
+      
       get "files" => "metrics#files"
       get "classes" => "metrics#classes"
       get "methods" => "metrics#methods"
