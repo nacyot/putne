@@ -5,5 +5,5 @@
       %th File Path
       - @report.target_files.each do |file|
         %tr
-          %td= file.path
+          %td= link_to file.path, project_report_file_path(@project, @report, file_id: file)
   = render "shared/project_sidebar", locals: {project: @project}

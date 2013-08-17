@@ -11,4 +11,8 @@ class Git
   def commits(num = 10)
     @repo.commits("master", 20)
   end
+
+  def head
+    @repo.commits.first
+  end
 end
