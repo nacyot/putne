@@ -1,6 +1,13 @@
 .project.container
   .main.col-lg-9.panel
     = render "shared/project_info", locals: {project: @project}
-    %ol
-      %li= pp @commits
+    - @commits.each do |commit|
+      %ul
+        %li= commit.id
+        %li= commit.author.to_s
+        %li= commit.authored_date
+        %li= commit.committed_date
+        %li= commit.committer
+        %li= commit.message
+        %li= (commit.tree / 'Gemfile').data
   = render "shared/project_sidebar", locals: {project: @project}

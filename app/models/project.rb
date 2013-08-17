@@ -1,4 +1,5 @@
 class Project < ActiveRecord::Base
+  belongs_to :user
   has_many :reports
   has_one :repository
 
@@ -21,7 +22,6 @@ class Project < ActiveRecord::Base
   def register_report
     unless id.nil?
       target = report_directory
-      puts target
       
       report = Report.new
       report.project = self
@@ -30,23 +30,21 @@ class Project < ActiveRecord::Base
       report.commit = Commit.create!
       report.save!
 
-      # create_reports
-
-      report.register_roodi target
-      report.register_duplication target
-      
+      create_reports report, target
+     
       rm_github_repository
     end
   end
 
-  def create_reports
+  def create_reports(report, target)
     report.register_files_churn target
     report.register_classes_churn target
     report.register_methods_churn target
     report.register_flogs target
     report.register_saikuro target
     report.register_reeks target
-
+    report.register_roodi target
+    report.register_duplication target
   end
   
   def get_metrics_from_github
