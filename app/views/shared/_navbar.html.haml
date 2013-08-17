@@ -1,28 +1,23 @@
 .navbar.navbar-fixed-top.header
-  %a.navbar-brand{href: "/"} (Logo) Putne
+  %a.navbar-brand{href: "/"} Putne
   %ul.nav.navbar-nav
-    %li 
-      = link_to "Projects", projects_path if signed_in?
-    %li 
-      = link_to "Help desk", help_path
-    %li 
-      = link_to "About", about_path
+    -#%li= link_to "Projects", projects_path if signed_in?
+    %li= link_to "New project",new_project_path
+    %li= link_to "Help desk", help_path
+    %li= link_to "About", about_path
   - unless user_signed_in?
     = login_form_for_header
   - else
     .pull-right
       %a{href: destroy_user_session_path, "data-method" => "delete"}
         %button.btn.btn-danger.navbar-btn.pull-right{type: "button", style: "margin-left: 10px;"} Sign out
-
-      %a 
-        %button.btn.btn-default.navbar-btn.pull-right Search Box
       %ul.nav.navbar-nav.pull-right{style: "margin-right: 25px"}
         %li.dropdown
           %a.dropdown-toggle{"data-toggle" => "dropdown", href: "#"}
             = gravatar_image_for_navbar
             = current_user.email
             %span.caret
-          %ul.dropdown-menu
+          %ul.dropdown-menu.navbar-profile
             .text-center.gravatar-profile
               = gravatar_image_for_profile
             %li.divider

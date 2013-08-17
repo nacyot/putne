@@ -2,15 +2,25 @@
   .container
     .col-lg-8
       .panel
+        %h1 This is dashboard of your project
     .col-lg-4
       .container
         .panel.panel-success
           .panel-heading
             Summary
           .panel-body
-      .panel.panel-info
-        .panel-heading Projects
-        .panel-body
-          %ul
-            %li Project 1
-            %li Project 2
+            Your Project count: 
+            = @projects.count
+            %br/
+            Recent Commit:
+            %br/
+            Recent Login:
+            %br/
+
+
+      .list-group
+        - @projects.each do |project|
+          = link_to project_path(project), class: "list-group-item" do
+            %h5.list-group-item-heading= project.title
+            %p.list-group-item-text= project.description
+

@@ -69,6 +69,15 @@ body {
     padding: 5px 15px;
 }
 
+.dropdown-toggle{
+    text-align: center;
+    width: 300px;
+}
+
+.navbar-profile{
+    width: 300px;
+}
+
 .header .gravatar img{
     margin: 0;
     padding: 0;
@@ -81,3 +90,12 @@ body {
 .dashboard{
     margin-top:35px;
 }
+
+.footer{
+    margin-top: 100px;
+    padding: 28px;
+    border-top: 1px solid #ddd;
+    text-align: center;
+    color: #888;
+}
+

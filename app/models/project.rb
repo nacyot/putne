@@ -3,6 +3,8 @@ class Project < ActiveRecord::Base
   has_many :reports
   has_one :repository
 
+  validates_presence_of :user_id, :title, :repository_type, :repository_url
+
   def register_sample_report
     unless id.nil?
       report = Report.new
