@@ -4,8 +4,7 @@ class TargetClass < ActiveRecord::Base
   has_one :churn, as: :targetable
   has_many :target_methods
 
-  validates_presence_of :report, :target_file, :name
-
+  validates_presence_of :report, :name, :target_file
   
   default_scope  order("name")
 end

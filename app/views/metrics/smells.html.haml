@@ -7,7 +7,7 @@
       %th Message
       - @report.reek_smells.each do |smell|
         %tr
-          %td= smell.target_method.name
+          %td= smell.target_method.name unless smell.target_method.nil?
           %td= smell.warn_type
           %td= smell.message
             

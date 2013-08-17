@@ -4,25 +4,24 @@
     %table.table.table-striped
       %th File path
       %th Times changed
-      - @report.target_files.each do |file|
+      - @report.churns.file_churns.each do |churn|
         %tr
-          %td= file.path
-          %td= file.churn.times_changed unless file.churn.nil?
-            
+          %td= link_to churn.targetable.path, project_report_file_path(@project, @report, file_id: churn.targetable)
+          %td= churn.times_changed
 
     %table.table.table-striped
       %th Class name
       %th Times changed
-      - @report.target_classes.each do |klass|
+      - @report.churns.class_churns.each do |churn|
         %tr
-          %td= klass.name
-          %td= klass.churn.times_changed unless klass.churn.nil?
+          %td= churn.targetable.name
+          %td= churn.times_changed
 
     %table.table.table-striped
       %th Method name
       %th Times changed
-      - @report.target_methods.each do |method|
+      - @report.churns.method_churns.each do |churn|
         %tr
-          %td= method.name
-          %td= method.churn.times_changed unless method.churn.nil?
+          %td= churn.targetable.name
+          %td= churn.times_changed 
   = render "shared/project_sidebar", locals: {project: @project}

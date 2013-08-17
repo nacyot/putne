@@ -6,6 +6,6 @@
       %th File
       - @report.target_classes.each do |klass|
         %tr
-          %td= klass.name
+          %td= link_to klass.name, project_report_klass_path(@project, @report, class_id: klass)
           %td= klass.target_file.path
   = render "shared/project_sidebar", locals: {project: @project}

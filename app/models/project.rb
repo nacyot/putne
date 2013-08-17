@@ -46,7 +46,6 @@ class Project < ActiveRecord::Base
     report.register_methods_churn target
     report.register_flogs target
     report.register_saikuro target
-
     report.register_reeks target
     report.register_roodi target
     report.register_duplication target
