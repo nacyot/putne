@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130817015053) do
+ActiveRecord::Schema.define(version: 20130817095554) do
 
   create_table "branches", force: true do |t|
     t.string   "name"
@@ -118,6 +118,8 @@ ActiveRecord::Schema.define(version: 20130817015053) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "report_id"
+    t.integer  "target_file_id"
+    t.integer  "target_class_id"
   end
 
   create_table "reports", force: true do |t|
