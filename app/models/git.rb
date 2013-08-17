@@ -15,4 +15,8 @@ class Git
   def head
     @repo.commits.first
   end
+
+  def branches
+    @repo.branches
+  end
 end

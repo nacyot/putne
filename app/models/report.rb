@@ -12,6 +12,7 @@ class Report < ActiveRecord::Base
   has_many :reek_smells
   has_many :roodis
   has_many :duplications
+  has_many :complexity_scores
 
   validates_presence_of :project, :branch, :commit, :repository
 
@@ -67,16 +68,26 @@ class Report < ActiveRecord::Base
       highest_score = klass[:highist_score]
       average_score = klass[:average_score]
 
+      if klass_name == "main"
+        next
+      end
+
       unless klass_name.split("::")[-1] =~ /[A-Z]/
         klass_name = klass_name.split("::")[0..-2].join("::")
       end
-      
+
       target_file = TargetFile.find_or_create_by path: file_path, report: self, name: File.basename(file_path)
       target_class = TargetClass.find_or_create_by name: klass_name, report: self, target_file_id: target_file.id
 
       klass[:methods].each do |method|
-        target_method = TargetMethod.find_or_create_by name: method[0], report: self, target_class_id: target_class.id
-        target_method.complexity_score = ComplexityScore.create flog_score: method[1][:score]
+        if method[0] =~ /#/ or method[0] =~ /^[a-zA-Z]+$/
+          method_name = method[0]
+        else
+          method_name = method[0].split("::")[0..-2].join("::") + "#self." + method[0].split("::")[-1]
+        end
+
+        target_method = TargetMethod.find_or_create_by name: method_name, report: self, target_class_id: target_class.id
+        target_method.complexity_score = ComplexityScore.create! flog_score: method[1][:score]
       end
     end
   end
@@ -90,13 +101,22 @@ class Report < ActiveRecord::Base
 
       match[:code_smells].each do |smell|
         method_name = smell[:method]
-        klass_name = smell[:method].split("#")[0] if smell[:method] =~ /#/
+        if smell[:method] =~ /#/
+          klass_name = smell[:method].split("#")[0]
+        else
+          klass_name = smell[:method]
+        end
         message = smell[:message]
         warn_type = smell[:type]
         
-        target_class = TargetClass.find_or_create_by name: klass_name, report: self, target_file_id: target_file.id
-        target_method = TargetMethod.find_or_create_by name: method_name, report: self, target_class_id: target_class.id
-        target_method.reek_smells << ReekSmell.create(message: message, warn_type: warn_type, report: self)
+        target_class = TargetClass.find_or_create_by(name: klass_name, report: self, target_file_id: target_file.id)
+        target_method = TargetMethod.find_or_create_by(name: method_name, report: self, target_class_id: target_class.id)
+        ReekSmell.create(message: message,
+                         warn_type: warn_type,
+                         report: self,
+                         target_class: target_class,
+                         target_method: target_method,
+                         target_file: target_file)
       end
     end
   end
@@ -166,7 +186,7 @@ class Report < ActiveRecord::Base
       match[:matches].each do |file|
         file_path = file[:name]
         line_num = file[:line]
-
+        
         target_file = TargetFile.find_or_create_by path: file_path, report: self, name: File.basename(file_path)
         dup.file_line_infos << FileLineInfo.create(line_num: line_num, target_file_id: target_file.id)
       end

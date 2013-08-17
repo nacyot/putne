@@ -3,6 +3,7 @@ class TargetFile < ActiveRecord::Base
   has_one :churn, as: :targetable
   has_many :roodi
   has_many :target_classes
+  has_many :reek_smells
 
   validates :path, :uniqueness => {
     :scope => :report_id,

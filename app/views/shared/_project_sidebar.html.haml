@@ -1,52 +1,53 @@
+- git = Git.new(@project.title)
 .sidebar.col-lg-3
   %ul.nav.nav-pills.nav-stacked
     %li
       = link_to project_url(@project) do
         %span.badge.pull-right#synopsis-help ?
-        %span.badge.pull-right 43
+        %span.badge.pull-right
         Synopsis
     %br/
     %li
       = link_to project_report_branches_url(@project, @project.reports.last) do
         %span.badge.pull-right#files-help ?
-        %span.badge.pull-right 43
+        %span.badge.pull-right= git.branches.count
         Branches
     %li
       = link_to project_report_commits_url(@project, @project.reports.last) do
         %span.badge.pull-right#files-help ?
-        %span.badge.pull-right 43
+        %span.badge.pull-right= git.stats.count
         Commits
     %br/
     %li
       = link_to project_report_files_url(@project, @project.reports.last) do
         %span.badge.pull-right#files-help ?
-        %span.badge.pull-right 43
+        %span.badge.pull-right= @project.reports.last.target_files.count
         Files
     %li
       = link_to project_report_classes_url(@project, @project.reports.last) do
         %span.badge.pull-right#classes-help ?
-        %span.badge.pull-right 43
+        %span.badge.pull-right= @project.reports.last.target_classes.count
         Classes
     %li
       = link_to project_report_methods_url(@project, @project.reports.last) do
         %span.badge.pull-right#methods-help ?
-        %span.badge.pull-right 43
+        %span.badge.pull-right= @project.reports.last.target_methods.count
         Methods
     %br/
     %li
       = link_to project_report_churn_url(@project, @project.reports.last) do
         %span.badge.pull-right#churn-help ?
-        %span.badge.pull-right 43
+        %span.badge.pull-right= @project.reports.last.churns.file_churns.sum(:times_changed)
         Churn
     %li
       = link_to project_report_complexity_url(@project, @project.reports.last) do
         %span.badge.pull-right#complexity-help ?
-        %span.badge.pull-right 43
+        %span.badge.pull-right= @project.reports.last.complexity_scores.sum(:flog_score)
         Complexity
     %li
       = link_to project_report_duplicity_url(@project, @project.reports.last) do
         %span.badge.pull-right#duplicity-help ?
-        %span.badge.pull-right 43
+        %span.badge.pull-right= @project.reports.last.duplications.count
         Duplicity
     %li
       = link_to project_report_smells_url(@project, @project.reports.last) do
@@ -55,7 +56,7 @@
         Smells
     %br/
     %li
-      = link_to project_report_url(@project, @project.reports.last) do
+      = link_to project_reports_url(@project) do
         %span.badge.pull-right#report-help ?
         %span.badge.pull-right 43
         Report

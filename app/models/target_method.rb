@@ -7,5 +7,5 @@ class TargetMethod < ActiveRecord::Base
 
   validates_presence_of :report, :target_class, :name
   
-  default_scope order('name')
+
 end
