@@ -6,4 +6,14 @@ class User < ActiveRecord::Base
   rolify
 
   has_many :projects
+
+  def commits
+    Commit.where(repository_id: repository_ids).order("committed_at desc")
+  end
+
+  def repository_ids
+    projects.map do |project|
+      project.repository.id
+    end
+  end
 end

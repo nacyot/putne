@@ -2,8 +2,8 @@
   .main.col-lg-9.panel
     = render "shared/project_info", locals: {project: @project}
     .text-right
-      %p= @repository.stats.count
-    - @repository.commits.each do |commit|
+      %p= @repository.git.stats.count
+    - @repository.git.commits.each do |commit|
       .panel
         .row
           .col-lg-2
