@@ -20,6 +20,12 @@ class Repository < ActiveRecord::Base
     git.head.commit
   end
 
+  def register_recent_commits
+    git.commits(50).each do |commit|
+      
+    end
+  end
+  
   def workspace_path
     File.join('.', 'tmp', 'workspace', git_project_name)
   end
@@ -37,8 +43,13 @@ class Repository < ActiveRecord::Base
   def create_recent_report
     project.reports << Report.create!(project: project,
                                       repository: self,
-                                      branch: Branch.find_or_create_by!(repository: self, name: "master"), 
-                                      commit: Commit.create!(repository: self, commit_hash: recent_commit.id)
+                                      branch: Branch.find_or_create_by!(repository: self,
+                                                                        name: "master"
+                                                                        ), 
+                                      commit: Commit.find_or_create_by!(repository: self,
+                                                                        commit_hash: recent_commit.id,
+                                                                        committed_at: recent_commit.committed_date
+                                                                        )
                                       )
                               
     project.reports.last.register_report
