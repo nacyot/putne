@@ -6,26 +6,20 @@ class Project < ActiveRecord::Base
   validates_presence_of :user_id, :title
   accepts_nested_attributes_for :repository
   
-  def project_name
-    repository.repository_url.split("/")[-1].split(".git")[0]
-  end
+
 
   def create_repository
     repository = Repository.create!
     repository.create_workspace
   end
-  
+
   def create_recent_report
     report = Report.new
     report.project = self
-    report.branch = Branch.create!
     create_repository
-    report.commit = Commit.create!
+    branch = Branch.create! name: master, repository: reository
+    commit = Commit.create! commit_hash: repository.recent_commit.id, repository: epository
     report.save!
     report.register_report
-  end
-
-  def project_git_path
-    File.join('.', 'tmp', 'workspace', project_name)
   end
 end

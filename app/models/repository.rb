@@ -8,12 +8,23 @@ class Repository < ActiveRecord::Base
     Dir.chdir Rails.root
     `mkdir -p tmp/workspace`
     Dir.chdir 'tmp/workspace'
-    `git clone #{ project.repository_url }`
+    `git clone #{ repository_url }`
   end
 
   def remove_workspace
     Dir.chdir Rails.root
-    `rm -rf tmp/workspace/#{ project.project_name }`
+    `rm -rf tmp/workspace/#{ git_project_name }`
   end
 
+  def recent_commit
+    Git.new(self).head
+  end
+
+  def workspace_path
+    File.join('.', 'tmp', 'workspace', git_project_name)
+  end
+
+  def git_project_name
+    repository_url.split("/")[-1].split(".git")[0]
+  end
 end

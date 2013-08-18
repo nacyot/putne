@@ -5,9 +5,9 @@ module RegisterReport
     Dir.chdir Rails.root
     `mkdir -p tmp/workspace`
     Dir.chdir 'tmp/workspace'
-    `git clone #{ project.repository_url }`
+    `git clone #{ project.repository.repository_url }`
     puts Dir.pwd
-    Dir.chdir "#{ project.project_name }"
+    Dir.chdir "#{ project.repository.git_project_name }"
     puts Dir.pwd
     `metric_fu -r --format yaml`
   end

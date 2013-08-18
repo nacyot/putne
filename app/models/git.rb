@@ -1,7 +1,7 @@
 class Git
-  def initialize(project)
-    @project = project
-    @repo = Grit::Repo.new @project.project_git_path
+  def initialize(repository)
+    @repository = repository
+    @repo = Grit::Repo.new @repository.workspace_path
   end
 
   def stats
