@@ -28,6 +28,7 @@ class ProjectsController < ApplicationController
   def create
     @project = Project.new(project_params)
     @project.repository = Repository.create!(params[:project][:repository_attributes])
+    ReportWorker.perform_async(@project.repository)
 
     respond_to do |format|
       if @project.save
@@ -46,14 +47,13 @@ class ProjectsController < ApplicationController
     respond_to do |format|
       if @project.update(project_params)
         format.html { redirect_to @project, notice: 'Project was successfully updated.' }
-        format.json { head :no_content }
+        format.json #{ head :no_content }
       else
-        format.html { render action: 'edit' }
+        format.html #{ render action: 'edit' }
         format.json { render json: @project.errors, status: :unprocessable_entity }
       end
     end
   end
-
   # DELETE /projects/1
   # DELETE /projects/1.json
   def destroy

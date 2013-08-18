@@ -8,13 +8,4 @@ class Project < ActiveRecord::Base
 
   after_create :create_recent_report
   
-  def create_recent_report
-    reports << Report.create!(project: self,
-                              repository: repository,
-                              branch: Branch.find_or_create_by!(repository: repository, name: "master"), 
-                              commit: Commit.create!(repository: repository, commit_hash: repository.recent_commit.id)
-                              )
-                              
-    reports.last.register_report
-  end
 end

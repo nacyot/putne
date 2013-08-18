@@ -4,8 +4,6 @@ class Repository < ActiveRecord::Base
   has_many :branches
   has_many :commits
 
-  after_create :init_repository
-
   def git
     @git || @git = Git.new(self)
   rescue Grit::NoSuchPathError
@@ -54,5 +52,13 @@ class Repository < ActiveRecord::Base
     commits << Commit.create!(commit_hash: recent_commit.id, repository: self)
   end
 
-
+  def create_recent_report
+    reports << Report.create!(project: project,
+                              repository: self,
+                              branch: Branch.find_or_create_by!(repository: self, name: "master"), 
+                              commit: Commit.create!(repository: self, commit_hash: recent_commit.id)
+                              )
+                              
+    reports.last.register_report
+  end
 end
