@@ -1,10 +1,12 @@
 .navbar.navbar-fixed-top.header
   %a.navbar-brand{href: "/"} Putne
-  %ul.nav.navbar-nav
+  %ul.nav.navbar-nav   
     -#%li= link_to "Projects", projects_path if signed_in?
-    %li= link_to "새로운 프로젝트",new_project_path
-    %li= link_to "도움말", help_path
-    %li= link_to "Putne에 관하여", about_path
+    - if signed_in?
+      %li= link_to "Dash board",new_project_path if signed_in?
+      %li= link_to "New project",new_project_path if signed_in?
+    %li= link_to "Help", help_path
+    %li= link_to "About Putne", about_path
   - unless user_signed_in?
     = login_form_for_header
   - else
