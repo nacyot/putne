@@ -3,6 +3,7 @@ module RegisterReport
 
   def get_metrics
     Dir.chdir repository.workspace_path
+    `echo "MetricFu::Configuration.run { |config| config.flog = config.flog.merge({continue: true}) }" > .metrics`
     `metric_fu -r --format yaml`
   end
    
@@ -40,6 +41,7 @@ module RegisterReport
                         )
 
     end
+  rescue
   end
 
   def register_classes_churn
@@ -53,6 +55,7 @@ module RegisterReport
       target_class = TargetClass.create name: class_name, report: self, target_file_id: target_file.id
       target_class.churn = Churn.create(times_changed: times_changed, report: self)
     end
+  rescue
   end
 
   def register_methods_churn
@@ -68,6 +71,7 @@ module RegisterReport
       target_method = TargetMethod.create name: method_name, report: self, target_class_id: target_class.id
       target_method.churn = Churn.create(times_changed: times_changed, report: self)
     end
+  rescue
   end
 
   def register_flogs
@@ -101,6 +105,7 @@ module RegisterReport
         target_method.complexity_score = ComplexityScore.create! flog_score: method[1][:score], report: self
       end
     end
+    rescue
   end
 
   def register_reeks
@@ -130,6 +135,7 @@ module RegisterReport
                          target_file: target_file)
       end
     end
+    rescue
   end
 
   # def register_saikuro(target = nil)
@@ -171,6 +177,7 @@ module RegisterReport
         target_method.complexity_score.save
       end
     end
+    resue
   end
 
   def register_roodi
@@ -185,6 +192,7 @@ module RegisterReport
       Roodi.create report: self, message: message, file_line_info: FileLineInfo.create(line_num: line_num, target_file_id: target_file.id)
 
     end
+  rescue
   end
 
   def register_duplication
@@ -202,7 +210,7 @@ module RegisterReport
         dup.file_line_infos << FileLineInfo.create(line_num: line_num, target_file_id: target_file.id)
       end
     end
-
+  rescue
   end
 end
 
