@@ -1,7 +1,7 @@
 .row.dashboard
   .container
     .col-lg-8
-      - current_user.commits.each do |commit|
+      - @commits.each do |commit|
         .panel
           .row
             .col-lg-2
@@ -28,6 +28,7 @@
             -# %li= commit.message
             -# %li= (commit.tree / 'Gemfile').data
 
+      = paginate @commits
     .col-lg-4
       .container
         .panel.panel-success
@@ -41,6 +42,7 @@
             %br/
             Recent Login:
             %br/
+
 
 
       .list-group
