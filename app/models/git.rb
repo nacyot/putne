@@ -12,7 +12,7 @@ class Git
   end
   
   def commits(num = 10)
-    @repo.commits("master", 20)
+    @repo.commits("master", num)
   end
 
   def branches

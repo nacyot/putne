@@ -1,5 +1,5 @@
 class AddCommittedAtToCommit < ActiveRecord::Migration
   def change
-    add_column :commits, :commited_at, :date
+    add_column :commits, :committed_at, :date
   end
 end
