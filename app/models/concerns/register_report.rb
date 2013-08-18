@@ -5,15 +5,15 @@ module RegisterReport
     Dir.chdir Rails.root
     `mkdir -p tmp/workspace`
     Dir.chdir 'tmp/workspace'
-    `git clone #{ project.repository.repository_url }`
+    `git clone #{ repository.repository_url }`
     puts Dir.pwd
-    Dir.chdir "#{ project.repository.git_project_name }"
+    Dir.chdir "#{ repository.git_project_name }"
     puts Dir.pwd
     `metric_fu -r --format yaml`
   end
    
   def report_directory
-    Rails.root.join("tmp", "workspace", project.project_name, "tmp", "metric_fu", "report.yml") 
+    Rails.root.join("tmp", "workspace", repository.git_project_name, "tmp", "metric_fu", "report.yml") 
   end
   
   def register_report  

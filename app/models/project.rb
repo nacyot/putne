@@ -5,21 +5,14 @@ class Project < ActiveRecord::Base
 
   validates_presence_of :user_id, :title
   accepts_nested_attributes_for :repository
-  
-
-
-  def create_repository
-    repository = Repository.create!
-    repository.create_workspace
-  end
 
   def create_recent_report
-    report = Report.new
-    report.project = self
-    create_repository
-    branch = Branch.create! name: master, repository: reository
-    commit = Commit.create! commit_hash: repository.recent_commit.id, repository: epository
-    report.save!
-    report.register_report
+    reports << Report.create!(project: self,
+                              repository: repository,
+                              branch: Branch.find_or_create_by!(repository: repository, name: "master"), 
+                              commit: Commit.create!(repository: repository, commit_hash: repository.recent_commit.id)
+                              )
+                              
+    reports.last.register_report
   end
 end

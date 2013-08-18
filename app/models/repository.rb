@@ -4,6 +4,12 @@ class Repository < ActiveRecord::Base
   has_many :branches
   has_many :commits
 
+  after_create :init_repository
+
+  def git
+    @git || @git = Git.new(self)
+  end
+  
   def create_workspace
     Dir.chdir Rails.root
     `mkdir -p tmp/workspace`
@@ -17,7 +23,7 @@ class Repository < ActiveRecord::Base
   end
 
   def recent_commit
-    Git.new(self).head
+    git.head
   end
 
   def workspace_path
@@ -26,5 +32,11 @@ class Repository < ActiveRecord::Base
 
   def git_project_name
     repository_url.split("/")[-1].split(".git")[0]
+  end
+  
+  def init_repository
+    create_workspace
+    branches << Branch.create!(name: "master", repository: self)
+    commites << Commit.create!(commit_hash: recent_commit.id, repository: self)
   end
 end
