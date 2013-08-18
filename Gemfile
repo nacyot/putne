@@ -74,6 +74,8 @@ gem 'htmlentities'
 gem 'faker'
 
 gem 'sidekiq'
+gem 'sinatra', require: false
+gem 'slim'
 
 # metrics
 gem 'rails_best_practices'  

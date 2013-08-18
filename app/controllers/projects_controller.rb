@@ -26,12 +26,12 @@ class ProjectsController < ApplicationController
   # POST /projects
   # POST /projects.json
   def create
-    @project = Project.new(project_params)
+    @project = Project.create!(project_params)
     @project.repository = Repository.create!(params[:project][:repository_attributes])
-    ReportWorker.perform_async(@project.repository)
+    ReportWorker.perform_async(@project.repository.id)
 
     respond_to do |format|
-      if @project.save
+      if @project.id?
         format.html { redirect_to @project, notice: 'Project was successfully created.' }
         format.json { render action: 'show', status: :created, location: @project }
       else

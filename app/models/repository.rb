@@ -1,5 +1,6 @@
 class Repository < ActiveRecord::Base
   belongs_to :project
+
   
   has_many :branches
   has_many :commits
@@ -8,25 +9,6 @@ class Repository < ActiveRecord::Base
     @git || @git = Git.new(self)
   rescue Grit::NoSuchPathError
     false
-  end
-  
-  def create_workspace
-    Dir.chdir Rails.root
-    `mkdir -p tmp/workspace`
-    Dir.chdir 'tmp/workspace'
-    `git clone #{ repository_url }`
-
-    validates_repository
-  end
-
-  def validates_repository
-    Dir.chdir Rails.root
-    Grit::Repo.new workspace_path
-    update_attribute(:valida, true)
-  rescue Grit::InvalidGitRepositoryError
-    update_attribute(:valida, false)
-  rescue Grit::NoSuchPathError
-    update_attribute(:valida, false)
   end
   
   def remove_workspace
@@ -53,12 +35,33 @@ class Repository < ActiveRecord::Base
   end
 
   def create_recent_report
-    reports << Report.create!(project: project,
-                              repository: self,
-                              branch: Branch.find_or_create_by!(repository: self, name: "master"), 
-                              commit: Commit.create!(repository: self, commit_hash: recent_commit.id)
-                              )
+    project.reports << Report.create!(project: project,
+                                      repository: self,
+                                      branch: Branch.find_or_create_by!(repository: self, name: "master"), 
+                                      commit: Commit.create!(repository: self, commit_hash: recent_commit.id)
+                                      )
                               
-    reports.last.register_report
+    project.reports.last.register_report
   end
+
+  def create_workspace
+    Dir.chdir Rails.root
+    `mkdir -p tmp/workspace`
+    Dir.chdir 'tmp/workspace'
+    `git clone #{ repository_url }`
+
+    validates_repository
+  end
+
+  def validates_repository
+    Dir.chdir Rails.root
+    Grit::Repo.new workspace_path
+    update_attribute(:valida, true)
+  rescue Grit::InvalidGitRepositoryError
+    update_attribute(:valida, false)
+  rescue Grit::NoSuchPathError
+    update_attribute(:valida, false)
+  end
+  
 end
+
