@@ -3,10 +3,11 @@ class Project < ActiveRecord::Base
   has_many :reports
   has_one :repository
 
-  validates_presence_of :user_id, :title, :repository_type, :repository_url
-
+  validates_presence_of :user_id, :title
+  accepts_nested_attributes_for :repository
+  
   def project_name
-    repository_url.split("/")[-1].split(".git")[0]
+    repository.repository_url.split("/")[-1].split(".git")[0]
   end
 
   def create_repository
