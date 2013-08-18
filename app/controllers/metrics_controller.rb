@@ -26,7 +26,7 @@ class MetricsController < ApplicationController
     @report = Report.find(params[:report_id])
 
     file_name = TargetClass.find(params[:class_id]).target_file.path
-    @file = (Git.new(@project.title).head.tree / file_name).data    
+    @file = (Git.new(@project).head.tree / file_name).data    
   end
   
   def methods

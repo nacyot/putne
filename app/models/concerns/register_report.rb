@@ -11,12 +11,7 @@ module RegisterReport
     puts Dir.pwd
     `metric_fu -r --format yaml`
   end
-  
-  def rm_github_repository
-    Dir.chdir Rails.root
-    #`rm -rf tmp/workspace/#{ project.project_name }`
-  end
-  
+   
   def report_directory
     Rails.root.join("tmp", "workspace", project.project_name, "tmp", "metric_fu", "report.yml") 
   end
