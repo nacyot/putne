@@ -1,6 +1,8 @@
 require 'parser/current'
 
 class MetricsController < ApplicationController
+  load_and_authorize_resource class: Project
+
   def files
     @project = Project.find(params[:project_id])
     @report = Report.find(params[:report_id])

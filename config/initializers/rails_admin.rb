@@ -1,9 +1,11 @@
 # RailsAdmin config file. Generated on July 16, 2013 12:12
 # See github.com/sferik/rails_admin for more informations
 
+
 RailsAdmin.config do |config|
+  config.authorize_with :cancan
 
-
+  
   ################  Global configuration  ################
 
   # Set the admin name here (optional second array element will appear in red). For example:

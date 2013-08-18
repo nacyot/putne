@@ -1,4 +1,5 @@
 class ReportsController < ApplicationController
+  load_and_authorize_resource class: Project
   before_action :set_report, only: [:show, :edit, :update, :destroy]
 
   # GET /reports

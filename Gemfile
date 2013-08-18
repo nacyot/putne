@@ -17,7 +17,7 @@ gem 'activerecord-deprecated_finders'
 gem 'sqlite3'
 gem 'ancestry'
 gem 'pg'
-gem 'activerecord-postgres-hstore', github: "engageis/activerecord-postgres-hstore", branch: "master"''
+gem 'activerecord-postgres-hstore', github: "engageis/activerecord-postgres-hstore", branch: "master"
 
 gem 'rails_admin', github: "sferik/rails_admin", branch: "rails-4"
 #gem 'turbolinks'
