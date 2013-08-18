@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20130818141506) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "branches", force: true do |t|
     t.string   "name"
     t.integer  "repository_id"
@@ -71,14 +74,6 @@ ActiveRecord::Schema.define(version: 20130818141506) do
     t.datetime "updated_at"
   end
 
-  create_table "flog_scores", force: true do |t|
-    t.integer  "target_method_id"
-    t.integer  "score"
-    t.text     "operators"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "posts", force: true do |t|
     t.integer  "user_id"
     t.string   "title"
@@ -105,12 +100,12 @@ ActiveRecord::Schema.define(version: 20130818141506) do
     t.integer  "item"
     t.string   "table"
     t.integer  "month",      limit: 2
-    t.integer  "year",       limit: 5
+    t.integer  "year",       limit: 8
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "rails_admin_histories", ["item", "table", "month", "year"], name: "index_rails_admin_histories"
+  add_index "rails_admin_histories", ["item", "table", "month", "year"], name: "index_rails_admin_histories", using: :btree
 
   create_table "reek_smells", force: true do |t|
     t.string   "message"
@@ -150,8 +145,8 @@ ActiveRecord::Schema.define(version: 20130818141506) do
     t.datetime "updated_at"
   end
 
-  add_index "roles", ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id"
-  add_index "roles", ["name"], name: "index_roles_on_name"
+  add_index "roles", ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id", using: :btree
+  add_index "roles", ["name"], name: "index_roles_on_name", using: :btree
 
   create_table "roodis", force: true do |t|
     t.integer  "target_file_id"
@@ -203,14 +198,14 @@ ActiveRecord::Schema.define(version: 20130818141506) do
     t.datetime "updated_at"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   create_table "users_roles", id: false, force: true do |t|
     t.integer "user_id"
     t.integer "role_id"
   end
 
-  add_index "users_roles", ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id"
+  add_index "users_roles", ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id", using: :btree
 
 end
