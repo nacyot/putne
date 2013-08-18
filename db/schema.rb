@@ -168,7 +168,7 @@ ActiveRecord::Schema.define(version: 20130818141506) do
   create_table "target_files", force: true do |t|
     t.string   "name"
     t.string   "path"
-    t.string   "report_id"
+    t.integer  "report_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

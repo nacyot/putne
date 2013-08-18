@@ -3,7 +3,7 @@ class CreateTargetFiles < ActiveRecord::Migration
     create_table :target_files do |t|
       t.string :name
       t.string :path
-      t.string :report_id
+      t.integer :report_id
 
       t.timestamps
     end
