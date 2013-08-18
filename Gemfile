@@ -81,6 +81,7 @@ gem 'simplecov', :require => false
 gem 'simplecov-rcov', :require => false
 gem 'ci_reporter'
 gem 'metric_fu'
+gem 'churn', github: "danmayer/churn"
 #gem 'rcov', '0.9.11'
 gem 'metric_fu_report_parser', github: 'nacyot/metric-fu-report-parser'
 

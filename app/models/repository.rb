@@ -8,6 +8,8 @@ class Repository < ActiveRecord::Base
 
   def git
     @git || @git = Git.new(self)
+  rescue Grit::NoSuchPathError
+    false
   end
   
   def create_workspace
@@ -15,15 +17,27 @@ class Repository < ActiveRecord::Base
     `mkdir -p tmp/workspace`
     Dir.chdir 'tmp/workspace'
     `git clone #{ repository_url }`
+
+    validates_repository
   end
 
+  def validates_repository
+    Dir.chdir Rails.root
+    Grit::Repo.new workspace_path
+    update_attribute(:valida, true)
+  rescue Grit::InvalidGitRepositoryError
+    update_attribute(:valida, false)
+  rescue Grit::NoSuchPathError
+    update_attribute(:valida, false)
+  end
+  
   def remove_workspace
     Dir.chdir Rails.root
     `rm -rf tmp/workspace/#{ git_project_name }`
   end
 
   def recent_commit
-    git.head
+    git.head.commit
   end
 
   def workspace_path
@@ -37,6 +51,8 @@ class Repository < ActiveRecord::Base
   def init_repository
     create_workspace
     branches << Branch.create!(name: "master", repository: self)
-    commites << Commit.create!(commit_hash: recent_commit.id, repository: self)
+    commits << Commit.create!(commit_hash: recent_commit.id, repository: self)
   end
+
+
 end

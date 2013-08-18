@@ -8,6 +8,18 @@ GIT
       railties (~> 4.0)
 
 GIT
+  remote: git://github.com/danmayer/churn.git
+  revision: 62bd023666b101a7cc2d67316f84d67b42a637c0
+  specs:
+    churn (0.0.29)
+      chronic (>= 0.2.3)
+      hirb
+      json_pure
+      main
+      ruby_parser (~> 3.0)
+      sexp_processor (~> 4.1)
+
+GIT
   remote: git://github.com/engageis/activerecord-postgres-hstore.git
   revision: 385085f3d661a19e4b38fa3a2630746390cfa131
   branch: master
@@ -128,13 +140,6 @@ GEM
     celluloid (0.14.0)
       timers (>= 1.0.0)
     chronic (0.9.1)
-    churn (0.0.29)
-      chronic (>= 0.2.3)
-      hirb
-      json_pure
-      main
-      ruby_parser (~> 3.0)
-      sexp_processor (~> 4.1)
     ci_reporter (1.9.0)
       builder (>= 2.1.2)
     code_analyzer (0.3.2)
@@ -482,6 +487,7 @@ DEPENDENCIES
   brakeman
   cancan
   capybara
+  churn!
   ci_reporter
   coderay
   coffee-rails (~> 4.0.0)

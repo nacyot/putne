@@ -1,6 +1,9 @@
 class Git
+  attr_accessor :repo
+  
   def initialize(repository)
     @repository = repository
+    Dir.chdir Rails.root
     @repo = Grit::Repo.new @repository.workspace_path
   end
 
@@ -12,11 +15,15 @@ class Git
     @repo.commits("master", 20)
   end
 
-  def head
-    @repo.commits.first
-  end
-
   def branches
     @repo.branches
+  end
+
+  def last_commit
+    @repo.commits.first
+  end
+  
+  def head
+    @repo.head
   end
 end

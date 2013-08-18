@@ -1,14 +1,8 @@
 module RegisterReport
   extend ActiveSupport::Concern
 
-  def get_metrics_from_github
-    Dir.chdir Rails.root
-    `mkdir -p tmp/workspace`
-    Dir.chdir 'tmp/workspace'
-    `git clone #{ repository.repository_url }`
-    puts Dir.pwd
-    Dir.chdir "#{ repository.git_project_name }"
-    puts Dir.pwd
+  def get_metrics
+    Dir.chdir repository.workspace_path
     `metric_fu -r --format yaml`
   end
    
@@ -18,7 +12,7 @@ module RegisterReport
   
   def register_report  
     if id?
-      #get_metrics_from_github
+      get_metrics
       
       register_files_churn 
       register_classes_churn 

@@ -13,7 +13,7 @@ class MetricsController < ApplicationController
     @report = Report.find(params[:report_id])
     
     file_name = TargetFile.find(params[:file_id]).path
-    @file = (Git.new(@project.repository).head.tree / file_name).data
+    @file = (@project.repository.git.last_commit.tree / file_name).data
   end
   
   def classes
@@ -26,7 +26,7 @@ class MetricsController < ApplicationController
     @report = Report.find(params[:report_id])
 
     file_name = TargetClass.find(params[:class_id]).target_file.path
-    @file = (Git.new(@project.repository).head.tree / file_name).data    
+    @file = (@project.repository.git.last_commit.tree / file_name).data
   end
   
   def methods
@@ -48,7 +48,7 @@ class MetricsController < ApplicationController
 
     
     file_name = TargetMethod.find(params[:method_id]).target_class.target_file.path
-    file = (Git.new(@project.repository).head.tree / file_name).data
+    file = (@project.repository.git.last_commit.tree / file_name).data
 
     @method = ""
     @method_name = method_name

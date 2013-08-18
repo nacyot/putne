@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130818140825) do
+ActiveRecord::Schema.define(version: 20130818141506) do
 
   create_table "branches", force: true do |t|
     t.string   "name"
@@ -139,7 +139,7 @@ ActiveRecord::Schema.define(version: 20130818140825) do
     t.integer  "project_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "valid"
+    t.boolean  "valida"
   end
 
   create_table "roles", force: true do |t|
