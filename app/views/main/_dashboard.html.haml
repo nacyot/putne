@@ -2,31 +2,7 @@
   .container
     .col-lg-8
       - @commits.each do |commit|
-        .panel
-          .row
-            .col-lg-2
-              = gravatar_image_for_profile(commit.author_email)
-            .col-lg-10{style: "padding-left: 30px;"}
-              %p
-                Project:
-                = commit.repository.project.title
-              %p
-                Commit:
-                = commit.committed_at
-              %p
-                Author:
-                = "#{commit.author_name} <#{commit.author_email}>"
-              %p
-                Commit ID: 
-                = commit.commit_hash
-            -# %li= commit.id
-            -# %li= commit.author.name
-            -#  gravatar_image_tag commit.author.email, class: "image-rounded"
-            -# %li= commit.authored_date
-            -# %li= commit.committed_date
-            -# %li= commit.committer
-            -# %li= commit.message
-            -# %li= (commit.tree / 'Gemfile').data
+        = render partial: "shared/commit_card", locals: {commit: commit}
 
       = paginate @commits
     .col-lg-4

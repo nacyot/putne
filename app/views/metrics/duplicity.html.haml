@@ -1,4 +1,16 @@
 .project.container
   .main.col-lg-9.panel
-    = render "shared/project_info", locals: {project: @project}
+    = render "shared/project_info", locals: {project: @project}  
+    - @report.duplications.each_with_index do |duplication, index|
+      %h4= "Duplication ##{index}"
+      %table.table.table-striped
+        %th File path
+        %th Line
+        - duplication.file_line_infos.each do |line|
+          %tr
+            %td= line.target_file.path
+            %td= line.line_num
+      %br/
+        
   = render "shared/project_sidebar", locals: {project: @project}
+

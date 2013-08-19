@@ -1,0 +1,30 @@
+.panel
+  .row
+    .col-lg-2.text-center
+      = gravatar_image_for_commit(commit.author_email)
+    .col-lg-8{style: "padding-left: 30px;"}
+      %p
+        Project:
+        = commit.repository.project.title
+      %p
+        Commit:
+        = commit.committed_at
+      %p
+        Author:
+        = "#{commit.author_name} <#{commit.author_email}>"
+      %p
+        Commit ID: 
+        = commit.commit_hash
+    .col-lg-2
+      - unless commit.report.nil?
+        = link_to "Report", project_report_path(commit.repository.project, commit.repository), class: "btn btn-primary"
+      - else
+        = link_to "Create", project_reports_path(commit.repository.project, hash: commit.commit_hash), class: "btn btn-warning", method: :post
+    -# %li= commit.id
+    -# %li= commit.author.name
+    -#  gravatar_image_tag commit.author.email, class: "image-rounded"
+    -# %li= commit.authored_date
+    -# %li= commit.committed_date
+    -# %li= commit.committer
+    -# %li= commit.message
+    -# %li= (commit.tree / 'Gemfile').data

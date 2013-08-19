@@ -7,7 +7,6 @@ class GitController < ApplicationController
 
   def commits
     @project = Project.find params[:project_id]
-    @repository = @project.repository
-    
+    @repository = @project.repository   
   end
 end
