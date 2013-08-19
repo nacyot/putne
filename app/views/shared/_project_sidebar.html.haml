@@ -16,7 +16,7 @@
         = link_to project_reports_url(@project) do
           %span.badge.pull-right#report-help ?
           %span.badge.pull-right= @project.reports.count
-          Report
+          Reports
       %li
         = link_to project_report_timeline_url(@project, @report) do
           %span.badge.pull-right#timeline-help ?
@@ -27,17 +27,17 @@
         = link_to project_report_churn_url(@project, @report) do
           %span.badge.pull-right#churn-help ?
           %span.badge.pull-right= @report.churn_stat
-          Churn
+          Churns
       %li
         = link_to project_report_complexity_url(@project, @report) do
           %span.badge.pull-right#complexity-help ?
           %span.badge.pull-right= @report.complexity_stat
-          Complexity
+          Complexities
       %li
         = link_to project_report_duplicity_url(@project, @report) do
           %span.badge.pull-right#duplicity-help ?
           %span.badge.pull-right= @report.duplication_stat
-          Duplicity
+          Duplications
       %li
         = link_to project_report_smells_url(@project, @report) do
           %span.badge.pull-right#smells-help ?
