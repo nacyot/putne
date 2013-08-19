@@ -21,17 +21,17 @@
       %li
         = link_to project_report_churn_url(@project, @report) do
           %span.badge.pull-right#churn-help ?
-          %span.badge.pull-right= @report.sum_churn
+          %span.badge.pull-right= @report.sum_churns
           Churn
       %li
         = link_to project_report_complexity_url(@project, @report) do
           %span.badge.pull-right#complexity-help ?
-          %span.badge.pull-right= @report.sum_complexity
+          %span.badge.pull-right= @report.sum_complexities
           Complexity
       %li
         = link_to project_report_duplicity_url(@project, @report) do
           %span.badge.pull-right#duplicity-help ?
-          %span.badge.pull-right= @report.sum_duplication
+          %span.badge.pull-right= @report.sum_duplications
           Duplicity
       %li
         = link_to project_report_smells_url(@project, @report) do

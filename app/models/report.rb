@@ -18,15 +18,15 @@ class Report < ActiveRecord::Base
 
   validates_presence_of :project, :branch, :commit, :repository
 
-  def sum_churn
+  def sum_churns
     churns.file_churns.sum(:times_changed)
   end
 
-  def sum_complexity
+  def sum_complexities
     complexity_scores.sum(:flog_score)
   end
 
-  def sum_duplication
+  def sum_duplications
     duplications.count
   end
 
