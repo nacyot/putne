@@ -177,7 +177,7 @@ module RegisterReport
         target_method.complexity_score.save
       end
     end
-    resue
+    rescue
   end
 
   def register_roodi
