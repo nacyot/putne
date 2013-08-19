@@ -1,8 +1,8 @@
 .panel
   .row
-    .col-lg-2.text-center
+    .col-lg-2.col-sm-2.text-center
       = gravatar_image_for_commit(commit.author_email)
-    .col-lg-8{style: "padding-left: 30px;"}
+    .col-lg-8.col-sm-7{style: "padding-left: 30px;"}
       %p
         Project:
         = commit.repository.project.title
@@ -14,8 +14,8 @@
         = "#{commit.author_name} <#{commit.author_email}>"
       %p
         Commit ID: 
-        = commit.commit_hash
-    .col-lg-2
+        = commit.commit_hash[0..15]
+    .col-lg-2.col-sm-3
       - unless commit.report.nil?
         = link_to "Report", project_report_path(commit.repository.project, commit.report), class: "btn btn-primary"
       - else

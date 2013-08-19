@@ -1,24 +1,23 @@
 .project.container
-  .main.col-lg-9.panel
+  .main.col-lg-9.col-sm-8.panel
     = render "shared/project_info", locals: {project: @project}
     %br/
     %svg{style: "height: 300px;"}
     .page-header
       %h1 Reports
     %table.table.table-striped
-      %th Num
       %th At
-      %th Commit
+      -#%th Commit
       %th Class
       %th Methods
       %th Churn
-      %th Complexity
+      %th Complex
       %th Smell
       - @reports.each do |report|
         %tr
-          %td= link_to report.id, project_report_path(report.project, report)
+          -#%td= link_to report.id, project_report_path(report.project, report)
           %td= report.commit.committed_at
-          %td= report.commit_stat
+          -#%td= report.commit_stat
           %td= report.class_stat
           %td= report.method_stat
           %td= report.churn_stat

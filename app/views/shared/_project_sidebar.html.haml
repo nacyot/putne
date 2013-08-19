@@ -1,4 +1,13 @@
-.sidebar.col-lg-3
+.sidebar.col-lg-3.col-sm-4
+  .panel
+    .panel-heading Report #
+    .panel-body
+      ID: 
+      = params[:report_id]
+      %br/
+      Hash:
+      = @report.commit.commit_hash[0..15]
+      \..
   - if @project.repository.valida?
     %ul.nav.nav-pills.nav-stacked
       %li
@@ -68,7 +77,7 @@
       %br/
 
       %li
-        = link_to @project.repository_url do
+        = link_to @project.repository.repository_url do
           %span.badge.pull-right#repository-help ?
           %span.badge.pull-right
           Repository

@@ -1,10 +1,10 @@
-.project.container
-  .main.col-lg-9.panel
+.project
+  .main.col-lg-9.col-sm-8.panel
     = render "shared/project_info", locals: {project: @project}
     %table.table.table-striped
       %th Method name
       %th Small type
-      %th Message
+      -#%th Message
       - @report.reek_smells.each do |smell|
         %tr
           - unless smell.target_method.nil?
@@ -12,7 +12,7 @@
           - else
             %td= smell.target_class.name
           %td= smell.warn_type
-          %td= smell.message
+          -#%td= smell.message
             
     %table.table.table-striped
       %th File path
