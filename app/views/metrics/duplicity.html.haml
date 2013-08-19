@@ -2,7 +2,7 @@
   .main.col-lg-9.panel
     = render "shared/project_info", locals: {project: @project}  
     - @report.duplications.each_with_index do |duplication, index|
-      %h4= "Duplication ##{index}"
+      %h4= "Duplication ##{index + 1}"
       %table.table.table-striped
         %th File path
         %th Line

@@ -8,7 +8,7 @@
       %th Saikiro score
       - @methods.each do |method|
         %tr
-          %td= method.name
+          %td= link_to method.name, project_report_method_path(@project, @report, method_id: method)
           %td= method.complexity_score.lines unless method.complexity_score.nil?
           %td= method.complexity_score.flog_score unless method.complexity_score.nil?
           %td= method.complexity_score.saikuro_score unless method.complexity_score.nil?
