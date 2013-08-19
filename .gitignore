@@ -3,6 +3,8 @@
 /db/*.sqlite3
 /public/system/*
 
+/vendor
+/vendor/*
 /vendor/bundler
 /vendor/bundler/*
 
