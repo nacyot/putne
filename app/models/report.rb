@@ -18,4 +18,39 @@ class Report < ActiveRecord::Base
 
   validates_presence_of :project, :branch, :commit, :repository
 
+  def sum_churn
+    churns.file_churns.sum(:times_changed)
+  end
+
+  def sum_complexity
+    complexity_scores.sum(:flog_score)
+  end
+
+  def sum_duplication
+    duplications.count
+  end
+
+  def sum_smells
+    reek_smells.count
+  end
+
+  def sum_branches
+    repository.git.branches.count
+  end
+  
+  def sum_commits
+    repository.git.stats.count
+  end
+
+  def sum_files
+    target_files.count
+  end
+
+  def sum_classes
+    target_classes.count
+  end
+
+  def sum_methods
+    target_methods.count
+  end
 end

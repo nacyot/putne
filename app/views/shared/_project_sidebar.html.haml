@@ -1,5 +1,3 @@
-- git = @project.repository.git
-
 .sidebar.col-lg-3
   - if @project.repository.valida?
     %ul.nav.nav-pills.nav-stacked
@@ -15,58 +13,58 @@
           %span.badge.pull-right= @project.reports.count
           Report
       %li
-        = link_to project_report_timeline_url(@project, @project.reports.last) do
+        = link_to project_report_timeline_url(@project, @report) do
           %span.badge.pull-right#timeline-help ?
           %span.badge.pull-right
           Timeline
       %br/
       %li
-        = link_to project_report_churn_url(@project, @project.reports.last) do
+        = link_to project_report_churn_url(@project, @report) do
           %span.badge.pull-right#churn-help ?
-          %span.badge.pull-right= @project.reports.last.churns.file_churns.sum(:times_changed)
+          %span.badge.pull-right= @report.sum_churn
           Churn
       %li
-        = link_to project_report_complexity_url(@project, @project.reports.last) do
+        = link_to project_report_complexity_url(@project, @report) do
           %span.badge.pull-right#complexity-help ?
-          %span.badge.pull-right= @project.reports.last.complexity_scores.sum(:flog_score)
+          %span.badge.pull-right= @report.sum_complexity
           Complexity
       %li
-        = link_to project_report_duplicity_url(@project, @project.reports.last) do
+        = link_to project_report_duplicity_url(@project, @report) do
           %span.badge.pull-right#duplicity-help ?
-          %span.badge.pull-right= @project.reports.last.duplications.count
+          %span.badge.pull-right= @report.sum_duplication
           Duplicity
       %li
-        = link_to project_report_smells_url(@project, @project.reports.last) do
+        = link_to project_report_smells_url(@project, @report) do
           %span.badge.pull-right#smells-help ?
-          %span.badge.pull-right= @project.reports.last.reek_smells.count
+          %span.badge.pull-right= @report.sum_smells
           Smells
       %br/
       %li
-        = link_to project_report_branches_url(@project, @project.reports.last) do
+        = link_to project_report_branches_url(@project, @report) do
           %span.badge.pull-right#files-help ?
-          %span.badge.pull-right= git.branches.count
+          %span.badge.pull-right= @report.sum_branches
           Branches
       %li
-        = link_to project_report_commits_url(@project, @project.reports.last) do
+        = link_to project_report_commits_url(@project, @report) do
           %span.badge.pull-right#files-help ?
-          %span.badge.pull-right= git.stats.count
+          %span.badge.pull-right= @report.sum_commits
           Commits
       %br/
 
       %li
-        = link_to project_report_files_url(@project, @project.reports.last) do
+        = link_to project_report_files_url(@project, @report) do
           %span.badge.pull-right#files-help ?
-          %span.badge.pull-right= @project.reports.last.target_files.count
+          %span.badge.pull-right= @report.sum_files
           Files
       %li
-        = link_to project_report_classes_url(@project, @project.reports.last) do
+        = link_to project_report_classes_url(@project, @report) do
           %span.badge.pull-right#classes-help ?
-          %span.badge.pull-right= @project.reports.last.target_classes.count
+          %span.badge.pull-right= @report.sum_classes
           Classes
       %li
-        = link_to project_report_methods_url(@project, @project.reports.last) do
+        = link_to project_report_methods_url(@project, @report) do
           %span.badge.pull-right#methods-help ?
-          %span.badge.pull-right= @project.reports.last.target_methods.count
+          %span.badge.pull-right= @report.sum_methods
           Methods
       %br/
 

@@ -1,5 +1,5 @@
 class ReportsController < ApplicationController
-  load_and_authorize_resource class: Project
+  load_and_authorize_resource class: Report
   before_action :set_report, only: [:show, :edit, :update, :destroy]
 
   # GET /reports
@@ -7,6 +7,7 @@ class ReportsController < ApplicationController
   def index
     @project = Project.find params[:project_id]
     @reports = @project.reports
+    @report = @reports.last
   end
 
   # GET /reports/1

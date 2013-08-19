@@ -1,3 +1,4 @@
+# -*- coding: undecided -*-
 class GitController < ApplicationController
   load_and_authorize_resource class: Project
   
@@ -7,6 +8,7 @@ class GitController < ApplicationController
 
   def commits
     @project = Project.find params[:project_id]
+    @report = Report.find params[:report_id]
     @repository = @project.repository   
   end
 end
