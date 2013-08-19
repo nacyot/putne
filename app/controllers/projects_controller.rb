@@ -12,17 +12,20 @@ class ProjectsController < ApplicationController
   # GET /projects/1.json
   def show
     @project = Project.find params[:id]
+    @title = "Project - #{@project.title}"
     @report = @project.reports.sort { |report| report.commit.committed_at }[-1]
   end
 
   # GET /projects/new
   def new
+    @title = "New project"
     @project = Project.new
     @project.repository = Repository.new
   end
 
   # GET /projects/1/edit
   def edit
+    
   end
 
   # POST /projects
