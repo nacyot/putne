@@ -1,15 +1,15 @@
 .project.container
   .main.col-lg-9.panel
     = render "shared/project_info", locals: {project: @project}
-    %table.table.table-striped
-      %th File path
-      %th Times changed
+    %table.table.table-striped.churn
+      %th.name File path
+      %th.times Times changed
       - @report.churns.file_churns.each do |churn|
         %tr
           %td= link_to churn.targetable.path, project_report_file_path(@project, @report, file_id: churn.targetable)
           %td= churn.times_changed
 
-    %table.table.table-striped
+    %table.table.table-striped.churn
       %th Class name
       %th Times changed
       - @report.churns.class_churns.each do |churn|
@@ -17,7 +17,7 @@
           %td= churn.targetable.name
           %td= churn.times_changed
 
-    %table.table.table-striped
+    %table.table.table-striped.churn
       %th Method name
       %th Times changed
       - @report.churns.method_churns.each do |churn|

@@ -39,11 +39,11 @@
           %span.badge.pull-right= @report.smell_stat
           Smells
       %br/
-      %li
-        = link_to project_report_branches_url(@project, @report) do
-          %span.badge.pull-right#files-help ?
-          %span.badge.pull-right= @report.branche_stat
-          Branches
+      -# %li
+      -#   = link_to project_report_branches_url(@project, @report) do
+      -#     %span.badge.pull-right#files-help ?
+      -#     %span.badge.pull-right= @report.branche_stat
+      -#     Branches
       %li
         = link_to project_report_commits_url(@project, @report) do
           %span.badge.pull-right#files-help 
