@@ -2,7 +2,7 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
-myData = () ->
+@myData = () ->
         series1 = []
         for i in [1..100]
                 series1.push
@@ -17,9 +17,9 @@ myData = () ->
 $ ->
         nv.addGraph ->
                 chart = nv.models.lineChart()
-                chart.xAxis.axisLabel("X-axis Label")
-                chart.yAxis.axisLabel("Y-axis Label").tickFormat(d3.format("d"))
+                chart.xAxis.axisLabel("XXX-axis Label")
+                chart.yAxis.axisLabel("XX-axis Label").tickFormat(d3.format("d"))
 
-                d3.select("svg").datum(myData()).transition().duration(500).call(chart)
+                d3.select("svg#dashboard-graph").datum(myData()).transition().duration(500).call(chart)
                 nv.utils.windowResize -> chart.update()
                 return chart;

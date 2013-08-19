@@ -1,7 +1,7 @@
 .row.dashboard
   .container
     .col-lg-8.col-md-8.col-sm-8
-      %svg{style: "height: 300px;"}
+      %svg#dashboard-graph{style: "height: 300px;"}
       
       - @commits.each do |commit|
         = render partial: "shared/commit_card", locals: {commit: commit}
