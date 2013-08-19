@@ -57,12 +57,18 @@ module ApplicationHelper
   end
 
   def gravatar_image_for_commit(user = current_user.email)
-        gravatar_image_tag(user,
+    gravatar_image_tag(user,
                        alt: "gravatar image",
                        class: "img-rounded gravatar",
                        gravatar: { size: 60 })
   end
 
-
+  def title_for(page_title =  nil)
+    unless page_title
+      "Putne Code Metrics Server"
+    else
+      "#{page_title} :: Putne"
+    end
+  end
   
 end
