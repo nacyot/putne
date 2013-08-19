@@ -39,8 +39,8 @@ class Repository < ActiveRecord::Base
   end
   
   def init_repository
-    register_recent_commits
     create_workspace
+    register_recent_commits
     branches << Branch.create!(name: "master", repository: self)
   end
 
