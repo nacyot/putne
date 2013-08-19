@@ -1,6 +1,7 @@
 .project.container
   .main.col-lg-9.panel
     = render "shared/project_info", locals: {project: @project}
+    %svg{style: "height: 300px;"}
     %table.table.table-striped
       %th Methods
       %th Lines

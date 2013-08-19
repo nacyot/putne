@@ -1,6 +1,8 @@
 .project.container
   .main.col-lg-9.panel
     = render "shared/project_info", locals: {project: @project}
+    %br/
+    %svg{style: "height: 300px;"}
     .page-header
       %h1 Reports
     %table.table.table-striped

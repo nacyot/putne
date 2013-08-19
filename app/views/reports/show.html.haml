@@ -1,5 +1,7 @@
 .project.container
   .main.col-lg-9.panel
+    %svg{style: "height: 300px;"}
+
     = render "shared/project_info", locals: {project: @project}
   = render "shared/project_sidebar", locals: {project: @project}
 
