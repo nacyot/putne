@@ -6,6 +6,6 @@ class TargetMethod < ActiveRecord::Base
   has_many :reek_smells
 
   validates_presence_of :report, :target_class, :name
-  validates :name, :format => { with: /#/ }
+  validates :name, :format => { with: /#/ } 
 
 end
