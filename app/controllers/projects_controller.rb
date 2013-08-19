@@ -28,7 +28,7 @@ class ProjectsController < ApplicationController
   def create
     @project = Project.create!(project_params)
     @project.repository = Repository.create!(params[:project][:repository_attributes])
-    ReportWorker.perform_async(@project.repository.id)
+    InitRepositoryWorker.perform_async(@project.repository.id)
 
     respond_to do |format|
       if @project.id?

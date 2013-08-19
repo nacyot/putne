@@ -45,22 +45,17 @@ class Repository < ActiveRecord::Base
   end
 
   def create_recent_report
-    project.reports << Report.create!(project: project,
-                                      repository: self,
-                                      branch: Branch.find_or_create_by(repository: self,
-                                                                       name: "master"
-                                                                       ), 
-                                      commit: Commit.find_or_create_by(repository: self,
-                                                                       commit_hash: recent_commit.id,
-                                                                       committed_at: recent_commit.committed_date,
-                                                                       author_name: recent_commit.author.name,
-                                                                       author_email: recent_commit.author.email
-                                                                       )
-                                      )
-                              
-    project.reports.last.register_report
+    create_report recent_commit.id
   end
 
+  def create_report(commit_hash)
+    commit = Commit.find_by(repository_id: self.id, commit_hash: commit_hash)
+    branch = Branch.find_by(repository_id: self.id, name: "master")
+    project.reports << Report.create!(project: project, repository: self, branch: branch, commit: commit)
+    commit.rebase
+    project.reports.last.register_report
+  end
+  
   def create_workspace
     Dir.chdir Rails.root
     `mkdir -p tmp/workspace`

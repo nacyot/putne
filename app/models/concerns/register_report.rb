@@ -2,6 +2,7 @@ module RegisterReport
   extend ActiveSupport::Concern
 
   def get_metrics
+    Dir.chdir Rails.root
     Dir.chdir repository.workspace_path
     `echo "MetricFu::Configuration.run { |config| config.flog = config.flog.merge({continue: true}) }" > .metrics`
     `metric_fu -r --format yaml`
