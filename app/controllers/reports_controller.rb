@@ -12,6 +12,8 @@ class ReportsController < ApplicationController
   # GET /reports/1
   # GET /reports/1.json
   def show
+    @project = Project.find params[:project_id]
+    @report = Report.find params[:id]
   end
 
   # GET /reports/new

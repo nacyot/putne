@@ -56,11 +56,13 @@ module ApplicationHelper
                        gravatar: { size: 120 })
   end
 
-    def gravatar_image_for_commit(user = current_user.email)
+  def gravatar_image_for_commit(user = current_user.email)
         gravatar_image_tag(user,
                        alt: "gravatar image",
                        class: "img-rounded gravatar",
                        gravatar: { size: 60 })
   end
 
+
+  
 end

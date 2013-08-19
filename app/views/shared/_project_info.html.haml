@@ -1,10 +1,13 @@
+
 .info
   .address.lead
     = current_user.email
     = " / "
     = @project.title
     = " / master"
-
+    = " / "
+    -#= report.commit.commit_hash
+    
   .row
     .description
       .col-lg-7
