@@ -102,3 +102,11 @@ body {
 .footer a{
     font-weight: bold;
 }
+
+.churn .name{
+    width: 75%;
+}
+
+.churn .times{
+    width: 25%;
+}

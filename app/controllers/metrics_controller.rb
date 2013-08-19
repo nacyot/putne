@@ -32,6 +32,7 @@ class MetricsController < ApplicationController
   def methods
     @project = Project.find(params[:project_id])
     @report = Report.find(params[:report_id])
+    @methods = @report.target_methods.page(params[:page]).per(25)
   end
 
   def method
@@ -45,7 +46,6 @@ class MetricsController < ApplicationController
     else
       method_name = method.name.split('::')[-1]
     end
-
     
     file_name = TargetMethod.find(params[:method_id]).target_class.target_file.path
     file = (@project.repository.git.last_commit.tree / file_name).data
@@ -63,6 +63,7 @@ class MetricsController < ApplicationController
   def complexity
     @project = Project.find(params[:project_id])
     @report = Report.find(params[:report_id])
+    @methods = @report.target_methods.page(params[:page]).per(25)
   end
 
   def duplicity

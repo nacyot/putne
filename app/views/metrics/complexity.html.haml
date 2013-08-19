@@ -6,10 +6,11 @@
       %th Lines
       %th Flog score
       %th Saikiro score
-      - @report.target_methods.each do |method|
+      - @methods.each do |method|
         %tr
           %td= method.name
           %td= method.complexity_score.lines unless method.complexity_score.nil?
           %td= method.complexity_score.flog_score unless method.complexity_score.nil?
           %td= method.complexity_score.saikuro_score unless method.complexity_score.nil?
+    = paginate @methods
   = render "shared/project_sidebar", locals: {project: @project}
