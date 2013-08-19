@@ -20,7 +20,7 @@ class Repository < ActiveRecord::Base
   end
 
   def register_recent_commits
-    git.commits(50).each do |commit|
+    git.commits(100).each do |commit|
       Commit.find_or_create_by!(repository: self,
                                 commit_hash: commit.id,
                                 committed_at: commit.committed_date,
@@ -51,9 +51,11 @@ class Repository < ActiveRecord::Base
   def create_report(commit_hash)
     commit = Commit.find_by(repository_id: self.id, commit_hash: commit_hash)
     branch = Branch.find_by(repository_id: self.id, name: "master")
-    project.reports << Report.create!(project: project, repository: self, branch: branch, commit: commit)
+    report = Report.create!(project: project, repository: self, branch: branch, commit: commit)
+    project.reports << report
     commit.rebase
-    project.reports.last.register_report
+    report.register_report
+    report.input_stats
   end
   
   def create_workspace

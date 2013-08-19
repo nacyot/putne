@@ -17,7 +17,7 @@
         = commit.commit_hash
     .col-lg-2
       - unless commit.report.nil?
-        = link_to "Report", project_report_path(commit.repository.project, commit.repository), class: "btn btn-primary"
+        = link_to "Report", project_report_path(commit.repository.project, commit.report), class: "btn btn-primary"
       - else
         = link_to "Create", project_reports_path(commit.repository.project, hash: commit.commit_hash), class: "btn btn-warning", method: :post
     -# %li= commit.id

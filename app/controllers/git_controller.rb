@@ -1,4 +1,3 @@
-# -*- coding: undecided -*-
 class GitController < ApplicationController
   load_and_authorize_resource class: Project
   

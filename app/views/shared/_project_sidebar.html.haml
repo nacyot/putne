@@ -21,50 +21,50 @@
       %li
         = link_to project_report_churn_url(@project, @report) do
           %span.badge.pull-right#churn-help ?
-          %span.badge.pull-right= @report.sum_churns
+          %span.badge.pull-right= @report.churn_stat
           Churn
       %li
         = link_to project_report_complexity_url(@project, @report) do
           %span.badge.pull-right#complexity-help ?
-          %span.badge.pull-right= @report.sum_complexities
+          %span.badge.pull-right= @report.complexity_stat
           Complexity
       %li
         = link_to project_report_duplicity_url(@project, @report) do
           %span.badge.pull-right#duplicity-help ?
-          %span.badge.pull-right= @report.sum_duplications
+          %span.badge.pull-right= @report.duplication_stat
           Duplicity
       %li
         = link_to project_report_smells_url(@project, @report) do
           %span.badge.pull-right#smells-help ?
-          %span.badge.pull-right= @report.sum_smells
+          %span.badge.pull-right= @report.smell_stat
           Smells
       %br/
       %li
         = link_to project_report_branches_url(@project, @report) do
           %span.badge.pull-right#files-help ?
-          %span.badge.pull-right= @report.sum_branches
+          %span.badge.pull-right= @report.branche_stat
           Branches
       %li
         = link_to project_report_commits_url(@project, @report) do
-          %span.badge.pull-right#files-help ?
-          %span.badge.pull-right= @report.sum_commits
+          %span.badge.pull-right#files-help 
+          %span.badge.pull-right= @report.commit_stat
           Commits
       %br/
 
       %li
         = link_to project_report_files_url(@project, @report) do
           %span.badge.pull-right#files-help ?
-          %span.badge.pull-right= @report.sum_files
+          %span.badge.pull-right= @report.file_stat
           Files
       %li
         = link_to project_report_classes_url(@project, @report) do
           %span.badge.pull-right#classes-help ?
-          %span.badge.pull-right= @report.sum_classes
+          %span.badge.pull-right= @report.class_stat
           Classes
       %li
         = link_to project_report_methods_url(@project, @report) do
           %span.badge.pull-right#methods-help ?
-          %span.badge.pull-right= @report.sum_methods
+          %span.badge.pull-right= @report.method_stat
           Methods
       %br/
 

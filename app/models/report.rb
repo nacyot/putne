@@ -18,6 +18,19 @@ class Report < ActiveRecord::Base
 
   validates_presence_of :project, :branch, :commit, :repository
 
+  def input_stats
+    update_attributes(churn_stat: sum_churns,
+                      complexity_stat: sum_complexities,
+                      duplication_stat: sum_duplications,
+                      smell_stat: sum_smells,
+                      commit_stat: sum_commits,
+                      branche_stat: sum_branches,
+                      file_stat: sum_files,
+                      class_stat: sum_classes,
+                      method_stat: sum_methods
+                      )
+  end
+
   def sum_churns
     churns.file_churns.sum(:times_changed)
   end
