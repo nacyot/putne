@@ -4,14 +4,24 @@
     .page-header
       %h1 Reports
     %table.table.table-striped
-      %th Report Num
-      %th Branch
+      %th Num
+      %th At
       %th Commit
+      %th Class
+      %th Methods
+      %th Churn
+      %th Complexity
+      %th Smell
       - @reports.each do |report|
         %tr
           %td= link_to report.id, project_report_path(report.project, report)
-          %td
-            %td
+          %td= report.commit.committed_at
+          %td= report.commit_stat
+          %td= report.class_stat
+          %td= report.method_stat
+          %td= report.churn_stat
+          %td= report.complexity_stat
+          %td= report.smell_stat
 
   = render "shared/project_sidebar", locals: {project: @project}
 
