@@ -53,9 +53,25 @@ class Repository < ActiveRecord::Base
     branch = Branch.find_by(repository_id: self.id, name: "master")
     report = Report.create!(project: project, repository: self, branch: branch, commit: commit)
     project.reports << report
-    commit.rebase
+    reset_repository hash
     report.register_report
     report.input_stats
+    cancle_reset_repository
+
+    validates_repository
+  end
+
+  def reset_repository(hash)
+    Dir.chdir Rails.root
+    Dir.chdir repository.workspace_path
+    `git reset --hard #{ hash }`
+  end
+
+  def cancle_reset_repository
+    Dir.chdir Rails.root
+    Dir.chdir repository.workspace_path
+    `git reflog`
+    `git reset --hard HEAD@{1}`
   end
   
   def create_workspace
@@ -63,8 +79,6 @@ class Repository < ActiveRecord::Base
     `mkdir -p tmp/workspace`
     Dir.chdir 'tmp/workspace'
     `git clone #{ repository_url }`
-
-    validates_repository
   end
 
   def validates_repository
