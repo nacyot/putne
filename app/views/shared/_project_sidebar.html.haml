@@ -8,6 +8,11 @@
           Synopsis
       %br/
       %li
+        = link_to project_report_commits_url(@project, @report) do
+          %span.badge.pull-right#files-help ?
+          %span.badge.pull-right= @report.commit_stat
+          Commits
+      %li
         = link_to project_reports_url(@project) do
           %span.badge.pull-right#report-help ?
           %span.badge.pull-right= @project.reports.count
@@ -44,12 +49,6 @@
       -#     %span.badge.pull-right#files-help ?
       -#     %span.badge.pull-right= @report.branche_stat
       -#     Branches
-      %li
-        = link_to project_report_commits_url(@project, @report) do
-          %span.badge.pull-right#files-help 
-          %span.badge.pull-right= @report.commit_stat
-          Commits
-      %br/
 
       %li
         = link_to project_report_files_url(@project, @report) do

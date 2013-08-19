@@ -4,8 +4,10 @@
     %table.table.table-striped
       %th Class
       %th File
-      - @report.target_classes.each do |klass|
+      - @classes.each do |klass|
         %tr
           %td= link_to klass.name, project_report_klass_path(@project, @report, class_id: klass)
           %td= klass.target_file.path
+    = paginate(@classes)
   = render "shared/project_sidebar", locals: {project: @project}
+  

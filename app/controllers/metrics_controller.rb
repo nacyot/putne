@@ -6,6 +6,7 @@ class MetricsController < ApplicationController
   def files
     @project = Project.find(params[:project_id])
     @report = Report.find(params[:report_id])
+    @files = @report.target_files.page(params[:page]).per(25)
   end
 
   def file
@@ -19,6 +20,7 @@ class MetricsController < ApplicationController
   def classes
     @project = Project.find(params[:project_id])
     @report = Report.find(params[:report_id])
+    @classes = @report.target_classes.page(params[:page]).per(25)
   end
 
   def klass

@@ -3,7 +3,8 @@
     = render "shared/project_info", locals: {project: @project}
     %table.table.table-striped
       %th File Path
-      - @report.target_files.each do |file|
+      - @files.each do |file|
         %tr
           %td= link_to file.path, project_report_file_path(@project, @report, file_id: file)
+    = paginate(@files)
   = render "shared/project_sidebar", locals: {project: @project}
