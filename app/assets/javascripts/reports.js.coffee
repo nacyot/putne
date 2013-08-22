@@ -3,11 +3,7 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 @jsonTest = () ->
-        d3.json "project/37/reports.json", (error, data) ->
-                if error
-                        return console.warn(error)
-                dataset = data;
-                console.log("Dataset is: " + dataset)
+        d3.json "/projects/37/reports.json", drawGraph
                          
 
 @myData = () ->
@@ -33,13 +29,19 @@
                 color: "#ff0000"
                 }
                 ]
-
-$ ->
+@drawGraph = (error, data) ->
+        console.log(data)
         nv.addGraph ->
                 chart = nv.models.lineChart()
                 chart.xAxis.axisLabel("Time")
                 chart.yAxis.axisLabel("Y-axis Label").tickFormat(d3.format("d"))
 
-                d3.select("svg#reports-summary-graph").datum(myData()).transition().duration(500).call(chart)
+                d3.select("svg#reports-summary-graph").datum(data).transition().duration(500).call(chart)
                 nv.utils.windowResize -> chart.update()
                 return chart;
+
+
+
+
+$ ->
+        jsonTest()
