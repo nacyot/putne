@@ -1,7 +1,4 @@
-collection @reports
-node(:status) {
-  
-}
+
 
 
 
