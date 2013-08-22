@@ -1,11 +1,13 @@
 class ReportSummaryTimeSeries
-  attr_reader :complexities
+  attr_reader :values, :name, :color
   
-  def initialize(reports)
-    @complexities = []
+  def initialize(reports, name, color)
+    @name = name
+    @color = color
+    @values = []
     
     reports.each_with_index do |report, i|
-      @complexities << {x: i + 1, y: report.complexity_stat}
+      @values << {x: i + 1, y: yield(report)}
     end
   end
 end

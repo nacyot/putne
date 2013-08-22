@@ -18,6 +18,8 @@ class Report < ActiveRecord::Base
 
   validates_presence_of :project, :branch, :commit, :repository
 
+  default_scope -> { order("") }
+  
   def input_stats
     update_attributes(churn_stat: sum_churns,
                       complexity_stat: sum_complexities,
@@ -31,6 +33,8 @@ class Report < ActiveRecord::Base
                       )
   end
 
+
+  
   def sum_churns
     churns.file_churns.sum(:times_changed)
   end
