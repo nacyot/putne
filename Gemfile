@@ -56,7 +56,8 @@ gem 'pry'
 gem 'pry-rails'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 1.2'
+#gem 'jbuilder', '~> 1.2'
+gem 'rabl'
 
 gem 'paper_trail', github: 'airblade/paper_trail', branch: 'rails4'
 

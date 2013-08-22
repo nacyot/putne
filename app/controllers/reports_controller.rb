@@ -8,6 +8,7 @@ class ReportsController < ApplicationController
     @project = Project.find params[:project_id]
     @reports = @project.reports
     @report = @project.reports.sort { |report| report.commit.committed_at }[-1]
+
   end
 
   # GET /reports/1
