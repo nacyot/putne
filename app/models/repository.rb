@@ -53,7 +53,7 @@ class Repository < ActiveRecord::Base
     branch = Branch.find_by(repository_id: self.id, name: "master")
     report = Report.create!(project: project, repository: self, branch: branch, commit: commit)
     project.reports << report
-    reset_repository hash
+    reset_repository commit_hash
     report.register_report
     report.input_stats
     cancle_reset_repository
@@ -63,13 +63,13 @@ class Repository < ActiveRecord::Base
 
   def reset_repository(hash)
     Dir.chdir Rails.root
-    Dir.chdir repository.workspace_path
+    Dir.chdir workspace_path
     `git reset --hard #{ hash }`
   end
 
   def cancle_reset_repository
     Dir.chdir Rails.root
-    Dir.chdir repository.workspace_path
+    Dir.chdir workspace_path
     `git reflog`
     `git reset --hard HEAD@{1}`
   end
