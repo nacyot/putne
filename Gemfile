@@ -4,20 +4,18 @@ source 'http://rubygems.nacyot.lapisan'
 ruby '1.9.3'
 gem 'rails', '4.0.0'
 
-gem 'protected_attributes'
-gem 'rails-observers'
-gem 'actionpack-page_caching'
-gem 'actionpack-action_caching'
-gem 'activerecord-deprecated_finders'  
+# gem 'protected_attributes'
+# gem 'rails-observers'
+# gem 'actionpack-page_caching'
+# gem 'actionpack-action_caching'
+# gem 'activerecord-deprecated_finders'  
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 # database
-gem 'sqlite3'
-gem 'ancestry'
-gem 'pg'
-gem 'activerecord-postgres-hstore', github: "engageis/activerecord-postgres-hstore", branch: "master"
+#gem 'ancestry'
+
 
 gem 'rails_admin', github: "sferik/rails_admin", branch: "rails-4"
 #gem 'turbolinks'
@@ -95,6 +93,8 @@ gem 'ruby2ruby'
 
 # git
 gem 'grit'
+gem 'pg'
+gem 'activerecord-postgres-hstore', github: "engageis/activerecord-postgres-hstore", branch: "master"
 
 group  :development do
   gem 'erb2haml'

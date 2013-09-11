@@ -1,5 +1,6 @@
-require 'spec_helper'
-
+# -*- coding: utf-8 -*-
 describe Commit do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe "Model 테스트" do
+
+  end
 end

@@ -8,11 +8,8 @@
 
 
 puts 'CREATING ROLES'
-Role.create([
-             { :name => 'admin' }, 
-             { :name => 'user' }, 
-            ], :without_protection => true)
-
+Role.create({:name => 'admin'})
+Role.create({ :name => 'user' })
 puts 'SETTING UP DEFAULT USER LOGIN'
 
 admin = User.new
@@ -22,7 +19,6 @@ admin.password_confirmation = "abcd1234"
 admin.save!
 
 puts 'New user created: ' << admin.email
-
 user = User.new
 user.email = "user@example.com"
 user.password = "abcd1234"
