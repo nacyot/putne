@@ -16,7 +16,7 @@ gem 'activerecord-deprecated_finders'
 #gem 'ancestry'
 
 
-gem 'rails_admin', github: "sferik/rails_admin", branch: "rails-4"
+gem 'rails_admin', github: "sferik/rails_admin"
 #gem 'turbolinks'
 
 # javascript
