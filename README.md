@@ -1,19 +1,33 @@
-Putne
-=====
-putne는 자동화된 코드 메트릭스 관리툴입니다. 사이클로매틱 복잡도, 코드 수정 횟수, 중복된 코드, 코드 스멜을 찾아내어 코드 품질을 관리할 수 있도록 도와줍니다.
+# Pickpocket
+[![Code Climate](https://codeclimate.com/github/nacyot/putne.png)](https://codeclimate.com/github/nacyot/putne)
+[![Build Status](https://travis-ci.org/nacyot/putne.png?branch=master)](https://travis-ci.org/nacyot/putne)
+[![Coverage Status](https://coveralls.io/repos/nacyot/putne/badge.png)](https://coveralls.io/r/nacyot/putne)
+[![Dependency Status](https://gemnasium.com/nacyot/putne.png)](https://gemnasium.com/nacyot/putne)
 
-Installtion
-=====
+TODO: Write a gem description
 
-Usage
-=====
+## Installation
 
-Default Administrator Account
-=====
-ID : admin@example.com
-Password : abcd1234
+Add this line to your application's Gemfile:
 
+    gem 'pickpocket'
 
-License
-=====
-Putne는 MIT 라이센스를 따릅니다.
+And then execute:
+
+    $ bundle
+
+Or install it yourself as:
+
+    $ gem install pickpocket
+
+## Usage
+
+TODO: Write usage instructions here
+
+## Contributing
+
+1. Fork it
+2. Create your feature branch (`git checkout -b my-new-feature`)
+3. Commit your changes (`git commit -am 'Add some feature'`)
+4. Push to the branch (`git push origin my-new-feature`)
+5. Create new Pull Request
