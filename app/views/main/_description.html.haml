@@ -1,2 +1,13 @@
-
+.col-lg-2
+.col-lg-8.loginbox
+  .text-center
+    %h1 Sign in
+    %br/
+    = simple_form_for resource, :as => resource_name, :url => session_path(resource_name), html: {} do |f|
+      = f.input(:email, wrapper: false, label: false, input_html: { class: "form-control", style: "width: 200px; margin:auto;", placeholder: "ID"})
+      %br/
+      = f.input(:password, wrapper: false, label: false, input_html: { class: "form-control", style: "width: 200px; margin:auto;", placeholder: "Password"})
+      %br/
+      = f.submit("Sign in", class: "btn btn-default navbar-btn", style: "margin-top: -3px;")
+.col-lg-2
 

@@ -110,3 +110,11 @@ body {
 .churn .times{
     width: 25%;
 }
+
+.loginbox{
+    border: 1px solid #eeeeee;
+    margin: 50px;
+    margin-top: 100px;
+    padding: 60px;
+    padding-top: 40px;
+}
