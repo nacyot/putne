@@ -1,4 +1,4 @@
-# Pickpocket
+# Putne
 [![Code Climate](https://codeclimate.com/github/nacyot/putne.png)](https://codeclimate.com/github/nacyot/putne)
 [![Build Status](https://travis-ci.org/nacyot/putne.png?branch=master)](https://travis-ci.org/nacyot/putne)
 [![Coverage Status](https://coveralls.io/repos/nacyot/putne/badge.png)](https://coveralls.io/r/nacyot/putne)
@@ -10,7 +10,7 @@ TODO: Write a gem description
 
 Add this line to your application's Gemfile:
 
-    gem 'pickpocket'
+    gem 'Putne'
 
 And then execute:
 
@@ -18,7 +18,7 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install pickpocket
+    $ gem install putne
 
 ## Usage
 

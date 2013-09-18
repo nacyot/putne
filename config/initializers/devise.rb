@@ -1,6 +1,24 @@
 # Use this hook to configure devise mailer, warden hooks and so forth.
 # Many of these configuration options can be set straight in your model.
+
+require 'securerandom'
+
+def find_secure_token
+  token_file = Rails.root.join('.secret')
+  if File.exist? token_file
+    # Use the existing token.
+    File.read(token_file).chomp
+  else
+        # Generate a new token of 64 random hexadecimal characters and
+    # store it in token_file.
+    token = SecureRandom.hex(64)
+    File.write(token_file, token)
+    token
+  end
+end
+
 Devise.setup do |config|
+  config.secret_key = find_secure_token
   config.sign_out_via = Rails.env.test? ? :get : :delete
   
   # ==> Mailer Configuration
