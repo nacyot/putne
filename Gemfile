@@ -1,5 +1,4 @@
 source 'http://rubygems.org'
-source 'http://rubygems.nacyot.lapisan'
 
 ruby '1.9.3'
 gem 'rails', '4.0.0'
@@ -85,6 +84,7 @@ gem 'metric_fu'
 gem 'churn', github: "danmayer/churn"
 #gem 'rcov', '0.9.11'
 gem 'metric_fu_report_parser', github: 'nacyot/metric-fu-report-parser'
+gem 'coveralls', require: false
 
 # code
 gem 'coderay'
