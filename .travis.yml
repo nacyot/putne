@@ -7,3 +7,4 @@ script:
   - bundle exec rspec spec/
 before_script:
   - psql -c 'create database putne_test' -U postgres
+  - cp config/database.travis.yml config/database.yml
