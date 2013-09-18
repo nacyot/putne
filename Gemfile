@@ -56,7 +56,7 @@ gem 'pry-rails'
 #gem 'jbuilder', '~> 1.2'
 gem 'rabl'
 
-gem 'paper_trail', github: 'airblade/paper_trail', branch: 'rails4'
+gem 'paper_trail', github: 'airblade/paper_trail'
 
 # image handling
 # 'dragonfly'
