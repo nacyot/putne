@@ -36,3 +36,4 @@ pickle-email-*.html
 .sass-cache
 capybara-*.html
 .rvmrc
+Gemfile.lock
