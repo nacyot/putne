@@ -1,0 +1,7 @@
+test:
+  adapter: postgresql
+  host: localhost
+  database: putne_test
+  poos: 5
+  username: postgres
+  port: 5432

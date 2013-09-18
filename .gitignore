@@ -37,4 +37,3 @@ pickle-email-*.html
 capybara-*.html
 .rvmrc
 Gemfile.lock
-.secret
