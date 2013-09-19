@@ -8,7 +8,7 @@ env:
 script:
   - RAILS_ENV=test bundle exec rake db:migrate --trace
   - bundle exec rspec spec/
-  wget --post-data "ci-key=${PUTNE_API_KEY}" --spider http://180.233.227.242:3000/projects/1/commit_hook
+  - wget --post-data "ci-key=${PUTNE_API_KEY}" --spider http://180.233.227.242:3000/projects/1/commit_hook
 
 before_script:
   - psql -c 'create database putne_test' -U postgres
