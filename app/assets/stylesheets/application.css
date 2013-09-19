@@ -11,6 +11,7 @@
 
  *= require nvd3/src/nv.d3
  *= require bootstrap/dist/css/bootstrap.min
+ *= require font-awesome/css/font-awesome.min
  *= require_self
  *= require_tree .
 
