@@ -3,37 +3,36 @@ source 'http://rubygems.org'
 ruby '1.9.3'
 gem 'rails', '4.0.0'
 
+# Rails 3 compatibility
 gem 'protected_attributes'
 gem 'rails-observers'
 gem 'actionpack-page_caching'
 gem 'actionpack-action_caching'
 gem 'activerecord-deprecated_finders'  
 
-# Bundle edge Rails instead:
-# gem 'rails', :git => 'git://github.com/rails/rails.git'
-
 # database
-#gem 'ancestry'
+gem 'pg'
+gem 'activerecord-postgres-hstore', github: "engageis/activerecord-postgres-hstore", branch: "master"
 
-
+# rails_admin
 gem 'rails_admin', github: "sferik/rails_admin"
-#gem 'turbolinks'
 
 # javascript
 gem 'therubyracer'
 gem 'execjs'
 gem 'jquery-rails'
+gem 'jbuilder'
+gem 'rabl'
 
 # gravatar
 gem 'gravatar_image_tag' 
 
 # authentication
 gem 'devise'
+
+# authorization
 gem 'cancan'
 gem 'rolify'
-
-# rails_admin
-#gem 'rails_admin', git: 'git://github.com/swistaczek/rails_admin.git', branch: 'rails-4'
 
 # view
 gem 'twitter-bootstrap-rails'
@@ -46,35 +45,20 @@ gem 'draper'
 # email
 gem 'letter_opener'
 
-# third-party
-gem "sentry-raven", :git => "https://github.com/getsentry/raven-ruby.git"
-gem 'piwik_analytics'
+# console
 gem 'pry'
 gem 'debugger'
 gem 'pry-rails'
 
-# Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-#gem 'jbuilder', '~> 1.2'
-gem 'rabl'
-
-gem 'paper_trail', github: 'airblade/paper_trail'
-
-# image handling
-# 'dragonfly'
-
-# state machine
-# gem 'aasm'
-
-# attachment
-# gem 'carriewave'
-# gem 'paperclip'
-
+# etc
 gem 'htmlentities'
-gem 'faker'
 
+# third-party
+gem 'coveralls', require: false
+
+# server
 gem 'sidekiq'
 gem 'sinatra', require: false
-gem 'slim'
 
 # metrics
 gem 'rails_best_practices'  
@@ -83,19 +67,18 @@ gem 'simplecov-rcov', :require => false
 gem 'ci_reporter'
 gem 'metric_fu'
 gem 'churn', github: "danmayer/churn"
-#gem 'rcov', '0.9.11'
 gem 'metric_fu_report_parser', github: 'nacyot/metric-fu-report-parser'
-gem 'coveralls', require: false
+#gem 'rcov', '0.9.11'
 
-# code
+# code highlight
 gem 'coderay'
+
+# ruby parser
 gem 'parser'
 gem 'ruby2ruby'
 
 # git
 gem 'grit'
-gem 'pg'
-gem 'activerecord-postgres-hstore', github: "engageis/activerecord-postgres-hstore", branch: "master"
 
 group  :development do
   gem 'rails-erd'
@@ -106,64 +89,35 @@ group  :development do
   gem 'rb-fsevent'
   gem "better_errors"
   gem "binding_of_caller"
-
   gem 'rack-mini-profiler'
   gem 'brakeman', :require => false
-
 end
 
 group :test do
-  # autotest
-  #  gem 'ZenTest'
-  #  gem 'autotest-rails'
-  #  gem 'autotest-fsevent'
-  #  gem 'autotest-growl'
-  
-  # rspec
   gem 'rspec'
-  gem 'cucumber-rails', :require => false
   gem 'email_spec'
   gem 'webrat'
   gem 'capybara'
   gem 'launchy'
   gem 'database_cleaner'
-  # gem 'mongoid-rspec'
-  
-  # data
   gem 'factory_girl', :require => false
   gem 'factory_girl_rails', :require => false
 end
 
 group :development, :test do
-  # rails warmer
   gem 'spring'
-  # gem 'spork'
-  
-  # guard
-  # gem 'guard-spork'
   gem 'guard-rspec'
-  # gem 'guard-spring'
   gem 'guard-cucumber'
+  gem 'faker'
 end
 
+group :doc do
+  gem 'sdoc', require: false
+end
+
+#assets
 gem 'less-rails'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'haml-rails'
 gem 'uglifier', '>= 1.3.0'
-
-group :doc do
-  # bundle exec rake doc:rails generates the API under doc/api.
-  gem 'sdoc', require: false
-end
-
-# To use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.0.0'
-# To use Jbuilder templates for JSON
-
-
-# Use unicorn as the app server
-# gem 'unicorn'
-# Deploy with Capistrano
-# gem 'capistrano'
-# To use debugger
-# gem 'debugger'
+gem 'slim'
