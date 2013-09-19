@@ -8,6 +8,9 @@
       %br/
       = f.input(:password, wrapper: false, label: false, input_html: { class: "form-control", style: "width: 200px; margin:auto;", placeholder: "Password"})
       %br/
-      = f.submit("Sign in", class: "btn btn-default navbar-btn", style: "margin-top: -3px;")
+      = f.submit("Sign in", class: "btn btn-default", style: "margin-top: -3px;")
+    %br/
+    = link_to "Sign up", new_user_registration_path, class: "btn btn-default"
 .col-lg-2
+
 
