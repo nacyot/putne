@@ -2,12 +2,12 @@ class ProjectsController < ApplicationController
   load_and_authorize_resource
   before_action :set_project, only: [:show, :edit, :update, :destroy]
   layout "layouts/sidebar", only: :show
-  before_action :protect_from_forgery, except: :commit_hook
 
   # GET /projects
   # GET /projects.json
   def index
     @projects = Project.all
+
   end
 
   # GET /projects/1
@@ -94,6 +94,8 @@ class ProjectsController < ApplicationController
 
   def commit_hook_url
     @project = Project.find params[:project_id]
+    @user = current_user
+    NotificationMailer.welcome_email(current_user).deliver
   end
   
   private
