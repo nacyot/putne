@@ -9,7 +9,7 @@
     = render "shared/navbar" 
     .main-contents
       .row
-        = yield
+        = content_for?(:sidebar) ? yield(:sidebar) : yield
     .footer
       Project 
       %a{href: "http://github.com/nacyot/putne"} Putne.

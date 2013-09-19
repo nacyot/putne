@@ -1,15 +1,12 @@
-.project.container
-  .main.col-lg-9.col-sm-8.panel
-    = render "shared/project_info", locals: {project: @project}
-    %table.table.table-striped
-      %th File Path
-      %th Lines
-      %th Complexity
-      - @files.each do |file|
-        - content = (@project.repository.git.last_commit.tree / file.path).data
-        %tr
-          %td= link_to file.path, project_report_file_path(@project, @report, file_id: file)
-          %td= content.lines.count
-          %td
-    = paginate(@files)
-  = render "shared/project_sidebar", locals: {project: @project}
+%table.table.table-striped
+  %th File Path
+  %th Lines
+  %th Complexity
+  - @files.each do |file|
+    - content = (@project.repository.git.last_commit.tree / file.path).data
+    %tr
+      %td= link_to file.path, project_report_file_path(@project, @report, file_id: file)
+      %td= content.lines.count
+      %td
+= paginate(@files)
+

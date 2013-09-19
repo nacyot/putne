@@ -1,33 +1,28 @@
-.project.container
-  .main.col-lg-9.col-sm-8.panel
-    = render "shared/project_info", locals: {project: @project}
+%h3 File churns
+%table.table.table-striped.churn
+  %th.name File path
+  %th.times Times changed
+  - @report.churns.file_churns.each do |churn|
+    %tr
+      %td= link_to churn.targetable.path, project_report_file_path(@project, @report, file_id: churn.targetable)
+      %td= churn.times_changed
 
-    %h3 File churns
-    %table.table.table-striped.churn
-      %th.name File path
-      %th.times Times changed
-      - @report.churns.file_churns.each do |churn|
-        %tr
-          %td= link_to churn.targetable.path, project_report_file_path(@project, @report, file_id: churn.targetable)
-          %td= churn.times_changed
+%br/
+%h3 Class churns
+%table.table.table-striped.churn
+  %th.name Class name
+  %th.times Times changed
+  - @report.churns.class_churns.each do |churn|
+    %tr
+      %td= churn.targetable.name
+      %td= churn.times_changed
 
-    %br/
-    %h3 Class churns
-    %table.table.table-striped.churn
-      %th.name Class name
-      %th.times Times changed
-      - @report.churns.class_churns.each do |churn|
-        %tr
-          %td= churn.targetable.name
-          %td= churn.times_changed
-
-    %br/
-    %h3 Method churns
-    %table.table.table-striped.churn
-      %th.name Method name
-      %th.times Times changed
-      - @report.churns.method_churns.each do |churn|
-        %tr
-          %td= churn.targetable.name
-          %td= churn.times_changed 
-  = render "shared/project_sidebar", locals: {project: @project}
+%br/
+%h3 Method churns
+%table.table.table-striped.churn
+  %th.name Method name
+  %th.times Times changed
+  - @report.churns.method_churns.each do |churn|
+    %tr
+      %td= churn.targetable.name
+      %td= churn.times_changed 

@@ -1,0 +1,8 @@
+- content_for(:sidebar) do
+  .project.container
+    .main.col-lg-9.col-sm-8.panel
+      = render "shared/project_info", locals: {project: @project}
+      = yield
+    .sidebar.col-lg-3.col-sm-4
+      = render "shared/project_sidebar", locals: {project: @project}
+= render template: "layouts/application"

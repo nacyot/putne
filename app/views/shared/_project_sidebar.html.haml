@@ -1,97 +1,93 @@
-.sidebar.col-lg-3.col-sm-4
+.panel
+  .panel-heading Report #
+  .panel-body
+    ID: 
+    = params[:report_id]
+    %br/
+    Hash:
+    -#= @report.commit.commit_hash[0..15]
+    \..
+- if @project.repository.valida?
+  %ul.nav.nav-pills.nav-stacked
+    %li
+      = link_to project_url(@project) do
+        %span.badge.pull-right#synopsis-help ?
+        %span.badge.pull-right
+        Synopsis
+    %br/
+    %li
+      = link_to project_report_commits_url(@project, @report) do
+        %span.badge.pull-right#files-help ?
+        %span.badge.pull-right= @report.commit_stat
+        Commits
+    %li
+      = link_to project_reports_url(@project) do
+        %span.badge.pull-right#report-help ?
+        %span.badge.pull-right= @project.reports.count
+        Reports
+    %li
+      = link_to project_report_timeline_url(@project, @report) do
+        %span.badge.pull-right#timeline-help ?
+        %span.badge.pull-right
+        Timeline
+    %br/
+    %li
+      = link_to project_report_churn_url(@project, @report) do
+        %span.badge.pull-right#churn-help ?
+        %span.badge.pull-right= @report.churn_stat
+        Churns
+    %li
+      = link_to project_report_complexity_url(@project, @report) do
+        %span.badge.pull-right#complexity-help ?
+        %span.badge.pull-right= @report.complexity_stat
+        Complexities
+    %li
+      = link_to project_report_duplicity_url(@project, @report) do
+        %span.badge.pull-right#duplicity-help ?
+        %span.badge.pull-right= @report.duplication_stat
+        Duplications
+    %li
+      = link_to project_report_smells_url(@project, @report) do
+        %span.badge.pull-right#smells-help ?
+        %span.badge.pull-right= @report.smell_stat
+        Smells
+    %br/
+    -# %li
+    -#   = link_to project_report_branches_url(@project, @report) do
+    -#     %span.badge.pull-right#files-help ?
+    -#     %span.badge.pull-right= @report.branche_stat
+    -#     Branches
+
+    %li
+      = link_to project_report_files_url(@project, @report) do
+        %span.badge.pull-right#files-help ?
+        %span.badge.pull-right= @report.file_stat
+        Files
+    %li
+      = link_to project_report_classes_url(@project, @report) do
+        %span.badge.pull-right#classes-help ?
+        %span.badge.pull-right= @report.class_stat
+        Classes
+    %li
+      = link_to project_report_methods_url(@project, @report) do
+        %span.badge.pull-right#methods-help ?
+        %span.badge.pull-right= @report.method_stat
+        Methods
+    %br/
+
+    %li
+      = link_to @project.repository.repository_url do
+        %span.badge.pull-right#repository-help ?
+        %span.badge.pull-right
+        Repository
+    %li
+      = link_to url_for(controller: "projects", action: "settings", id: @project.id) do
+        %span.badge.pull-right#settings-help ?
+        %span.badge.pull-right
+        Settings
+- else
   .panel
-    .panel-heading Report #
+    .panel-heading
+      Warning
     .panel-body
-      ID: 
-      = params[:report_id]
-      %br/
-      Hash:
-      -#= @report.commit.commit_hash[0..15]
-      \..
-  - if @project.repository.valida?
-    %ul.nav.nav-pills.nav-stacked
-      %li
-        = link_to project_url(@project) do
-          %span.badge.pull-right#synopsis-help ?
-          %span.badge.pull-right
-          Synopsis
-      %br/
-      %li
-        = link_to project_report_commits_url(@project, @report) do
-          %span.badge.pull-right#files-help ?
-          %span.badge.pull-right= @report.commit_stat
-          Commits
-      %li
-        = link_to project_reports_url(@project) do
-          %span.badge.pull-right#report-help ?
-          %span.badge.pull-right= @project.reports.count
-          Reports
-      %li
-        = link_to project_report_timeline_url(@project, @report) do
-          %span.badge.pull-right#timeline-help ?
-          %span.badge.pull-right
-          Timeline
-      %br/
-      %li
-        = link_to project_report_churn_url(@project, @report) do
-          %span.badge.pull-right#churn-help ?
-          %span.badge.pull-right= @report.churn_stat
-          Churns
-      %li
-        = link_to project_report_complexity_url(@project, @report) do
-          %span.badge.pull-right#complexity-help ?
-          %span.badge.pull-right= @report.complexity_stat
-          Complexities
-      %li
-        = link_to project_report_duplicity_url(@project, @report) do
-          %span.badge.pull-right#duplicity-help ?
-          %span.badge.pull-right= @report.duplication_stat
-          Duplications
-      %li
-        = link_to project_report_smells_url(@project, @report) do
-          %span.badge.pull-right#smells-help ?
-          %span.badge.pull-right= @report.smell_stat
-          Smells
-      %br/
-      -# %li
-      -#   = link_to project_report_branches_url(@project, @report) do
-      -#     %span.badge.pull-right#files-help ?
-      -#     %span.badge.pull-right= @report.branche_stat
-      -#     Branches
-
-      %li
-        = link_to project_report_files_url(@project, @report) do
-          %span.badge.pull-right#files-help ?
-          %span.badge.pull-right= @report.file_stat
-          Files
-      %li
-        = link_to project_report_classes_url(@project, @report) do
-          %span.badge.pull-right#classes-help ?
-          %span.badge.pull-right= @report.class_stat
-          Classes
-      %li
-        = link_to project_report_methods_url(@project, @report) do
-          %span.badge.pull-right#methods-help ?
-          %span.badge.pull-right= @report.method_stat
-          Methods
-      %br/
-
-      %li
-        = link_to @project.repository.repository_url do
-          %span.badge.pull-right#repository-help ?
-          %span.badge.pull-right
-          Repository
-      %li
-        = link_to url_for(controller: "projects", action: "settings", id: @project.id) do
-          %span.badge.pull-right#settings-help ?
-          %span.badge.pull-right
-          Settings
-
-
-
-  - else
-    .panel
-      .panel-heading
-        Warning
-      .panel-body
-        Your repository not valid.
+      Your repository not valid.

@@ -1,10 +1,7 @@
-.project.container
-  .main.col-lg-9.col-sm-8.panel
-    = render "shared/project_info", locals: {project: @project}
-    %table.table.table-striped
-      %th Methods
-      - @methods.each do |method|
-        %tr
-          %td= link_to method.name, project_report_method_path(@project, @report, method_id: method)
-    = paginate(@methods)
-  = render "shared/project_sidebar", locals: {project: @project}
+%table.table.table-striped
+  %th Methods
+  - @methods.each do |method|
+    %tr
+      %td= link_to method.name, project_report_method_path(@project, @report, method_id: method)
+= paginate(@methods)
+

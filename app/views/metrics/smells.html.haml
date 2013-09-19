@@ -1,28 +1,22 @@
-.project
-  .main.col-lg-9.col-sm-8.panel
-    = render "shared/project_info", locals: {project: @project}
-    %table.table.table-striped
-      %th Method name
-      %th Small type
-      -#%th Message
-      - @report.reek_smells.each do |smell|
-        %tr
-          - unless smell.target_method.nil?
-            %td= smell.target_method.name
-          - else
-            %td= smell.target_class.name
-          %td= smell.warn_type
-          -#%td= smell.message
-            
-    %table.table.table-striped
-      %th File path
-      %th Line num
-      %th Message
-      - @report.roodis.each do |roodi|
-        %tr
-          %td= roodi.file_line_info.target_file.path
-          %td= roodi.file_line_info.line_num
-          %td= roodi.message
+%table.table.table-striped
+  %th Method name
+  %th Small type
+  -#%th Message
+  - @report.reek_smells.each do |smell|
+    %tr
+      - unless smell.target_method.nil?
+        %td= smell.target_method.name
+      - else
+        %td= smell.target_class.name
+      %td= smell.warn_type
+      -#%td= smell.message
 
-  = render "shared/project_sidebar", locals: {project: @project}
-
+%table.table.table-striped
+  %th File path
+  %th Line num
+  %th Message
+  - @report.roodis.each do |roodi|
+    %tr
+      %td= roodi.file_line_info.target_file.path
+      %td= roodi.file_line_info.line_num
+      %td= roodi.message

@@ -2,6 +2,7 @@ require 'parser/current'
 
 class MetricsController < ApplicationController
   load_and_authorize_resource class: Project
+  layout "layouts/sidebar"
 
   def files
     @title = "Files"
