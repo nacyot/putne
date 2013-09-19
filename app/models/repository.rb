@@ -31,7 +31,7 @@ class Repository < ActiveRecord::Base
   end
   
   def workspace_path
-    File.join('.', 'tmp', 'workspace', git_project_name)
+    Rails.root.join('.', 'tmp', 'workspace', git_project_name)
   end
 
   def git_project_name
@@ -54,7 +54,7 @@ class Repository < ActiveRecord::Base
     report = Report.create!(project: project, repository: self, branch: branch, commit: commit)
     project.reports << report
     reset_repository commit_hash
-    report.register_report
+    report.register_report #!!!!
     report.input_stats
     cancle_reset_repository
 
