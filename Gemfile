@@ -50,6 +50,7 @@ gem 'letter_opener'
 gem "sentry-raven", :git => "https://github.com/getsentry/raven-ruby.git"
 gem 'piwik_analytics'
 gem 'pry'
+gem 'debugger'
 gem 'pry-rails'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
