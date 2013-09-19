@@ -29,6 +29,8 @@
               = link_to "새로운 프로젝트 만들기", new_project_path
             %li
               %a{href: "#"} 계정 관리
+            %li 
+              = link_to "API Key", user_secret_key_path(user_id: current_user.id)
             %li.divider
             - if current_user.has_role?(:admin)
               %li

@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
   rolify
 
   has_many :projects
+  has_one :secret_key
 
   def commits
     Commit.where(repository_id: repository_ids).order("committed_at desc")
