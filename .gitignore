@@ -17,6 +17,7 @@
 /tmp/**/*
 /tmp/**
 /doc/*
+/db/schema.rb
 *.swp
 *~
 .DS_Store
