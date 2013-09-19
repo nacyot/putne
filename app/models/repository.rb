@@ -5,7 +5,7 @@ class Repository < ActiveRecord::Base
   has_many :commits
 
   def git
-    @git || @git = Git.new(self)
+    @git || (`git pull`; @git = Git.new(self))
   rescue Grit::NoSuchPathError
     false
   end
@@ -49,6 +49,7 @@ class Repository < ActiveRecord::Base
   end
 
   def create_report(commit_hash)
+    commit_hash = recent_commit.sha if commit_hash = ""
     commit = Commit.find_by(repository_id: self.id, commit_hash: commit_hash)
     branch = Branch.find_by(repository_id: self.id, name: "master")
     report = Report.create!(project: project, repository: self, branch: branch, commit: commit)

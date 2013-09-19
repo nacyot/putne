@@ -2,6 +2,7 @@ class ProjectsController < ApplicationController
   load_and_authorize_resource
   before_action :set_project, only: [:show, :edit, :update, :destroy]
   layout "layouts/sidebar", only: :show
+  before_action :protect_from_forgery, except: :commit_hook
 
   # GET /projects
   # GET /projects.json
@@ -71,6 +72,28 @@ class ProjectsController < ApplicationController
   end
 
   def settings
+  end
+
+  def commit_hook
+    puts params[:project_id]
+    @project = Project.find params[:project_id]
+    key = @project.user.secret_key.key
+    ReportWorker.perform_async @project.repository.id, params[:hash] if params[:ci_key] == key
+
+    respond_to do |format|
+      if @project.id?
+        format.html { render text: "aoeuaeou" }
+        format.json { render action: 'show', status: :created, location: @project }
+      else
+        format.html { render action: 'new' }
+        format.json { render json: @project.errors, status: :unprocessable_entity }
+      end
+    end
+
+  end
+
+  def commit_hook_url
+    @project = Project.find params[:project_id]
   end
   
   private

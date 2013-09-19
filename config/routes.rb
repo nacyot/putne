@@ -12,6 +12,9 @@ Putne::Application.routes.draw do
   end
   
   resources :projects do
+    post "commit_hook" => "projects#commit_hook"
+    get "commit_hook_url" => "projects#commit_hook_url"
+
     resources :reports do
       get "branches" => "git#branches"
       get "commits" => "git#commits"

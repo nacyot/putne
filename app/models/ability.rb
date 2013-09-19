@@ -6,19 +6,22 @@ class Ability
    
     user ||= User.new # guest user (not logged in)
 
-    case 
-    when user.roles_name.include?("admin")
-      can :manage, :all
-      can :access, :rails_admin
-    when user.roles_name.include?("user")
-      can :manage, :all
-      cannot :access, :rails_admin
-    else
-      cannot :manage, :all
-      cannot :read, :all
-      cannot :access, :rails_admin
-      can :manage, User
-    end
+    can :manage, :all
+    
+    # case 
+    # when user.roles_name.include?("admin")
+    #   can :manage, :all
+    #   can :access, :rails_admin
+    # when user.roles_name.include?("user")
+    #   can :manage, :all
+    #   cannot :access, :rails_admin
+    # else
+    #   cannot :manage, :all
+    #   cannot :read, :all
+    #   cannot :access, :rails_admin
+    #   can :manage, User
+      
+    # end
     
 
     #
