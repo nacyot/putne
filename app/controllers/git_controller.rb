@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 class GitController < ApplicationController
   load_and_authorize_resource class: Project
+  layout "layouts/sidebar"
   
   def branches
     @title = "Branches"

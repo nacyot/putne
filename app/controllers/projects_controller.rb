@@ -11,6 +11,7 @@ class ProjectsController < ApplicationController
   # GET /projects/1
   # GET /projects/1.json
   def show
+    layout "layouts/sidebar"
     @project = Project.find params[:id]
     @title = "Project - #{@project.title}"
     @report = @project.reports.sort { |report| report.commit.committed_at }[-1]
