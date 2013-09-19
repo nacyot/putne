@@ -13,8 +13,8 @@
 
 //= require jquery
 //= require jquery_ujs
-//= require bootstrap.min
-//= require d3.v3
-//= require nv.d3.min
+//= require bootstrap/dist/js/bootstrap.min
+//= require d3/d3.min
+//= require nvd3/nv.d3.min
 //= require_tree .
 

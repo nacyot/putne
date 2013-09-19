@@ -1,0 +1,8 @@
+{
+    "name": "putne",
+    "dependencies": {
+        "d3": "~3",
+        "bootstrap": "~3",
+        "nvd3": "~1"
+    }
+}
