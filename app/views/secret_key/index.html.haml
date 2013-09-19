@@ -3,4 +3,5 @@ key :
 = @user.secret_key.key
 %br/
 %br/
-%button.btn.btn-default reset
+= link_to "test", user_secret_key_reset_path, class: "btn btn-default", method: :post
+

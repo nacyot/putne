@@ -9,8 +9,7 @@ Putne::Application.routes.draw do
 
   resources :users do
     get "secret_key" => "secret_key#index"
-    post "secret_key/create"
-    put "secret_key/reset"
+    post "secret_key/reset"
   end
   
   resources :projects do
