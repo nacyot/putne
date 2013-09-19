@@ -1,6 +1,8 @@
 require 'sidekiq/web'
 
 Putne::Application.routes.draw do
+  devise_for :users
+
   root "main#index"
   get "about" => "main#about"
   get "help" => "main#help"
@@ -39,8 +41,6 @@ Putne::Application.routes.draw do
 
   get "projects/:id/settings" => "projects#settings"
 
-  devise_for :users
-  
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
   mount Sidekiq::Web, at: "/sidekiq"
 
