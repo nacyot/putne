@@ -1,6 +1,10 @@
 require 'sidekiq/web'
 
 Putne::Application.routes.draw do
+  get "secret_key/new"
+  get "secret_key/create"
+  get "secret_key/index"
+  get "secret_key/reset"
   root "main#index"
   get "about" => "main#about"
   get "help" => "main#help"
