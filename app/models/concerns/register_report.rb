@@ -4,7 +4,8 @@ module RegisterReport
   def get_metrics
     Dir.chdir Rails.root
     Dir.chdir repository.workspace_path
-    `echo "MetricFu::Configuration.run { |config| config.flog = config.flog.merge({continue: true}) }" > .metrics`
+    #`echo "MetricFu::Configuration.run { |config| config.flog = config.flog.merge({continue: true}) }" > .metrics`
+    `echo "MetricFu.configuration { |config| config.configure_metric(:flog) { |flog| flog.continue = true }}" > .metrics`
     `metric_fu -r --format yaml`
   end
    
