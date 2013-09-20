@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-ruby '1.9.3'
+ruby '2.0.0'
 gem 'rails', '4.0.0'
 
 # Rails 3 compatibility
@@ -78,7 +78,7 @@ gem 'parser'
 gem 'ruby2ruby'
 
 # git
-gem 'grit'
+gem 'gitlab-grit', '~>2.6.0', require: 'grit'
 
 group  :development do
   gem 'rails-erd'

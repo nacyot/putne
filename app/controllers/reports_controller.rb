@@ -36,7 +36,7 @@ class ReportsController < ApplicationController
   # POST /reports.json
   def create
     @project = Project.find params[:project_id]
-    ReportWorker.perform_async @project.repository.id, params[:hash]   
+    ReportWorker.perform_async @project.repository.id, params[:hash]
     redirect_to :back
   end
 
