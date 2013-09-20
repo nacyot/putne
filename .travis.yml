@@ -2,16 +2,13 @@ language: ruby
 rvm: 1.9.3
 env:
   global:
-    - DB=postgresql
-    - secure: "gc/biZ+tvDi5JL2HMtJstN/TqXZF2KCwsvsyxZdedpuPilEH6j6oVBgqwcb8pyHXcu3De2LCPEH0CbVMcLC2Nj8QDHy3iU/1Syg09Mb9MuyhjA7N47wQes4cjBCrqGW5O8pGMi5go5TV7GRaASkG2CiIBq0Td5dn3L30v4yvRAQ="
+  - DB=postgresql
+  # - secure: TFy0kFAzdTeAoTayGDFc6ix3KFu2BHwSdCphH/zwDz64FqlB/1BJ1tWdtiemqmd8ycG85yPYzuATXOMblBGcaU83iVouBJni1WaYhene862mHa5EQWvJjrOD75U14xEzlWzlF5hIsuoxODzryTxLlVwkMPNioMikIFEbZimLn2E=
 
 script:
   - RAILS_ENV=test bundle exec rake db:migrate --trace
   - bundle exec rspec spec/
-
 before_script:
-  - curl http://180.233.227.242:3000/projects/1/api/hook -X POST -d "ci_key=${PUTNE_API_KEY}"       
+  # - curl http://180.233.227.242:3000/projects/1/api/hook -X POST -d "ci_key=${PUTNE_API_KEY}"
   - psql -c 'create database putne_test' -U postgres
   - cp config/database.travis.yml config/database.yml
-
-
