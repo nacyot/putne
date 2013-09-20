@@ -1,17 +1,43 @@
 .info
-  .address.lead
-    = current_user.email
+  .address
+    %i.icon-folder-open
+    = current_user.nickname
     = " / "
-    = @project.title
-    = " / master"
+    - unless @project.homepage.nil?
+      = link_to @project.homepage do
+        %i.icon-home
+        = @project.title
+    - else
+      = @project.title
     = " / "
-
-    
-  .row
-    .description
-      .col-lg-7.col-sm-7
-        = @project.description
-      .col-lg-5.col-sm-5.text-right
-        = link_to "Homepage", @project.homepage
-
+    .btn-group
+      %button.btn.btn-default.dropdown-toggle{type: "button", "data-toggle" => "dropdown"} 
+        master
+        %span.caret
+    = " / "
+    .btn-group
+      %button.btn.btn-default.dropdown-toggle{type: "button", "data-toggle" => "dropdown"}
+        = @report_type.nil? ? "Reports" : @report_type
+        %span.caret
+      %ul.dropdown-menu
+        %li
+          %a Complexities
+        %li
+          %a Duplications
+        %li
+          %a Code Smells
+        %li
+          %a Classes
+        %li
+          %a Methods
+    = " / "
+    .btn-group
+      - commit_id = @project.reports[-1].commit.commit_hash[0..8]
+      %button.btn.btn-default.dropdown-toggle{type: "button", "data-toggle" => "dropdown"}
+        = @current_commit_id.nil? ? commit_id : @current_commit_id
+        %span.caret
+      %ul.dropdown-menu
+        - @project.reports.each do |report|
+          %li
+            %a= report.commit.commit_hash[0..8]
 %br/
