@@ -2,9 +2,9 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
+
 @jsonTest = () ->
         d3.json "/projects/37/reports.json", drawGraph
-                         
 
 @myData = () ->
         series1 = []
@@ -39,9 +39,6 @@
                 d3.select("svg#reports-summary-graph").datum(data).transition().duration(500).call(chart)
                 nv.utils.windowResize -> chart.update()
                 return chart;
-
-
-
 
 $ ->
         jsonTest()

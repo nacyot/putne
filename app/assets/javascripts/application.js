@@ -16,5 +16,6 @@
 //= require bootstrap/dist/js/bootstrap.min
 //= require d3/d3.min
 //= require nvd3/nv.d3.min
+//= require sparkline/dist/jquery.sparkline.min
 //= require_tree .
 

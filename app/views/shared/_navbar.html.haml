@@ -1,6 +1,6 @@
 %nav.header.navbar.navbar-fixed-top.navbar-inverse
   %a.navbar-brand{href: "/"} 
-    %img{src: "/logo.png", style: "width: 35px;"} 
+    %img{src: "/images/logo.png", style: "width: 35px;"} 
     Putne
   %ul.nav.navbar-nav
     -#%li= link_to "Projects", projects_path if signed_in?
@@ -35,9 +35,9 @@
             %li.divider
             - if current_user.has_role?(:admin)
               %li
-                = link_to "Admin", rails_admin_path
+                = link_to "Rails admin", rails_admin_path
               %li
-                = link_to "Sidekiq Report", sidekiq_web_path
+                = link_to "Sidekiq report", sidekiq_web_path
 
             
             

@@ -12,14 +12,13 @@
  *= require nvd3/src/nv.d3
  *= require bootstrap/dist/css/bootstrap.min
  *= require font-awesome/css/font-awesome.min
- *= require_self
  *= require_tree .
+ *= require_self
 
  */
 
 body {
     padding: 65px 0px;
-    background-color: black;
 }
 
 .main-contents{
@@ -154,5 +153,45 @@ body {
     margin-top: 100px;
     padding: 60px;
     padding-top: 40px;
-    background:  url('/logo300.png') -50px -50px no-repeat;
+    background:  url('/images/logo300.png') -50px -50px no-repeat;
 }
+
+.sparkline-tooltip{
+    position: absolute; 
+    padding: 5px 5px 15px 15px;
+    min-height: 30px;
+    min-width: 30px;
+    left: 0px; 
+    top: 0px; 
+    visibility: hidden; 
+    background: rgb(0, 0, 0) transparent; 
+    background-color: rgba(0,0,0,0.6); 
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000); 
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000)"; 
+    color: white; 
+    font: 10px arial, san serif; 
+    text-align: left; 
+    white-space: nowrap; 
+    padding: 5px; 
+    border: 1px solid white; 
+    box-sizing: content-box; 
+    z-index: 10000; 
+} 
+
+.jqstooltip{
+    box-sizing: content-box;
+}
+
+.summary table{
+    width: 100%;
+}
+
+.summary table th{
+    width: 33%;
+}
+
+.summary table td{
+    width: 33%;
+}
+
+
