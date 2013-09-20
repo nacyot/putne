@@ -1,9 +1,9 @@
 - content_for(:sidebar) do
   = render "shared/project_info", locals: {project: @project}
   .project
-    .main.col-lg-10.col-sm-8
+    .main.col-lg-10.col-md-9.col-sm-9
       .panel.panel-default
         = yield
-    .sidebar.col-lg-2.col-sm-4
+    .sidebar.col-lg-2.col-md-3.col-sm-3
       = render "shared/project_sidebar", locals: {project: @project}
 = render template: "layouts/application"

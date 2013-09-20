@@ -7,15 +7,6 @@
     Hash:
     -#= @report.commit.commit_hash[0..15]
     \..
-.panel.panel-default
-  .panel-heading Report #
-  .panel-body
-    ID: 
-    = params[:report_id]
-    %br/
-    Hash:
-    -#= @report.commit.commit_hash[0..15]
-    \..
 - if @project.repository.valida?
   %ul.nav.nav-pills.nav-stacked
     %li

@@ -6,9 +6,8 @@
     -#%li= link_to "Projects", projects_path if signed_in?
     - if signed_in?
       %li= link_to "Dash board", root_path if signed_in?
-      %li= link_to "New project", new_project_path if signed_in?
     %li= link_to "Help", help_path
-    %li= link_to "About Putne", about_path
+    %li= link_to "About Putne", "http://putne.lapisan.com"
   - unless user_signed_in?
     -#= login_form_for_header
   - else
