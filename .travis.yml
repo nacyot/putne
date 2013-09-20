@@ -1,14 +1,16 @@
 language: ruby
-rvm: 1.9.3
+rvm: 
+  - 1.9.3
+  - 2.0.0
 env:
   global:
   - DB=postgresql
   # - secure: TFy0kFAzdTeAoTayGDFc6ix3KFu2BHwSdCphH/zwDz64FqlB/1BJ1tWdtiemqmd8ycG85yPYzuATXOMblBGcaU83iVouBJni1WaYhene862mHa5EQWvJjrOD75U14xEzlWzlF5hIsuoxODzryTxLlVwkMPNioMikIFEbZimLn2E=
-
 script:
   - RAILS_ENV=test bundle exec rake db:migrate --trace
   - bundle exec rspec spec/
 before_script:
+  - apt-get install libicu-dev
   # - curl http://180.233.227.242:3000/projects/1/api/hook -X POST -d "ci_key=${PUTNE_API_KEY}"
   - psql -c 'create database putne_test' -U postgres
   - cp config/database.travis.yml config/database.yml
