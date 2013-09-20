@@ -1,4 +1,13 @@
-.panel
+.panel.panel-default
+  .panel-heading Project
+  .panel-body
+    ID: 
+    = params[:report_id]
+    %br/
+    Hash:
+    -#= @report.commit.commit_hash[0..15]
+    \..
+.panel.panel-default
   .panel-heading Report #
   .panel-body
     ID: 
@@ -11,45 +20,53 @@
   %ul.nav.nav-pills.nav-stacked
     %li
       = link_to project_url(@project) do
-        %span.badge.pull-right#synopsis-help ?
+        -# %span.badge.pull-right#synopsis-help ?
         %span.badge.pull-right
-        Synopsis
+        %i.icon-film
+        Summary
     %br/
     %li
       = link_to project_report_commits_url(@project, @report) do
-        %span.badge.pull-right#files-help ?
+        -#- %span.badge.pull-right#files-help ?
         %span.badge.pull-right= @report.commit_stat
+        %i.icon-download-alt
         Commits
     %li
       = link_to project_reports_url(@project) do
-        %span.badge.pull-right#report-help ?
+        -# %span.badge.pull-right#report-help ?
         %span.badge.pull-right= @project.reports.count
+        %i.icon-bar-chart
         Reports
     %li
       = link_to project_report_timeline_url(@project, @report) do
-        %span.badge.pull-right#timeline-help ?
+        -# %span.badge.pull-right#timeline-help ?
         %span.badge.pull-right
+        %i.icon-calendar
         Timeline
     %br/
     %li
       = link_to project_report_churn_url(@project, @report) do
-        %span.badge.pull-right#churn-help ?
+        -# %span.badge.pull-right#churn-help ?
         %span.badge.pull-right= @report.churn_stat
+        %i.icon-th
         Churns
     %li
       = link_to project_report_complexity_url(@project, @report) do
-        %span.badge.pull-right#complexity-help ?
+        -# %span.badge.pull-right#complexity-help ?
         %span.badge.pull-right= @report.complexity_stat
+        %i.icon-superscript
         Complexities
     %li
       = link_to project_report_duplicity_url(@project, @report) do
-        %span.badge.pull-right#duplicity-help ?
+        -# %span.badge.pull-right#duplicity-help ?
         %span.badge.pull-right= @report.duplication_stat
+        %i.icon-copy
         Duplications
     %li
       = link_to project_report_smells_url(@project, @report) do
-        %span.badge.pull-right#smells-help ?
+        -# %span.badge.pull-right#smells-help ?
         %span.badge.pull-right= @report.smell_stat
+        %i.icon-bug
         Smells
     %br/
     -# %li
@@ -60,30 +77,35 @@
 
     %li
       = link_to project_report_files_url(@project, @report) do
-        %span.badge.pull-right#files-help ?
+        -# %span.badge.pull-right#files-help ?
         %span.badge.pull-right= @report.file_stat
+        %i.icon-file
         Files
     %li
       = link_to project_report_classes_url(@project, @report) do
-        %span.badge.pull-right#classes-help ?
+        -# %span.badge.pull-right#classes-help ?
         %span.badge.pull-right= @report.class_stat
+        %i.icon-inbox
         Classes
     %li
       = link_to project_report_methods_url(@project, @report) do
-        %span.badge.pull-right#methods-help ?
+        -# %span.badge.pull-right#methods-help ?
         %span.badge.pull-right= @report.method_stat
+        %i.icon-code
         Methods
     %br/
 
     %li
       = link_to @project.repository.repository_url do
-        %span.badge.pull-right#repository-help ?
+        -# %span.badge.pull-right#repository-help ?
         %span.badge.pull-right
+        %i.icon-github-alt
         Repository
     %li
       = link_to url_for(controller: "projects", action: "settings", id: @project.id) do
-        %span.badge.pull-right#settings-help ?
+        -# %span.badge.pull-right#settings-help ?
         %span.badge.pull-right
+        %i.icon-wrench
         Settings
 - else
   .panel

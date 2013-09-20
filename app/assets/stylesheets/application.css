@@ -18,16 +18,23 @@
  */
 
 body {
-    padding: 50px 40px;
+    padding: 50px 0px;
     background-color: black;
 }
 
 .main-contents{
-    margin: 15px 40px;
+    margin: 0px 40px;
 }
+
+
 
 .project{
     margin-top: 25px;
+}
+
+.panel-heading h1{
+    padding: 0 0 5px;
+    margin: 0;
 }
 
 .stub-header h1{
@@ -53,8 +60,13 @@ body {
 
 .project .sidebar li a{
     color: #353;
+    padding: 6px;
     background-color: #f5dce3;
-    font-size: 1.1em;
+    font-size: 1em;
+}
+
+.project .sidebar .badge{
+    font-size: 0.8em;
 }
 
 .project .sidebar li a:hover, .project .sidebar li a:focus{
@@ -72,7 +84,7 @@ body {
 }
 
 .info button{
-    width: 110px;
+    width: 140px;
 }
 
 .info .description{
@@ -81,7 +93,7 @@ body {
 
 
 .project .sidebar{
-    padding: 5px 15px;
+    padding: 0px 15px 5px;
 }
 
 .dropdown-toggle{
