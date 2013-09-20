@@ -1,9 +1,12 @@
-.navbar.navbar-fixed-top.header
-  %a.navbar-brand{href: "/"} Putne
-  %ul.nav.navbar-nav   
+%nav.navbar.navbar-fixed-top.header.navbar-inverse{}
+  %a.navbar-brand{href: "/"} 
+    %img{src: "/logo.png", style: "width: 35px;"} 
+    
+    Putne
+  %ul.nav.navbar-nav
     -#%li= link_to "Projects", projects_path if signed_in?
     - if signed_in?
-      %li= link_to "Dash board", root_path if signed_in?
+      %li{style: "vertical-align: center; padding-top: 5px;"}= link_to "Dash board", root_path, style: "color:#eee;" if signed_in?
       %li= link_to "New project", new_project_path if signed_in?
     %li= link_to "Help", help_path
     %li= link_to "About Putne", about_path

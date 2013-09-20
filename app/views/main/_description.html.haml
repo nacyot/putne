@@ -1,6 +1,6 @@
 .col-lg-2
-.col-lg-8.loginbox
-  .text-center
+.col-lg-8
+  .well.text-center.loginbox
     %h1 Sign in
     %br/
     = simple_form_for resource, :as => resource_name, :url => session_path(resource_name), html: {} do |f|
