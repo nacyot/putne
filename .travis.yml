@@ -9,8 +9,10 @@ env:
 script:
   - RAILS_ENV=test bundle exec rake db:migrate --trace
   - bundle exec rspec spec/
+before_install:
+  - sudo apt-get install libicu-dev -y
+  - gem install charlock_holms
 before_script:
-  - apt-get install libicu-dev
   # - curl http://180.233.227.242:3000/projects/1/api/hook -X POST -d "ci_key=${PUTNE_API_KEY}"
   - psql -c 'create database putne_test' -U postgres
   - cp config/database.travis.yml config/database.yml
