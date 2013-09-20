@@ -1,6 +1,8 @@
 require 'sidekiq/web'
 
 Putne::Application.routes.draw do
+  get "commit_hook/hook"
+  get "commit_hook/hook_url"
   devise_for :users
 
   root "main#index"
