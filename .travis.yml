@@ -8,9 +8,9 @@ env:
 script:
   - RAILS_ENV=test bundle exec rake db:migrate --trace
   - bundle exec rspec spec/
-  - curl http://180.233.227.242:3000/projects/1/api/hook -X POST -d "ci_key=${PUTNE_API_KEY}"       
 
 before_script:
+  - curl http://180.233.227.242:3000/projects/1/api/hook -X POST -d "ci_key=${PUTNE_API_KEY}"       
   - psql -c 'create database putne_test' -U postgres
   - cp config/database.travis.yml config/database.yml
 
