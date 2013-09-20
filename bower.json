@@ -4,6 +4,7 @@
         "d3": "~3",
         "bootstrap": "~3",
         "nvd3": "~1", 
-        "font-awesome": "~3"
+        "font-awesome": "~3",
+        "sparkline": "~2"
     }
 }
