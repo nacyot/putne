@@ -39,3 +39,4 @@ capybara-*.html
 .rvmrc
 Gemfile.lock
 .secret
+dump.rdb
