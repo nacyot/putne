@@ -83,6 +83,15 @@ body {
     width: 300px;
 }
 
+.header li{
+    padding-top: 5px; 
+}
+
+.header button{
+    margin-top: 15px;
+    margin-left: 10px;
+}
+
 .header .gravatar img{
     margin: 0;
     padding: 0;
