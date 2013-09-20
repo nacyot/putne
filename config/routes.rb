@@ -1,8 +1,6 @@
 require 'sidekiq/web'
 
 Putne::Application.routes.draw do
-  get "commit_hook/hook"
-  get "commit_hook/hook_url"
   devise_for :users
 
   root "main#index"
@@ -15,8 +13,8 @@ Putne::Application.routes.draw do
   end
   
   resources :projects do
-    post "commit_hook" => "projects#commit_hook"
-    get "commit_hook_url" => "projects#commit_hook_url"
+    post "api/hook" => "commit_hook#hook"
+    get "api/hook_url" => "commit_hook#hook_url"
 
     resources :reports do
       get "branches" => "git#branches"
