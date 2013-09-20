@@ -31,13 +31,14 @@
         %li
           %a Methods
     = " / "
-    .btn-group
-      - commit_id = @project.reports[-1].commit.commit_hash[0..8]
-      %button.btn.btn-default.dropdown-toggle{type: "button", "data-toggle" => "dropdown"}
-        = @current_commit_id.nil? ? commit_id : @current_commit_id
-        %span.caret
-      %ul.dropdown-menu
-        - @project.reports.each do |report|
-          %li
-            %a= report.commit.commit_hash[0..8]
+    - unless @project.reports.empty?
+      .btn-group
+        - commit_id = @project.reports[-1].commit.commit_hash[0..8]
+        %button.btn.btn-default.dropdown-toggle{type: "button", "data-toggle" => "dropdown"}
+          = @current_commit_id.nil? ? commit_id : @current_commit_id
+          %span.caret
+        %ul.dropdown-menu
+          - @project.reports.each do |report|
+            %li
+              %a= report.commit.commit_hash[0..8]
 %br/

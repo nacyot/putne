@@ -2,12 +2,12 @@ class ProjectsController < ApplicationController
   load_and_authorize_resource
   before_action :set_project, only: [:show, :edit, :update, :destroy]
   layout "layouts/sidebar", only: :show
+  #before_action :protect_from_forgery, except: :commit_hook
 
   # GET /projects
   # GET /projects.json
   def index
     @projects = Project.all
-
   end
 
   # GET /projects/1
@@ -34,7 +34,7 @@ class ProjectsController < ApplicationController
   # POST /projects.json
   def create
     @project = Project.create!(project_params)
-    @project.repository = Repository.create!(params[:project][:repository_attributes])
+    # @project.repository = Repository.last #Repository.create!(params[:project][:repository_attributes])
     InitRepositoryWorker.perform_async(@project.repository.id)
 
     respond_to do |format|
@@ -54,7 +54,7 @@ class ProjectsController < ApplicationController
     respond_to do |format|
       if @project.update(project_params)
         format.html { redirect_to @project, notice: 'Project was successfully updated.' }
-        format.json #{ head :no_content }
+        format.json #{ head :no_content} 
       else
         format.html #{ render action: 'edit' }
         format.json { render json: @project.errors, status: :unprocessable_entity }
@@ -74,6 +74,28 @@ class ProjectsController < ApplicationController
   def settings
   end
 
+  def commit_hook
+    puts params[:project_id]
+    @project = Project.find params[:project_id]
+    key = @project.user.secret_key.key
+    ReportWorker.perform_async @project.repository.id, params[:hash] if params[:ci_key] == key
+
+    respond_to do |format|
+      if @project.id?
+        format.html { render text: "aoeuaeou" }
+        format.json { render action: 'show', status: :created, location: @project }
+      else
+        format.html { render action: 'new' }
+        format.json { render json: @project.errors, status: :unprocessable_entity }
+      end
+    end
+
+  end
+
+  def commit_hook_url
+    @project = Project.find params[:project_id]
+  end
+  
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_project

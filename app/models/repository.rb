@@ -4,6 +4,8 @@ class Repository < ActiveRecord::Base
   has_many :branches
   has_many :commits
 
+  validates_uniqueness_of :repository_url
+  
   def git
     @git || (`git pull`; @git = Git.new(self))
   rescue Grit::NoSuchPathError
