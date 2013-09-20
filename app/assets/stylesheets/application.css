@@ -18,7 +18,7 @@
  */
 
 body {
-    padding: 50px 0px;
+    padding: 65px 0px;
     background-color: black;
 }
 
@@ -26,9 +26,11 @@ body {
     margin: 0px 40px;
 }
 
+.projects{
+    position: fixed
+}
 
-
-.project{
+.panel{
     margin-top: 25px;
 }
 
@@ -123,7 +125,7 @@ body {
 }
 
 .dashboard{
-    margin-top:35px;
+
 }
 
 .footer{

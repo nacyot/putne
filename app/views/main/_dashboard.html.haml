@@ -1,31 +1,26 @@
 .row.dashboard
-  .container
-    .col-lg-8.col-md-8.col-sm-8
-      %svg#dashboard-graph{style: "height: 300px;"}
-      
-      - @commits.each do |commit|
-        = render partial: "shared/commit_card", locals: {commit: commit}
-
-      = paginate @commits
-    .col-lg-4.col-md-4.col-sm-4
-      .container
-        .panel.panel-success
-          .panel-heading
-            Summary
-          .panel-body
-            Your Project count: 
-            = @projects.count
-            %br/
-            Recent Commit:
-            %br/
-            Recent Login:
-            %br/
-
-
+  .col-lg-10.col-md-9.col-sm-9
+    .panel.panel-default.dashboard
+      .panel-heading
+        %h1 Dashboard
+      - @projects.each do |project|
+        = render partial: "shared/project_card", locals: {project: project}
+    = paginate @projects
+  .col-lg-2.col-md-3.col-sm-3
+    .panel.panel-success.projects
+      .panel-heading
+        Summary
+      .panel-body
+        Your Project count: 
+        = @projects.count
+        %br/
+        Recent Commit:
+        %br/
+        Recent Login:
+        %br/
 
       .list-group
         - @projects.each do |project|
           = link_to project_path(project), class: "list-group-item" do
-            %h5.list-group-item-heading= project.title
-            %p.list-group-item-text= project.description
+            = project.title
 
