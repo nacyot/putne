@@ -1,6 +1,8 @@
 require 'sidekiq/web'
 
 Putne::Application.routes.draw do
+  mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
+  mount Sidekiq::Web, at: "/sidekiq"
   devise_for :users
 
   root "main#index"
@@ -40,8 +42,6 @@ Putne::Application.routes.draw do
 
   get "projects/:id/settings" => "projects#settings"
 
-  mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
-  mount Sidekiq::Web, at: "/sidekiq"
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
