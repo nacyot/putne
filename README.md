@@ -4,7 +4,7 @@
 [![Coverage Status](https://coveralls.io/repos/nacyot/putne/badge.png)](https://coveralls.io/r/nacyot/putne)
 [![Dependency Status](https://gemnasium.com/nacyot/putne.png)](https://gemnasium.com/nacyot/putne)
 
-TODO: Write a gem description
+Putne는 자동화된 소스 매트릭스 관리 서버입니다.
 
 ## Installation
 
