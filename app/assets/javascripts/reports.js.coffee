@@ -4,7 +4,7 @@
 
 
 @jsonTest = () ->
-        d3.json "/projects/37/reports.json", drawGraph
+        d3.json "/projects/1/reports.json", drawGraph
 
 @myData = () ->
         series1 = []
