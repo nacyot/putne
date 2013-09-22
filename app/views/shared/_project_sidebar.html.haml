@@ -1,5 +1,5 @@
 .panel.panel-default
-  .panel-heading Project
+  .panel-heading Time machine
   .panel-body
     ID: 
     = params[:report_id]
@@ -14,8 +14,7 @@
         -# %span.badge.pull-right#synopsis-help ?
         %span.badge.pull-right
         %i.icon-film
-        Summary
-    %br/
+        Project summary
     %li
       = link_to project_reports_url(@project) do
         -# %span.badge.pull-right#report-help ?
@@ -23,13 +22,13 @@
         %i.icon-bar-chart
         Reports
     %li
-      = link_to project_report_commits_url(@project, @report) do
+      = link_to project_commits_url(@project, @report) do
         -#- %span.badge.pull-right#files-help ?
         %span.badge.pull-right= @report.commit_stat
         %i.icon-download-alt
         Activities
     %li
-      = link_to project_report_committers_url(@project, @report) do
+      = link_to project_committers_url(@project, @report) do
         %i.icon-user
         Committers
     -# %li
@@ -38,6 +37,13 @@
     -#     %span.badge.pull-right
     -#     %i.icon-calendar
     -#     Timeline
+    %hr
+    %li
+      = link_to project_report_url(@project, @report) do
+        -# %span.badge.pull-right#synopsis-help ?
+        %span.badge.pull-right
+        %i.icon-film
+        Current report
     %br/
     %li
       = link_to project_report_classes_url(@project, @report) do
@@ -79,7 +85,7 @@
         %i.icon-th
         Churns
 
-    %br/
+    %hr
     -# %li
     -#   = link_to project_report_branches_url(@project, @report) do
     -#     %span.badge.pull-right#files-help ?

@@ -1,6 +1,14 @@
-.project.container
-  .main.col-lg-9.col-sm-8.panel
-
-    = render "shared/project_info", locals: {project: @project}
-  = render "shared/project_sidebar", locals: {project: @project}
-
+.panel-heading
+  %h1 
+    %i.icon-film
+    = @project.title
+    Summary
+.list-group
+  .list-group-item
+    .row
+      .col-lg-4.col-mg-4.col-sm-4
+        = render partial: "report_module/project_summary_4", locals: {project: @project}      
+        %br/
+        = render partial: "report_module/project_hotspot_4", locals: {project: @project}
+      .col-lg-8.col-mg-8.col-sm-8
+        %img{src: "/images/sunbrust.jpg", style: "width: 100%"}

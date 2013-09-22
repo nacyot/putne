@@ -1,32 +1,21 @@
-.project.container
-  .main.col-lg-9.col-sm-8.panel
-    = render "shared/project_info", locals: {project: @project}
-    %br/
-    %svg#reports-summary-graph{style: "height: 300px;"}
-    .page-header
-      %h1 Reports
-    %table.table.table-striped
-      %th At
-      -#%th Commit
-      %th Class
-      %th Methods
-      %th Churn
-      %th Complex
-      %th Smell
-      - @reports.each do |report|
-        %tr
-          -#%td= 
-          %td= link_to report.commit.committed_at, project_report_path(report.project, report)
-          -#%td= report.commit_stat
-          %td= report.class_stat
-          %td= report.method_stat
-          %td= report.churn_stat
-          %td= report.complexity_stat
-          %td= report.smell_stat
-
-  = render "shared/project_sidebar", locals: {project: @project}
-
--#%td= link_to 'Show', project_report_path(report.project, report)
--#%td= link_to 'Edit', edit_project_report_path(report.project, report)
--#%td= link_to 'Destroy', project_report_path(report.project, report), :method => :delete, :data => { :confirm => 'Are you sure?' }
--#= link_to 'New Report', new_project_report_path
+%svg#reports-summary-graph{style: "height: 300px;"}
+.page-header
+  %h1 Reports
+%table.table.table-striped
+  %th At
+  -#%th Commit
+  %th Class
+  %th Methods
+  %th Churn
+  %th Complex
+  %th Smell
+  - @reports.each do |report|
+    %tr
+      -#%td= 
+      %td= link_to report.commit.committed_at, project_report_path(report.project, report)
+      -#%td= report.commit_stat
+      %td= report.class_stat
+      %td= report.method_stat
+      %td= report.churn_stat
+      %td= report.complexity_stat
+      %td= report.smell_stat
