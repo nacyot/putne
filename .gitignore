@@ -38,3 +38,4 @@ capybara-*.html
 Gemfile.lock
 .secret
 dump.rdb
+.rspec
