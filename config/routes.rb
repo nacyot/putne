@@ -24,6 +24,7 @@ Putne::Application.routes.draw do
     resources :reports do
       get "branches" => "git#branches"
       get "commits" => "git#commits"
+      get "committers" => "git#committers"
       
       get "files" => "metrics#files"
       get "file" => "metrics#file"

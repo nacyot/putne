@@ -15,4 +15,7 @@ class GitController < ApplicationController
     @report = Report.find params[:report_id]
     @commits = @project.repository.commits.page(params[:page]).per(10)
   end
+
+  def committers
+  end
 end
