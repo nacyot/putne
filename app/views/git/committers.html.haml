@@ -1,0 +1,30 @@
+.panel-heading
+  %h1 
+    %i.icon-film
+    = @project.title
+    Committers
+.list-group
+  .list-group-item
+    .row
+      .col-lg-12.col-mg-12.col-sm-12
+        %img{src: "/images/stacked_area_chart.png", style: "width: 100%;"}
+  %h4.list-group-item Committers
+  .list-group-item
+    %table{style: "width: 100%;"}
+      %tr
+        %th
+        %th ID <Email> 
+        %th Commits
+        %th Line added
+        %th Line deleted
+        %th First commit
+        %th Last commit
+      - 0.upto(10).each do 
+        %tr
+          %td= gravatar_image_tag "propellerheaven@gmail.com", class: "img-rounded", gravatar: {size: 40}
+          %td nacyot<propellerheaven@gmail.com
+          %td 238
+          %td +4039
+          %td -2382
+          %td= Date.today - 10.day
+          %td= Date.today
