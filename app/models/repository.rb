@@ -51,7 +51,7 @@ class Repository < ActiveRecord::Base
   end
 
   def create_report(commit_hash)
-    commit_hash = recent_commit.sha if commit_hash = ""
+    commit_hash = recent_commit.sha if commit_hash == ""
     commit = Commit.find_or_create_by!(repository_id: self.id, commit_hash: commit_hash)
     branch = Branch.find_or_create_by!(repository_id: self.id, name: "master")
     report = Report.create!(project: project, repository: self, branch: branch, commit: commit)
