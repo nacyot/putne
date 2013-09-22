@@ -22,13 +22,13 @@ class Repository < ActiveRecord::Base
   end
 
   def register_recent_commits
-    git.commits(100).each do |commit|
+    git.commits.each do |commit|
       Commit.find_or_create_by!(repository: self,
                                 commit_hash: commit.id,
                                 committed_at: commit.committed_date,
                                 author_name: commit.author.name,
                                 author_email: commit.author.email
-                               )
+                                )
     end
   end
   
@@ -51,7 +51,7 @@ class Repository < ActiveRecord::Base
   end
 
   def create_report(commit_hash)
-    commit_hash = recent_commit.sha if commit_hash == ""
+    commit_hash = recent_commit.sha if commit_hash.nil?
     commit = Commit.find_or_create_by!(repository_id: self.id, commit_hash: commit_hash)
     branch = Branch.find_or_create_by!(repository_id: self.id, name: "master")
     report = Report.create!(project: project, repository: self, branch: branch, commit: commit)
