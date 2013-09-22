@@ -8,8 +8,6 @@
 /vendor/bundler
 /vendor/bundler/*
 
-/config/initializers/secret_token.rb
-
 /log/*.log
 /report/*
 /tmp
