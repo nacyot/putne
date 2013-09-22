@@ -1,5 +1,47 @@
-.text-right
-- @commits.each do |commit|
-  = render partial: "shared/commit_card", locals: {commit: commit}
-= paginate(@commits)
+-# .text-right
+-# - @commits.each do |commit|
+-#   = render partial: "shared/commit_card", locals: {commit: commit}
+-# = paginate(@commits)
+
+.panel-heading
+  %h1 
+    %i.icon-list-alt
+    = @project.title
+    Activities
+.list-group
+  %h4.list-group-item A last month
+  .list-group-item
+    .row
+      .col-lg-4.col-mg-4.col-sm-4
+        = render partial: "report_module/project_activity_last_month_4", locals: {project: @project}      
+      .col-lg-8.col-mg-8.col-sm-8
+        %img{src: "/images/bar_chart_8.jpg", style: "width: 100%"}
+    .row
+      .col-lg-12.col-mg-12.col-sm-12
+        %br/
+        - 0.upto(10).each do 
+          = gravatar_image_tag "propellerheaven@gmail.com", class: "img-rounded"
+  %h4.list-group-item All times ( Day, Month, Year )
+  .list-group-item
+    .row
+      .col-lg-12.col-mg-12.col-sm-12
+        %img{src: "/images/bar_chart.jpg", style: "width: 100%;"}
+  %h4.list-group-item Hour & Week
+  .list-group-item
+    .row
+      .col-lg-8.col-mg-8.col-sm-8
+        %img{src: "/images/bar_chart_8.jpg", style: "width: 100%; height: 250px;"}
+        .text-center
+          %br/
+          Hour of day
+      .col-lg-4.col-mg-4.col-sm-4
+        %img{src: "/images/bar_chart_4.jpg", style: "width: 100%; height: 270px;"}
+        .text-center
+          Day of week  
+  %h4.list-group-item Hour of week
+  .list-group-item
+    .row
+      .col-lg-12.col-mg-12.col-sm-12
+        %img{src: "/images/heatmap.jpg", style: "width: 100%;"}
+
 

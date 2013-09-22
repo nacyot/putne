@@ -25,11 +25,11 @@
       = link_to project_commits_url(@project) do
         -#- %span.badge.pull-right#files-help ?
         %span.badge.pull-right= @report.commit_stat
-        %i.icon-download-alt
+        %i.icon-list-alt
         Activities
     %li
-      = link_to project_committers_url(@projectb) do
-        %i.icon-user
+      = link_to project_committers_url(@project) do
+        %i.icon-group
         Committers
     -# %li
     -#   = link_to project_report_timeline_url(@project, @report) do
