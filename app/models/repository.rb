@@ -50,6 +50,12 @@ class Repository < ActiveRecord::Base
     create_report recent_commit.id
   end
 
+  def create_all_reports
+    commits.each do |commit|
+      create_report commit.commit_hash
+    end
+  end
+  
   def create_report(commit_hash)
     commit_hash = recent_commit.sha if commit_hash.nil?
     commit = Commit.find_or_create_by!(repository_id: self.id, commit_hash: commit_hash)
@@ -63,7 +69,7 @@ class Repository < ActiveRecord::Base
 
     validates_repository
   end
-
+  
   def reset_repository(hash)
     Dir.chdir Rails.root
     Dir.chdir workspace_path

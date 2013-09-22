@@ -11,10 +11,10 @@ class ReportsController < ApplicationController
     @report = @project.reports.sort { |report| report.commit.committed_at }[-1]
     @graphs = []
 
-    @graphs << ReportSummaryTimeSeries.new(@reports, "Method", "#ff0000") { |report| report.method_stat }
-    @graphs << ReportSummaryTimeSeries.new(@reports, "Commit", "#0000ff") { |report| report.commit_stat }
-    @graphs << ReportSummaryTimeSeries.new(@reports, "Smell", "#00ff00") { |report| report.smell_stat }
-    @graphs << ReportSummaryTimeSeries.new(@reports, "Complexity", "#da329e") { |report| report.complexity_stat / 10}
+    # @graphs << ReportSummaryTimeSeries.new(@reports, "Method", "#ff0000") { |report| report.method_stat }
+    # @graphs << ReportSummaryTimeSeries.new(@reports, "Commit", "#0000ff") { |report| report.commit_stat }
+    # @graphs << ReportSummaryTimeSeries.new(@reports, "Smell", "#00ff00") { |report| report.smell_stat }
+    # @graphs << ReportSummaryTimeSeries.new(@reports, "Complexity", "#da329e") { |report| report.complexity_stat / 10}
   end
 
   # GET /reports/1

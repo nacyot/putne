@@ -48,6 +48,20 @@ class ProjectsController < ApplicationController
     end
   end
 
+  def create_all_reports
+    @project = Project.find params[:project_id]
+    in_time = 5
+
+    @project.repository.commits.each do |commit|
+      if Report.find_by(commit_id: commit.id.to_s).nil?
+        ReportWorker.perform_in in_time, @project.repository.id, commit.commit_hash
+        in_time += 120
+      end
+    end
+
+    redirect_to projects_path
+  end
+  
   # PATCH/PUT /projects/1
   # PATCH/PUT /projects/1.json
   def update
