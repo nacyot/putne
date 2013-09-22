@@ -6,9 +6,10 @@ Putne::Application.routes.draw do
   devise_for :users
 
   root "main#index"
-  get "about" => "main#about"
   get "help" => "main#help"
+  #get "about" => "main#about"
 
+  
   resources :users do
     get "secret_key" => "secret_key#index"
     post "secret_key/reset"
@@ -17,6 +18,8 @@ Putne::Application.routes.draw do
   resources :projects do
     post "api/hook" => "commit_hook#hook"
     get "api/hook_url" => "commit_hook#hook_url"
+    get "settings"
+
 
     resources :reports do
       get "branches" => "git#branches"
@@ -40,7 +43,6 @@ Putne::Application.routes.draw do
     end
   end
 
-  get "projects/:id/settings" => "projects#settings"
 
 
   # The priority is based upon order of creation: first created -> highest priority.
