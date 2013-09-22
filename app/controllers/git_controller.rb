@@ -6,16 +6,21 @@ class GitController < ApplicationController
   def branches
     @title = "Branches"
     @project = Project.find params[:project_id]
-    @report = Report.find params[:report_id]
+    @report = @project.reports.sort { |report| report.commit.committed_at }[-1]
   end
 
   def commits
     @title = "Commits" 
     @project = Project.find params[:project_id]
-    @report = Report.find params[:report_id]
+    @report = @project.reports.sort { |report| report.commit.committed_at }[-1]
     @commits = @project.repository.commits.page(params[:page]).per(10)
   end
 
   def committers
+    @title = "Committers" 
+    @project = Project.find params[:project_id]
+    @report = Report.find params[:report_id]
+    @commits = @project.repository.commits.page(params[:page]).per(10)
+    @report = @project.reports.sort { |report| report.commit.committed_at }[-1]
   end
 end

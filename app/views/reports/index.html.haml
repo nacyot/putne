@@ -1,6 +1,10 @@
-%svg#reports-summary-graph{style: "height: 300px;"}
-.page-header
-  %h1 Reports
+-#%svg#reports-summary-graph{style: "height: 300px;"}
+.panel-heading
+  %h1 
+    %i.icon-bar-chart
+    = @project.title
+.list-group-item
+  %img{src: "/images/line_chart.jpg", style: "height: 300px;width: 100%;"}
 %table.table.table-striped
   %th At
   -#%th Commit
@@ -19,3 +23,4 @@
       %td= report.churn_stat
       %td= report.complexity_stat
       %td= report.smell_stat
+= paginate(@reports)

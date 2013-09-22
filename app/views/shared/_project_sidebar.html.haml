@@ -22,13 +22,13 @@
         %i.icon-bar-chart
         Reports
     %li
-      = link_to project_commits_url(@project, @report) do
+      = link_to project_commits_url(@project) do
         -#- %span.badge.pull-right#files-help ?
         %span.badge.pull-right= @report.commit_stat
         %i.icon-download-alt
         Activities
     %li
-      = link_to project_committers_url(@project, @report) do
+      = link_to project_committers_url(@projectb) do
         %i.icon-user
         Committers
     -# %li

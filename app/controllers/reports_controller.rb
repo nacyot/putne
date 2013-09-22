@@ -7,7 +7,7 @@ class ReportsController < ApplicationController
   # GET /reports.json
   def index
     @project = Project.find params[:project_id]
-    @reports = @project.reports
+    @reports = @project.reports.page(params[:page]).per(15)
     @report = @project.reports.sort { |report| report.commit.committed_at }[-1]
     @graphs = []
 

@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe "routes for Project" do
-  it { { get: "projects/1/reports/125/commits"}.should route_to("git#commits", project_id: "1", report_id: "125") }
   it { { get: "projects/1/reports/125/files"}.should route_to("metrics#files", project_id: "1", report_id: "125") }
   it { { get: "projects/1/reports/125/file"}.should route_to("metrics#file", project_id: "1", report_id: "125") }
   it { { get: "projects/1/reports/125/classes"}.should route_to("metrics#classes", project_id: "1", report_id: "125") }
