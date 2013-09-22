@@ -1,13 +1,66 @@
-%table.table.table-striped
-  %th Methods
-  %th Lines
-  %th Flog score
-  %th Saikiro score
-  - @methods.each do |method|
-    %tr
-      %td= link_to method.name, project_report_method_path(@project, @report, method_id: method)
-      %td= method.complexity_score.lines unless method.complexity_score.nil?
-      %td= method.complexity_score.flog_score unless method.complexity_score.nil?
-      %td= method.complexity_score.saikuro_score unless method.complexity_score.nil?
-= paginate @methods
-
+.panel-heading
+  %h1 
+    %i.icon-superscript
+    = @project.title
+    Complexity
+.list-group
+  .list-group-item
+    %img{src: "/images/line_one_chart.png", style: "width: 100%;"}
+  .list-group-item
+    .row
+      .col-lg-4.col-md-4.col-sm-4
+        %h4 Class complexity rank
+      .col-lg-4.col-md-4.col-sm-4
+        %h4 C/M complexity rank
+      .col-lg-4.col-md-4.col-sm-4
+        %h4 Method complexity rank
+  .list-group-item
+    .row
+      .col-lg-4.col-md-4.col-sm-4
+        %table
+          %tr
+            %th 1.
+            %td Git
+          %tr
+            %th 2.
+            %td Report
+          %tr
+            %th 3. 
+            %td ReportCreator
+      .col-lg-4.col-md-4.col-sm-4
+        %table
+          %tr
+            %th 1.
+            %td Git
+          %tr
+            %th 2.
+            %td Report
+          %tr
+            %th 3. 
+            %td ReportCreator
+      .col-lg-4.col-md-4.col-sm-4
+        %table
+          %tr
+            %th 1.
+            %td Git#report
+          %tr
+            %th 2.
+            %td Report#git
+          %tr
+            %th 3. 
+            %td ReportCreator#hello
+  .list-group-item
+    %h4 Listing Complex ( classes, methods )
+  .list-group-item
+    %table{style: "width: 100%;"}
+      %th Methods
+      %th Lines
+      %th Flog score
+      %th Saikiro score
+      - @methods.each do |method|
+        %tr
+          %td= link_to method.name, project_report_method_path(@project, @report, method_id: method)
+          %td= method.complexity_score.lines unless method.complexity_score.nil?
+          %td= method.complexity_score.flog_score unless method.complexity_score.nil?
+          %td= method.complexity_score.saikuro_score unless method.complexity_score.nil?
+    = paginate @methods

@@ -1,13 +1,24 @@
-- @report.duplications.each_with_index do |duplication, index|
-  %h4= "Duplication ##{index + 1}"
-  %table.table.table-striped
-    %th File path
-    %th Line
-    - duplication.file_line_infos.each do |line|
-      %tr
-        %td= line.target_file.path
-        %td= line.line_num
-  %br/
+.panel-heading
+  %h1 
+    %i.icon-copy
+    = @project.title
+    Duplications
+.list-group
+  .list-group-item
+    %img{src: "/images/line_one_chart.png"}
+  .list-group-item
+    %img{src: "/images/horison_sunbrust.jpg", style: "width: 100%;"}    
+  .list-group-item
+    - @report.duplications.each_with_index do |duplication, index|
+      %h4.list-group-item= "Duplication ##{index + 1}"
+
+      %table.table.table-striped
+        %th File path
+        %th Line
+        - duplication.file_line_infos.each do |line|
+          %tr
+            %td= line.target_file.path
+            %td= line.line_num
 
 
 
