@@ -1,6 +1,7 @@
 class ReportsController < ApplicationController
   load_and_authorize_resource class: Report
   before_action :set_report, only: [:show, :edit, :update, :destroy]
+  layout "layouts/sidebar"
 
   # GET /reports
   # GET /reports.json
