@@ -93,7 +93,7 @@
         %i.icon-github-alt
         Repository
     %li
-      = link_to url_for(controller: "projects", action: "settings", id: @project.id) do
+      = link_to project_settings_path(project_id: @project.id) do
         -# %span.badge.pull-right#settings-help ?
         %span.badge.pull-right
         %i.icon-wrench
