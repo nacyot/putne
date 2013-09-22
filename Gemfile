@@ -13,6 +13,7 @@ gem 'activerecord-deprecated_finders'
 # database
 gem 'pg'
 gem 'activerecord-postgres-hstore', github: "engageis/activerecord-postgres-hstore", branch: "master"
+gem 'acts-as-taggable-on'
 
 # rails_admin
 gem 'rails_admin', github: "sferik/rails_admin"
