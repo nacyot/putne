@@ -18,14 +18,14 @@ Putne::Application.routes.draw do
   resources :projects do
     post "api/hook" => "commit_hook#hook"
     get "api/hook_url" => "commit_hook#hook_url"
+    get "branches" => "git#branches"
+    get "commits" => "git#commits"
+    get "committers" => "git#committers"
+
     get "settings"
 
 
     resources :reports do
-      get "branches" => "git#branches"
-      get "commits" => "git#commits"
-      get "committers" => "git#committers"
-      
       get "files" => "metrics#files"
       get "file" => "metrics#file"
       
