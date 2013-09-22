@@ -1,7 +1,7 @@
 class ProjectsController < ApplicationController
   load_and_authorize_resource
   before_action :set_project, only: [:show, :edit, :update, :destroy]
-  layout "layouts/sidebar", only: :show
+  layout "layouts/sidebar", only: [:show, :settings]
   #before_action :protect_from_forgery, except: :commit_hook
 
   # GET /projects
@@ -86,6 +86,9 @@ class ProjectsController < ApplicationController
   end
 
   def settings
+    @project = Project.find params[:project_id]
+    @title = "Project - #{@project.title}"
+    @report = @project.reports.sort { |report| report.commit.committed_at }[-1]
   end
 
   def commit_hook

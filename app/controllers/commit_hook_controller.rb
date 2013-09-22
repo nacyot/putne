@@ -22,7 +22,5 @@ class CommitHookController < ApplicationController
 
   def hook_url
     @project = Project.find params[:project_id]
-    @user = current_user
-    # NotificationMailer.welcome_email(current_user).deliver
   end
 end

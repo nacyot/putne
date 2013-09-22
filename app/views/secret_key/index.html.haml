@@ -1,7 +1,10 @@
-%h1 Your Putne API key
-key :
-= @user.secret_key.key
-%br/
-%br/
-= link_to "test", user_secret_key_reset_path, class: "btn btn-default", method: :post
+.panel.panel-default
+  .panel-heading
+    %h1 
+      Your Putne secret key for commit hook
+      = link_to "Regenerate secret key", user_secret_key_reset_path, class: "btn btn-default", method: :post
+  .panel-body
+    = @user.secret_key.key
+    %br/
+
 
