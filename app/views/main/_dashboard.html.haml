@@ -6,8 +6,6 @@
       .list-group
         .list-group-item
           %img{src: "/images/calendar_chart.jpg", style: "width: 100%;"}
-        .list-group-item
-          %img{src: "/images/line_chart.jpg", style: "width: 100%;"}
         - @projects.each do |project|
           = render partial: "shared/project_card", locals: {project: project}
     = paginate @projects
@@ -16,14 +14,10 @@
       .panel-heading
         Summary
       .panel-body
-        Your Project count: 
-        = @projects.count
-        %br/
-        Recent Commit:
-        %br/
-        Recent Login:
-        %br/
-
+        %table
+          %tr
+            %th Projects: 
+            %td= Project.count
       .list-group
         - @projects.each do |project|
           = link_to project_path(project), class: "list-group-item" do

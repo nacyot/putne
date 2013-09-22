@@ -1,19 +1,12 @@
+%h4= link_to project.title, project_path(project.id), class: "list-group-item"
 .list-group-item  
   .row
     .col-lg-4.col-mg-4.col-sm-4
-      %h5= project.title
-      Last commit date :
-      %br/
-      Last commit hash :
+      = render partial: "report_module/project_summary_4", locals: {project: project}      
     .col-lg-4.col-mg-4.col-sm-4
-      %h5= project.title
-      Last commit date :
-      %br/
-      Last commit hash :
+      = render partial: "report_module/project_activity_4", locals: {project: project}      
     .col-lg-4.col-mg-4.col-sm-4
-      %h5= project.title
-      Last commit date :
-      %br/
-      Last commit hash :
+      = render partial: "report_module/project_complexity_chart_4", locals: {project: project}      
+
 
 
