@@ -16,7 +16,8 @@ class Report < ActiveRecord::Base
   has_many :duplications
   has_many :complexity_scores
 
-  validates_presence_of :project, :branch, :commit, :repository, :commit_id
+  validates_presence_of :project, :branch, :commit, :repository
+  validates_uniqueness_of :commit
 
   default_scope -> { order("") }
   
