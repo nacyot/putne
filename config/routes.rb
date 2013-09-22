@@ -40,6 +40,7 @@ Putne::Application.routes.draw do
       get "complexity" => "metrics#complexity"
       get "duplicity" => "metrics#duplicity"
       get "smells" => "metrics#smells"
+      get "smell" => "metrics#smell"
 
       get "timeline" => "metrics#timeline"
     end

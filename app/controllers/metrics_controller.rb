@@ -93,6 +93,12 @@ class MetricsController < ApplicationController
     @report = Report.find(params[:report_id])
   end
 
+  def smell
+    @title = "Smell"
+    @project = Project.find(params[:project_id])
+    @report = Report.find(params[:report_id])
+  end
+
   def timeline
     @titmle = "Timeline"
     @project = Project.find(params[:project_id])
