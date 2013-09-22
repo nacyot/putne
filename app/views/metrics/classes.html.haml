@@ -1,8 +1,42 @@
-%table.table.table-striped
-  %th Class
-  %th File
-  - @classes.each do |klass|
-    %tr
-      %td= link_to klass.name, project_report_klass_path(@project, @report, class_id: klass)
-      %td= klass.target_file.path
-= paginate(@classes)
+.panel-heading
+  %h1 
+    %i.icon-inbox
+    = @project.title
+    Classes
+.list-group
+  .list-group-item
+    .row
+      .text-center
+        %strong Filter
+        LOC
+        = "/"
+        Complexities
+        = "/"
+        Smells
+        = "/"
+        Duplications
+        = "/"
+        Churns
+        = "/"
+        Bugspots
+      .col-lg-12.col-mg-12.col-sm-12
+        %img{src: "/images/sunbrust.jpg", style: "width: 100%"}
+  %h4.list-group-item Listing classes
+  .list-group-item
+    %table{style: "width: 100%"}
+      %tr
+        %th Class name
+        %th LOC
+        %th Complexity
+        %th Smells
+        %th Duplications
+        %th Churn
+      - @classes.each do |klass|
+        %tr
+          %td= link_to klass.name, project_report_klass_path(@project, @report, class_id: klass)
+          %td= rand(150) 
+          %td= rand(150) 
+          %td= rand(150) 
+          %td= rand(150) 
+          %td= rand(150) 
+    = paginate(@classes)

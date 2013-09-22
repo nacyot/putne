@@ -32,7 +32,9 @@ class MetricsController < ApplicationController
     @project = Project.find(params[:project_id])
     @report = Report.find(params[:report_id])
 
-    file_name = TargetClass.find(params[:class_id]).target_file.path
+    @class = TargetClass.find(params[:class_id])
+    file_name = @class.target_file.path
+    
     @file = (@project.repository.git.last_commit.tree / file_name).data
     @title = "Class viewer - #{file_name}"
   end

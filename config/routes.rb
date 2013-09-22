@@ -31,6 +31,7 @@ Putne::Application.routes.draw do
       
       get "classes" => "metrics#classes"
       get "klass" => "metrics#klass"
+      get "klass/:class_id" => "metrics#klass"
 
       get "methods" => "metrics#methods"
       get "method" => "metrics#method"
