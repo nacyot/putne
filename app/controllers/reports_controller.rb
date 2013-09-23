@@ -8,7 +8,8 @@ class ReportsController < ApplicationController
   def index
     @project = Project.find params[:project_id]
     @reports = @project.reports.page(params[:page]).per(15)
-    @report = @project.reports.sort { |report| report.commit.committed_at }[-1]
+    #@report = @project.reports.sort { |report| report.commit.committed_at }[-1]
+    @report = @project.reports[-1]
     @graphs = []
 
     # @graphs << ReportSummaryTimeSeries.new(@reports, "Method", "#ff0000") { |report| report.method_stat }

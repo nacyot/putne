@@ -5,13 +5,14 @@ class Repository < ActiveRecord::Base
   has_many :commits
 
   validates_uniqueness_of :repository_url
-  
+
   def git
-    @git || (`git pull`; @git = Git.new(self))
+    #@git || (`git pull`; @git = Git.new(self))
+    @git || @git = Git.new(self)
   rescue Grit::NoSuchPathError
     false
   end
-  
+
   def remove_workspace
     Dir.chdir Rails.root
     `rm -rf tmp/workspace/#{ git_project_name }`

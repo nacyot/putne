@@ -34,8 +34,10 @@ class MetricsController < ApplicationController
 
     @class = TargetClass.find(params[:class_id])
     file_name = @class.target_file.path
-    
+
     @file = (@project.repository.git.last_commit.tree / file_name).data
+    #@file = @project.repository.git.blob(@report.commit.commit_hash, file_name).data
+    
     @title = "Class viewer - #{file_name}"
   end
   

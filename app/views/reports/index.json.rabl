@@ -1,2 +1,2 @@
-collection @graphs
-extends "reports/graph"
+# collection @graphs
+# extends "reports/graph"

@@ -7,6 +7,11 @@ class Git
     @repo = Grit::Repo.new @repository.workspace_path
   end
 
+  def blob(sha, path)
+    #@repo.tree(@repo.commit(sha), path)
+    @repo.tree([path])
+  end
+  
   def stats
     @repo.commit_stats("master", 2000)        
   end
