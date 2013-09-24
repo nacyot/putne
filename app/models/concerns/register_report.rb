@@ -32,23 +32,29 @@ module RegisterReport
 
   def register_files_churn
     report = MetricFuReport::ChurnParser.new report_directory
+
     score_category = ScoreCategory.find_or_create_by name: "CHURN"
     score_source = ScoreSource.find_or_create_by name: "FILE_CHURN"
 
+    pp score_category
+    pp score_source
+    
     report.parse_files_churn.each do |churn|
       file_path = churn[:file_path]
       times_changed = churn[:times_changed]
 
       target_file = TargetFile.find_or_create_by path: file_path, report: self, name: File.basename(file_path)
-
-      Score.create(score_category: score_category,
-                   score_source: score_source,
-                   score: times_changed,
-                   report: self,
-                   targetable: target_file
-                   )
+       Score.create!(score_category: score_category,
+                     score_source: score_source,
+                     score: times_changed,
+                     report: self,
+                     targetable: target_file
+                     )
+    
     end
-  rescue
+  rescue => e
+    puts "Raise error"
+    puts e
   end
 
   def register_classes_churn
@@ -71,7 +77,9 @@ module RegisterReport
                    targetable: target_class
                    )
     end
-  rescue
+  rescue => e
+    puts "Raise error"
+    puts e
   end
 
   def register_methods_churn
@@ -96,7 +104,9 @@ module RegisterReport
                    targetable: target_method
                    )
     end
-  rescue
+  rescue => e
+    puts "Raise error"
+    puts e
   end
 
   def register_flogs
@@ -139,7 +149,9 @@ module RegisterReport
                      )
       end
     end
-    rescue
+  rescue => e
+    puts "Raise error"
+    puts e
   end
 
   def register_reeks
@@ -185,7 +197,10 @@ module RegisterReport
                      )                             
       end
     end
-    rescue
+    
+  rescue => e
+    puts "Raise error"
+    puts e
   end
 
   # def register_saikuro(target = nil)
@@ -240,7 +255,9 @@ module RegisterReport
                    targetable: target_method
                    )
     end
-  rescue
+  rescue => e
+    puts "Raise error"
+    puts e
   end
 
   def register_roodi
@@ -266,7 +283,9 @@ module RegisterReport
                    file_line_info: FileLineInfo.create(line_num: line_num, target_file: target_file)
                    )
     end
-  rescue
+  rescue => e
+    puts "Raise error"
+    puts e
   end
 
   def register_duplication
@@ -284,6 +303,9 @@ module RegisterReport
         dup.file_line_infos << FileLineInfo.create(line_num: line_num, target_file_id: target_file.id)
       end
     end
-  rescue
+
+  rescue => e
+    puts "Raise error"
+    puts e
   end
 end
