@@ -4,7 +4,7 @@
 
 
 @jsonTest = () ->
-        d3.json "/projects/1/reports.json", drawGraph
+        d3.json "/projects/4/reports.json", drawGraph
 
 @myData = () ->
         series1 = []
@@ -41,4 +41,4 @@
                 return chart;
 
 $ ->
-        jsonTest()
+        jsonTest() 
