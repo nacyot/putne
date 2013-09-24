@@ -5,5 +5,5 @@ class RefineScoreAndSmell < ActiveRecord::Migration
     add_column :scores, :score_soucre_id, :integer
     add_column :smells, :smell_category_id, :integer
     add_column :smells, :smell_soucre_id, :integer
-end
+  end
 end
