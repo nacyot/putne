@@ -1,8 +1,8 @@
 class Repository < ActiveRecord::Base
   belongs_to :project
   
-  has_many :branches
-  has_many :commits
+  has_many :branches, dependent: :destroy
+  has_many :commits, dependent: :destroy
 
   validates_uniqueness_of :repository_url
 

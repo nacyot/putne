@@ -5,12 +5,14 @@ class Report < ActiveRecord::Base
   belongs_to :commit
   belongs_to :repository
   belongs_to :project
-  
-  has_many :target_files
-  has_many :target_classes
-  has_many :target_methods
+   
+  has_many :target_files, dependent: :destroy
+  has_many :target_classes, dependent: :destroy
+  has_many :target_methods, dependent: :destroy
+  has_many :scores, dependent: :destroy
+  has_many :smells, dependent: :destroy
 
-  has_many :duplications
+  has_many :duplications, dependent: :destroy
 
   validates_presence_of :project, :branch, :commit, :repository
   validates_uniqueness_of :commit
@@ -31,11 +33,11 @@ class Report < ActiveRecord::Base
   end
 
   def sum_churns
-    churns.file_churns.sum(:times_changed)
+    scores.churns.sum(:score)
   end
 
   def sum_complexities
-    complexity_scores.sum(:flog_score)
+    scores.flogs.sum(:score)
   end
 
   def sum_duplications
@@ -43,7 +45,7 @@ class Report < ActiveRecord::Base
   end
 
   def sum_smells
-    reek_smells.count
+    smells.reeks.count
   end
 
   def sum_branches

@@ -1,9 +1,9 @@
 class TargetFile < ActiveRecord::Base
   belongs_to :report
 
-  has_many :target_classes
-  has_many :scores, as: :targetable
-  has_many :smells, as: :targetable
+  has_many :target_classes, dependent: :destroy
+  has_many :scores, as: :targetable, dependent: :destroy
+  has_many :smells, as: :targetable, dependent: :destroy
   
   validates :path, :uniqueness => {
     :scope => :report_id,

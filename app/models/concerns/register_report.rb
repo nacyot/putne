@@ -16,7 +16,8 @@ module RegisterReport
   def register_report  
     if id?
       get_metrics
-      
+
+      puts "========================"
       register_files_churn 
       register_classes_churn 
       register_methods_churn 
@@ -24,7 +25,8 @@ module RegisterReport
       register_saikuro 
       register_reeks 
       register_roodi 
-      register_duplication 
+      register_duplication
+      puts "========================"
 
       #rm_github_repository
     end
