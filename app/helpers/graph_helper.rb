@@ -1,3 +1,3 @@
 module GraphHelper
-   
+
 end
