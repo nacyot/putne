@@ -1,7 +1,7 @@
 class Project < ActiveRecord::Base
   belongs_to :user
-  has_many :reports
-  has_one :repository
+  has_many :reports, dependent: :destroy
+  has_one :repository, dependent: :destroy
 
   validates_presence_of :user_id, :title
   accepts_nested_attributes_for :repository

@@ -33,24 +33,21 @@
           %th Method name
           %th Small type
           -#%th Message
-          - @report.reek_smells.each do |smell|
+          - @report.smells.reeks.each do |smell|
             %tr
-              - unless smell.target_method.nil?
-                %td= smell.target_method.name
-              - else
-                %td= smell.target_class.name
-              %td= smell.warn_type
+              %td= smell.targetable.name
+              %td= smell.smell
               -#%td= smell.message
 
-        %table{style: "width: 100%;"}
-          %th File path
-          %th Line num
-          %th Message
-          - @report.roodis.each do |roodi|
-            %tr
-              %td= roodi.file_line_info.target_file.path
-              %td= roodi.file_line_info.line_num
-              %td= roodi.message
+        -# %table{style: "width: 100%;"}
+        -#   %th File path
+        -#   %th Line num
+        -#   %th Message
+        -#   - @report.roodis.each do |roodi|
+        -#     %tr
+        -#       %td= roodi.file_line_info.target_file.path
+        -#       %td= roodi.file_line_info.line_num
+        -#       %td= roodi.message
       .col-lg-4.col-md-4.col-sm-4
         %img{src: "/images/slopegraph.png", style: "width: 100%;"}    
 

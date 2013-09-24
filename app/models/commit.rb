@@ -1,6 +1,6 @@
 class Commit < ActiveRecord::Base
   belongs_to :repository
-  has_one :report
+  has_one :report, dependent: :destroy
 
   validates_presence_of :committed_at
   validates_uniqueness_of :commit_hash

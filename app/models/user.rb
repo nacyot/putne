@@ -5,8 +5,8 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable
   rolify
 
-  has_many :projects
-  has_one :secret_key
+  has_many :projects, dependent: :destroy
+  has_one :secret_key, dependent: :destroy
 
   def commits
     Commit.where(repository_id: repository_ids).order("committed_at desc")
