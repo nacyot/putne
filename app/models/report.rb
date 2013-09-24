@@ -5,10 +5,12 @@ class Report < ActiveRecord::Base
   belongs_to :commit
   belongs_to :repository
   belongs_to :project
-  
+   
   has_many :target_files, dependent: :destroy
   has_many :target_classes, dependent: :destroy
   has_many :target_methods, dependent: :destroy
+  has_many :scores, dependent: :destroy
+  has_many :smells, dependent: :destroy
 
   has_many :duplications, dependent: :destroy
 

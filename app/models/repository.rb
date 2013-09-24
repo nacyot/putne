@@ -65,7 +65,7 @@ class Repository < ActiveRecord::Base
     project.reports << report
     reset_repository commit_hash
     report.register_report #!!!!
-    report.input_stats
+    # report.input_stats
     cancle_reset_repository
 
     validates_repository
