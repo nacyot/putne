@@ -32,22 +32,30 @@ module RegisterReport
 
   def register_files_churn
     report = MetricFuReport::ChurnParser.new report_directory
+    score_category = ScoreCategory.find_or_create_by name: "CHURN"
+    score_source = ScoreSource.find_or_create_by name: "FILE_CHURN"
+
     report.parse_files_churn.each do |churn|
       file_path = churn[:file_path]
       times_changed = churn[:times_changed]
 
-      TargetFile.create(name: File.basename(file_path),
-                        path: file_path,
-                        report: self,
-                        churn: Churn.create(times_changed: times_changed, report: self )
-                        )
+      target_file = TargetFile.find_or_create_by path: file_path, report: self, name: File.basename(file_path)
 
+      Score.create(score_category: score_category,
+                   score_source: score_source,
+                   score: times_changed,
+                   report: self,
+                   targetable: target_file
+                   )
     end
   rescue
   end
 
   def register_classes_churn
-    report = MetricFuReport::ChurnParser.new report_directory   
+    report = MetricFuReport::ChurnParser.new report_directory
+    score_category = ScoreCategory.find_or_create_by name: "CHURN"
+    score_source = ScoreSource.find_or_create_by name: "CLASS_CHURN"
+
     report.parse_classes_churn.each do |churn|
       file_path = churn["klass"]["file"]
       class_name = churn["klass"]["klass"]
@@ -55,13 +63,22 @@ module RegisterReport
 
       target_file = TargetFile.find_or_create_by path: file_path, report: self, name: File.basename(file_path)
       target_class = TargetClass.create name: class_name, report: self, target_file_id: target_file.id
-      target_class.churn = Churn.create(times_changed: times_changed, report: self)
+
+      Score.create(score_category: score_category,
+                   score_source: score_source,
+                   score: times_changed,
+                   report: self,
+                   targetable: target_class
+                   )
     end
   rescue
   end
 
   def register_methods_churn
     report = MetricFuReport::ChurnParser.new report_directory
+    score_category = ScoreCategory.find_or_create_by name: "CHURN"
+    score_source = ScoreSource.find_or_create_by name: "METHOD_CHURN"
+    
     report.parse_methods_churn.each do |churn|
       file_path = churn["method"]["file"]
       class_name = churn["method"]["klass"]
@@ -71,13 +88,23 @@ module RegisterReport
       target_file = TargetFile.find_or_create_by path: file_path, report: self, name: File.basename(file_path)
       target_class = TargetClass.find_or_create_by name: class_name, report: self, target_file_id: target_file.id
       target_method = TargetMethod.create name: method_name, report: self, target_class_id: target_class.id
-      target_method.churn = Churn.create(times_changed: times_changed, report: self)
+
+      Score.create(score_category: score_category,
+                   score_source: score_source,
+                   score: times_changed,
+                   report: self,
+                   targetable: target_method
+                   )
     end
   rescue
   end
 
   def register_flogs
     report = MetricFuReport::FlogParser.new report_directory
+
+    score_category = ScoreCategory.find_or_create_by name: "COMPLEXITY"
+    score_source = ScoreSource.find_or_create_by name: "FLOG"
+    
     report.klasses.each do |klass|
       klass_name = klass[:name]
       file_path = klass[:path]
@@ -104,7 +131,12 @@ module RegisterReport
         end
 
         target_method = TargetMethod.find_or_create_by name: method_name, report: self, target_class_id: target_class.id
-        target_method.complexity_score = ComplexityScore.create! flog_score: method[1][:score], report: self
+        Score.create(score_category: score_category,
+                     score_source: score_source,
+                     score: method[1][:score],
+                     report: self,
+                     targetable: target_method
+                     )
       end
     end
     rescue
@@ -112,6 +144,9 @@ module RegisterReport
 
   def register_reeks
     report = MetricFuReport::ReekParser.new report_directory
+    smell_category = SmellCategory.find_or_create_by name: "SMELL"
+    smell_source = SmellSource.find_or_create_by name: "REEK"
+    
     report.matches.each do |match|
       file_path = match[:file_path]
 
@@ -129,12 +164,25 @@ module RegisterReport
         
         target_class = TargetClass.find_or_create_by(name: klass_name, report: self, target_file_id: target_file.id)
         target_method = TargetMethod.find_or_create_by(name: method_name, report: self, target_class_id: target_class.id)
-        ReekSmell.create(message: message,
-                         warn_type: warn_type,
-                         report: self,
-                         target_class: target_class,
-                         target_method: target_method,
-                         target_file: target_file)
+
+        Smell.create(
+                     smell_category: smell_category,
+                     smell_source: smell_source,
+                     smell: warn_type,
+                     message: message,
+                     report: self,
+                     targetable: target_class
+                     )
+        
+
+        Smell.create(
+                     smell_category: smell_category,
+                     smell_source: smell_source,
+                     smell: warn_type,
+                     message: message,
+                     report: self,
+                     targetable: target_method
+                     )                             
       end
     end
     rescue
@@ -163,6 +211,10 @@ module RegisterReport
 
   def register_saikuro
     report = MetricFuReport::SaikuroParser.new report_directory
+    score_category = ScoreCategory.find_or_create_by name: "COMPLEXITY"
+    score_category_loc = ScoreCategory.find_or_create_by name: "LOC"
+    score_source = ScoreSource.find_or_create_by name: "SAIKURO"
+
     report.methods.each do |method|
       method_name = method[:name]
       class_name = method[:name].split("#")[0]
@@ -171,19 +223,32 @@ module RegisterReport
 
       target_class = TargetClass.find_or_create_by name: class_name, report: self
       target_method = TargetMethod.find_or_create_by name: method_name, report: self, target_class_id: target_class.id
-      if target_method.complexity_score.nil?
-        target_method.complexity_score = ComplexityScore.create saikuro_score: saikuro_score, lines: lines, report: self
-      else
-        target_method.complexity_score.saikuro_score = saikuro_score
-        target_method.complexity_score.lines = lines
-        target_method.complexity_score.save
-      end
+
+      Score.create(
+                   score_category: score_category,
+                   score_source: score_source,
+                   score: saikuro_score,
+                   report: self,
+                   targetable: target_method
+                   )
+
+      Score.create(
+                   score_category: score_category_loc,
+                   score_source: score_source,
+                   score: lines,
+                   report: self,
+                   targetable: target_method
+                   )
     end
-    rescue
+  rescue
   end
 
   def register_roodi
     report = MetricFuReport::RoodiParser.new report_directory
+
+    smell_category = SmellCategory.find_or_create_by name: "SMELL"
+    smell_source = SmellSource.find_or_create_by name: "ROODI"
+
     report.problems.each do |problem|
 
       file_path = problem[:file]
@@ -191,8 +256,15 @@ module RegisterReport
       message = problem[:problem]
 
       target_file = TargetFile.find_or_create_by path: file_path, report: self, name: File.basename(file_path)
-      Roodi.create report: self, message: message, file_line_info: FileLineInfo.create(line_num: line_num, target_file_id: target_file.id)
-
+      Smell.create(
+                   smell_category: smell_category,
+                   smell_source: smell_source,
+                   smell: warn_type,
+                   message: message,
+                   report: self,
+                   targetable: target_file,
+                   file_line_info: FileLineInfo.create(line_num: line_num, target_file: target_file)
+                   )
     end
   rescue
   end
@@ -215,5 +287,3 @@ module RegisterReport
   rescue
   end
 end
-
- 

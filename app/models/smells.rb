@@ -3,4 +3,5 @@ class Smells < ActiveRecord::Base
   belongs_to :smell_category
   belongs_to :smell_source
   belongs_to :targetable, polymorphic: true
+  has_one :file_line_info
 end
