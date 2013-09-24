@@ -1,6 +1,11 @@
 class TargetFile < ActiveRecord::Base
   belongs_to :report
   has_one :churn, as: :targetable
+
+  has_many :scores, as: targetable
+  has_many :smells, as: targetable
+  
+  # decapreted
   has_many :roodi
   has_many :target_classes
   has_many :reek_smells
