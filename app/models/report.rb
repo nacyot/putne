@@ -30,8 +30,6 @@ class Report < ActiveRecord::Base
                       )
   end
 
-
-  
   def sum_churns
     churns.file_churns.sum(:times_changed)
   end
