@@ -3,7 +3,7 @@ class CreateScores < ActiveRecord::Migration
     create_table :scores do |t|
       t.string :type
       t.integer :score
-      t.references :target, index: true
+      t.references :target, polymorphic: true
 
       t.timestamps
     end
