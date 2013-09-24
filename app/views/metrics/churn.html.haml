@@ -12,10 +12,10 @@
     %table.table.table-striped.churn
       %th.name File path
       %th.times Times changed
-      - @report.churns.file_churns.each do |churn|
+      - @report.scores.file_churns.each do |churn|
         %tr
           %td= link_to churn.targetable.path, project_report_file_path(@project, @report, file_id: churn.targetable)
-          %td= churn.times_changed  
+          %td= churn.score
 
   .list-group-item
     %h4 Class churns
@@ -25,10 +25,10 @@
     %table.table.table-striped.churn
       %th.name Class name
       %th.times Times changed
-      - @report.churns.class_churns.each do |churn|
+      - @report.scores.class_churns.each do |churn|
         %tr
           %td= churn.targetable.name
-          %td= churn.times_changed
+          %td= churn.score
 
   .list-group-item
     %h4 Method churns
@@ -38,7 +38,7 @@
     %table.table.table-striped.churn
       %th.name Method name
       %th.times Times changed
-      - @report.churns.method_churns.each do |churn|
+      - @report.scores.method_churns.each do |churn|
         %tr
           %td= churn.targetable.name
-          %td= churn.times_changed 
+          %td= churn.score
