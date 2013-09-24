@@ -33,11 +33,11 @@ class Report < ActiveRecord::Base
   end
 
   def sum_churns
-    churns.file_churns.sum(:times_changed)
+    scores.churns.sum(:score)
   end
 
   def sum_complexities
-    complexity_scores.sum(:flog_score)
+    scores.flogs.sum(:score)
   end
 
   def sum_duplications
@@ -45,7 +45,7 @@ class Report < ActiveRecord::Base
   end
 
   def sum_smells
-    reek_smells.count
+    smells.reeks.count
   end
 
   def sum_branches
