@@ -1,6 +1,6 @@
 class Score < ActiveRecord::Base
   belongs_to :score_category
-  belongs_to :source_category
+  belongs_to :smell_source
   belongs_to :report
   belongs_to :targetable, polymorphic: true
 
