@@ -9,4 +9,8 @@ class Score < ActiveRecord::Base
   # scope :file_churns, -> { where(targetable_type: "TargetFile") }
   # scope :class_churns, -> { where(targetable_type: "TargetClass") }
   # scope :method_churns, -> { where(targetable_type: "TargetMethod") }
+  
+  scope :flogs, -> { where(score_category: ScoreCategory.find_by(name: "COMPLEXITY"), score_source: ScoreSource.find_by(name: "FLOG"))  }
+  scope :saikuros, -> { where(score_category: ScoreCategory.find_by(name: "COMPLEXITY"), score_source: ScoreSource.find_by(name: "SAIKURO")) }
+  scope :locs, -> { where(score_category: ScoreCategory.find_by(name: "LOC"), score_source: ScoreSource.find_by(name: "SAIKURO"))  }
 end
