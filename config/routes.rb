@@ -9,12 +9,11 @@ Putne::Application.routes.draw do
   get "help" => "main#help"
   #get "about" => "main#about"
 
-  
   resources :users do
     get "secret_key" => "secret_key#index"
     post "secret_key/reset"
   end
-  
+
   resources :projects do
     post "api/hook" => "commit_hook#hook"
     get "api/hook_url" => "commit_hook#hook_url"
@@ -42,6 +41,10 @@ Putne::Application.routes.draw do
       get "smell" => "metrics#smell"
 
       get "timeline" => "metrics#timeline"
+    end
+
+    namespace :graph do
+      get "index" => "projects#index"
     end
   end
 

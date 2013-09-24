@@ -1,0 +1,2 @@
+module Graph::ProjectsHelper
+end
