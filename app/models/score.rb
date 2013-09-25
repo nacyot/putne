@@ -10,7 +10,6 @@ class Score < ActiveRecord::Base
   scope :saikuros, -> { where(score_category: ScoreCategory.find_by(name: "COMPLEXITY"), score_source: ScoreSource.find_by(name: "SAIKURO")) }
   scope :locs, -> { where(score_category: ScoreCategory.find_by(name: "LOC"), score_source: ScoreSource.find_by(name: "SAIKURO"))  }
 
-
   scope :churns, -> { where(score_category: ScoreCategory.find_by(name: "CHURN")) }
   scope :file_churns, -> { where(score_category: ScoreCategory.find_by(name: "CHURN"), score_source: ScoreSource.find_by(name: "FILE_CHURN"))  }
   scope :class_churns, -> { where(score_category: ScoreCategory.find_by(name: "CHURN"), score_source: ScoreSource.find_by(name: "CLASS_CHURN"))  }
