@@ -1,12 +1,15 @@
 .panel-heading
-  Settings
+  %h1 Settings
 .list-group
   .list-group-item
-    .row
-      .col-lg-2.col-md-2.col-sm-2
-        %h5 Hook url
-      .col-lg-10.col-md-10.col-sm-10
-        = project_api_hook_url
+    %h3 Destroy project
+  -# TODO: btn-alert 적용 및 버튼 클릭시 경고
+  .list-group-item
+    %button.btn.btn-alert= link_to "Delete", project_path(@project), method: "delete"
+  .list-group-item
+    %h3 Hook url
+  .list-group-item
+    = project_api_hook_url
 
 
-  
+ 
