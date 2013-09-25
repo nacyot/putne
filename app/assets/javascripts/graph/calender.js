@@ -1,117 +1,92 @@
 // This code based on d3 example(http://mbostock.github.io/d3/talk/20111018/calendar.html).
 
-this.calendar_chart = function(selector, data_file = "/d3js/dji.csv"){
+this.d3_calendar_chart = function(selector, data_file = "/d3js/dji.csv"){
     var target = d3.select(selector);
     var parentWidth = target[0][0].parentNode.clientWidth;
 
-    var m = {top: 29, right: 20, bottom: 20, left: 19};
-    var w = parentWidth - margin.left - margin.right;
-    var h = (parentWidth * 0.15) - margin.top - margin.bottom;
-    var z = 11 // cell size
+    var width = parentWidth;
+    var height = parentWidth * 0.16;
+    var cellSize = 13; // cell size
 
     var day = d3.time.format("%w"),
     week = d3.time.format("%U"),
     percent = d3.format(".1%"),
-    flightData,
-    stockData,
-    formatDate = d3.time.format("%Y-%m-%d"),
-    formatNumber = d3.format(",d"),
-    formatPercent = d3.format("+.1%");
+    format = d3.time.format("%Y-%m-%d");
 
-    var svg = target.selectAll(".year")
-        .data(d3.range(1995, 2009))
-        .enter().append("div")
-        .attr("class", "year")
-        .style("width", w + m[1] + m[3] + "px")
-        .style("height", h + m[0] + m[2] + "px")
-        .style("display", "inline-block")
-        .append("svg:svg")
-        .attr("width", w + m[1] + m[3])
-        .attr("height", h + m[0] + m[2])
+    var color = d3.scale.quantize()
+        .domain([-1.0, 1.0])
+        .range(d3.range(11).map(function(d) { return "q" + d + "-11"; }));
+
+    var svg = target.selectAll("svg")
+        .data(d3.range(2013, 2014))
+        .enter().append("svg")
+        .attr("width", width)
+        .attr("height", height)
         .attr("class", "RdYlGn")
-        .append("svg:g")
-        .attr("transform", "translate(" + (m[3] + (w - z * 53) / 2) + "," + (m[0] + (h - z * 7) / 2) + ")");
+        .append("g")
+        .attr("transform", "translate(" + ((width - cellSize * 53) / 2) + "," + (height - cellSize * 8 - 1) + ")");
 
-    svg.append("svg:text")
-        .attr("transform", "translate(-6," + z * 3.5 + ")rotate(-90)")
-        .attr("text-anchor", "middle")
-        .text(String);
+    svg.append("text")
+        .attr("transform", "translate(-6," + cellSize * 3.5 + ")rotate(-90)")
+        .style("text-anchor", "middle")
+        .text(function(d) { return d; });
 
-    var rect = svg.selectAll("rect.day")
+    var rect = svg.selectAll(".day")
         .data(function(d) { return d3.time.days(new Date(d, 0, 1), new Date(d + 1, 0, 1)); })
-        .enter().append("svg:rect")
+        .enter().append("rect")
         .attr("class", "day")
-        .attr("width", z)
-        .attr("height", z)
-        .attr("x", function(d) { return week(d) * z; })
-        .attr("y", function(d) { return day(d) * z; });
+        .attr("width", cellSize)
+        .attr("height", cellSize)
+        .attr("x", function(d) { return week(d) * cellSize; })
+        .attr("y", function(d) { return day(d) * cellSize; })
+        .datum(format);
 
-    rect.append("svg:title");
+    rect.append("title")
+        .text(function(d) { return d; });
 
-    svg.selectAll("path.month")
+    svg.selectAll(".month")
         .data(function(d) { return d3.time.months(new Date(d, 0, 1), new Date(d + 1, 0, 1)); })
-        .enter().append("svg:path")
+        .enter().append("path")
         .attr("class", "month")
         .attr("d", monthPath);
 
-    d3.csv(data_file, function(csv) {
-        stockData = d3.nest()
-            .key(function(d) { return (d.date = formatDate.parse(d.Date)).getFullYear(); })
-            .key(function(d) { return d.date; })
-            .rollup(function(d) { return d.value = (d[0].Close - d[0].Open) / d[0].Open; })
+    d3.csv(data_file, function(error, csv) {
+        var data = d3.nest()
+            .key(function(d) { return d.Date; })
+            .rollup(function(d) { return minmax(d[0].Value); })
             .map(csv);
 
-        d3.select("select").on("change", function() {
-            display(this.value === "flights" ? flightData : stockData);
-        });
+        rect.filter(function(d) { return d in data; })
+            .attr("class", function(d) { return "day " + color(data[d]); })
+            .select("title")
+            .text(function(d) { return d + ": " + percent(data[d]); });
     });
 
-    d3.csv("flights-departed.csv", function(csv) {
-        flightData = d3.nest()
-            .key(function(d) { return (d.date = formatDate.parse(d.date)).getFullYear(); })
-            .key(function(d) { return d.date; })
-            .rollup(function(d) { return +d[0].value; })
-            .map(csv);
 
-        display(flightData);
-    });
-
-    function display(data, title) {
-
-        if (data === flightData) {
-            var formatValue = formatNumber,
-            title = "U.S. Commercial Flights",
-            color = d3.scale.quantile();
-
-        } else {
-            var formatValue = formatPercent,
-            title = "Dow Jones",
-            color = d3.scale.quantize();
+    function minmax(data){
+        if(data > 20){
+            return 1;
+        }else if(data <= 20){
+            return data / 20.0;
+        }else{
+            return 0;
         }
-
-        d3.select("#footer span")
-            .text(title);
-
-        svg.each(function(year) {
-            color
-                .domain(data === flightData ? d3.values(data[year]) : [-.05, .05])
-                .range(d3.range(9));
-
-            d3.select(this).selectAll("rect.day")
-                .attr("class", function(d) { return "day q" + color(data[year][d]) + "-9"; })
-                .select("title")
-                .text(function(d) { return formatDate(d) + ": " + formatValue(data[year][d]); });
-        });
     }
 
     function monthPath(t0) {
         var t1 = new Date(t0.getFullYear(), t0.getMonth() + 1, 0),
         d0 = +day(t0), w0 = +week(t0),
         d1 = +day(t1), w1 = +week(t1);
-        return "M" + (w0 + 1) * z + "," + d0 * z
-            + "H" + w0 * z + "V" + 7 * z
-            + "H" + w1 * z + "V" + (d1 + 1) * z
-            + "H" + (w1 + 1) * z + "V" + 0
-            + "H" + (w0 + 1) * z + "Z";
+        return "M" + (w0 + 1) * cellSize + "," + d0 * cellSize
+            + "H" + w0 * cellSize + "V" + 7 * cellSize
+            + "H" + w1 * cellSize + "V" + (d1 + 1) * cellSize
+            + "H" + (w1 + 1) * cellSize + "V" + 0
+            + "H" + (w0 + 1) * cellSize + "Z";
     }
+
+    d3.select(self.frameElement).style("height", "2910px"); 
 }
+
+
+
+

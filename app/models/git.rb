@@ -12,6 +12,13 @@ class Git
     @repo.commits("master", nil).map { |commit| commit.date.strftime("%Y-%m-%d") }
       .group_by{|date| date}.map{|key, value| [key, value.count] }
   end
+
+  def dates_csv
+    CSV.generate do |csv|
+      csv << %w(date value)
+      dates.each { |line| csv << line }
+    end
+  end
   
   def blob(sha, path)
     #@repo.tree(@repo.commit(sha), path)
