@@ -1,43 +1,43 @@
 .report-module
   %h5 Summary
-  %table
+  %table.table.table-striped
     %tr
-      %th Lines of code
-      %td= rand(150)
+      %th # of files
+      %td= @report.sum_files
       %td  
         %span.sparkline-test
     %tr
       %th # of classes
-      %td= rand(150)
+      %td= @report.sum_classes
       %td
         %span.sparkline-test
     %tr
       %th # of methods
-      %td= rand(150)
+      %td= @report.sum_methods
       %td
         %span.sparkline-test
     %tr
       %th Complexities
-      %td= rand(150)
+      %td= @report.sum_complexities
       %td
         %span.sparkline-test
     %tr
       %th Com / Methods
-      %td= rand(150)
+      %td= @report.sum_complexities / @report.sum_methods
       %td
         %span.sparkline-test
     %tr
       %th Duplications
-      %td= rand(150)
+      %td= @report.sum_duplications
       %td
         %span.sparkline-test
     %tr
       %th Smells
-      %td= rand(150)
+      %td= @report.sum_smells
       %td
         %span.sparkline-test
     %tr
       %th Churns
-      %td= rand(150)
+      %td= @report.sum_churns
       %td
         %span.sparkline-test
