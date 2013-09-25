@@ -4,7 +4,7 @@ this.d3_stacked_area_chart = function(selector, data_file){
     var target = d3.select(selector);
     var parentWidth = target[0][0].parentNode.clientWidth;
 
-    var margin = {top: 20, right: 20, bottom: 30, left: 50},
+    var margin = {top: 20, right: 20, bottom: 30, left: 50};
     var width = parentWidth - margin.left - margin.right;
     var height = (parentWidth * 0.45) - margin.top - margin.bottom;
 
