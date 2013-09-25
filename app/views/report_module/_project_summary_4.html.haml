@@ -3,41 +3,41 @@
   %table.table.table-striped
     %tr
       %th # of files
-      %td= @report.sum_files
+      %td= report.sum_files
       %td  
         %span.sparkline-test
     %tr
       %th # of classes
-      %td= @report.sum_classes
+      %td= report.sum_classes
       %td
         %span.sparkline-test
     %tr
       %th # of methods
-      %td= @report.sum_methods
+      %td= report.sum_methods
       %td
         %span.sparkline-test
     %tr
       %th Complexities
-      %td= @report.sum_complexities
+      %td= report.sum_complexities
       %td
         %span.sparkline-test
     %tr
       %th Com / Methods
-      %td= @report.sum_complexities / @report.sum_methods
+      %td= report.sum_complexities / report.sum_methods
       %td
         %span.sparkline-test
     %tr
       %th Duplications
-      %td= @report.sum_duplications
+      %td= report.sum_duplications
       %td
         %span.sparkline-test
     %tr
       %th Smells
-      %td= @report.sum_smells
+      %td= report.sum_smells
       %td
         %span.sparkline-test
     %tr
       %th Churns
-      %td= @report.sum_churns
+      %td= report.sum_churns
       %td
         %span.sparkline-test

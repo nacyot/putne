@@ -37,7 +37,7 @@ class Report < ActiveRecord::Base
   end
 
   def sum_complexities
-    scores.flogs.sum(:score)
+    scores.flogs.type_method.sum(:score)
   end
 
   def sum_duplications

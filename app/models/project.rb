@@ -6,4 +6,8 @@ class Project < ActiveRecord::Base
   validates_presence_of :user_id, :title
   accepts_nested_attributes_for :repository
   acts_as_taggable
+
+  def latest_report
+    reports[-1]
+  end
 end

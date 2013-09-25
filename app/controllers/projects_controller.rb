@@ -15,7 +15,7 @@ class ProjectsController < ApplicationController
   def show
     @project = Project.find params[:id]
     @title = "Project - #{@project.title}"
-    @report = @project.reports.sort { |report| report.commit.committed_at }[-1]
+    @report = @project.latest_report
   end
 
   # GET /projects/new
