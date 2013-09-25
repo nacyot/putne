@@ -1,0 +1,2 @@
+module Graph::GitHelper
+end
