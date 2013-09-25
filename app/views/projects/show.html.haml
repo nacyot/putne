@@ -19,34 +19,37 @@
       .col-lg-4.col-mg-4.col-sm-4
         = render partial: "report_module/project_activity_4", locals: {project: @project}      
       .col-lg-8.col-mg-8.col-sm-8
-        %img{src: "/images/stacked_bar_chart.png", style: "width: 100%; height: 250px;"}
+        #line-graph
+        -#%img{src: "/images/stacked_bar_chart.png", style: "width: 100%; height: 250px;"}
   %h4.list-group-item Code quality timeline
   .list-group-item
     .row
       .col-lg-4.col-mg-4.col-sm-4
         = render partial: "report_module/project_summary_4", locals: {project: @project}      
       .col-lg-8.col-mg-8.col-sm-8
-        %img{src: "/images/line_chart.jpg", style: "width: 100%; height: 250px;"}
+        #line-graph-multi1
+        -#%img{src: "/images/line_chart.jpg", style: "width: 100%; height: 250px;"}
   %h4.list-group-item Class Complexity timeline
   .list-group-item
     .row
       .col-lg-4.col-mg-4.col-sm-4
         = render partial: "report_module/project_complexity_4", locals: {project: @project}      
       .col-lg-8.col-mg-8.col-sm-8
-        %img{src: "/images/line_chart.jpg", style: "width: 100%; height: 250px;"}
+        #line-graph-multi2
+        -#%img{src: "/images/line_chart.jpg", style: "width: 100%; height: 250px;"}
   %h4.list-group-item Code smell timeline
   .list-group-item
     .row
       .col-lg-4.col-mg-4.col-sm-4
         = render partial: "report_module/project_smell_4", locals: {project: @project}      
       .col-lg-8.col-mg-8.col-sm-8
-        %img{src: "/images/line_chart.jpg", style: "width: 100%; height: 250px;"}
+        #line-graph-multi3
   %h4.list-group-item Language
   .list-group-item
     .row
       .col-lg-4.col-mg-4.col-sm-4
         = render partial: "report_module/project_language_4", locals: {project: @project}      
       .col-lg-8.col-mg-8.col-sm-8
-        %img{src: "/images/stacked_area_chart.png", style: "width: 100%; height: 250px;"}
+        -#%img{src: "/images/stacked_area_chart.png", style: "width: 100%; height: 250px;"}
 
 
