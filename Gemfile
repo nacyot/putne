@@ -84,6 +84,7 @@ gem 'ruby2ruby'
 
 # git
 gem 'gitlab-grit', '~>2.6.0', require: 'grit'
+gem 'git_stats'
 
 group  :development do
   gem 'rails-erd'
