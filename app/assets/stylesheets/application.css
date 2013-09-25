@@ -195,11 +195,14 @@ body {
 }
 
 
+.axis{
+    shape-rendering: crispEdges;
+}
 
 .axis path, .axis line {
-  fill: none;
-  stroke: #000;
-  shape-rendering: crispEdges;
+    fill: none;
+    stroke: #000;
+    shape-rendering: crispEdges;
 }
 
 .x.axis path {
@@ -215,7 +218,6 @@ body {
 
 svg {
   font-size: 10px;
-  shape-rendering: crispEdges;
 }
 
 .day {
