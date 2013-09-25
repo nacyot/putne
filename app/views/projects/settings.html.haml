@@ -3,9 +3,9 @@
 .list-group
   .list-group-item
     %h3 Destroy project
-  -# TODO: btn-alert 적용 및 버튼 클릭시 경고
   .list-group-item
-    %button.btn.btn-alert= link_to "Delete", project_path(@project), method: "delete"
+    = link_to project_path(@project), method: "delete", confirm: "Are you sure?" do
+      %button.btn.btn-danger Destroy
   .list-group-item
     %h3 Hook url
   .list-group-item

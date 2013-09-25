@@ -7,113 +7,110 @@
     Hash:
     -#= @report.commit.commit_hash[0..15]
     \..
-- if @project.repository.valida?
-  %ul.nav.nav-pills.nav-stacked
-    %li
-      = link_to project_url(@project) do
-        -# %span.badge.pull-right#synopsis-help ?
-        %span.badge.pull-right
-        %i.icon-film
-        Project summary
-    %li
-      = link_to project_reports_url(@project) do
-        -# %span.badge.pull-right#report-help ?
-        %span.badge.pull-right= @project.reports.count
-        %i.icon-bar-chart
-        Reports
-    %li
-      = link_to project_commits_url(@project) do
-        -#- %span.badge.pull-right#files-help ?
-        %span.badge.pull-right= @report.commit_stat
-        %i.icon-list-alt
-        Activities
-    %li
-      = link_to project_committers_url(@project) do
-        %i.icon-group
-        Committers
-    -# %li
-    -#   = link_to project_report_timeline_url(@project, @report) do
-    -#     -# %span.badge.pull-right#timeline-help ?
-    -#     %span.badge.pull-right
-    -#     %i.icon-calendar
-    -#     Timeline
-    %hr
-    %li
-      = link_to project_report_url(@project, @report) do
-        -# %span.badge.pull-right#synopsis-help ?
-        %span.badge.pull-right
-        %i.icon-film
-        Current report
-    %br/
-    %li
-      = link_to project_report_classes_url(@project, @report) do
-        -# %span.badge.pull-right#classes-help ?
-        %span.badge.pull-right= @report.class_stat
-        %i.icon-inbox
-        Classes
-    -# %li
-      -# = link_to project_report_methods_url(@project, @report) do
-      -#   -# %span.badge.pull-right#methods-help ?
-      -#   %span.badge.pull-right= @report.method_stat
-      -#   %i.icon-code
-      -#   Methods
-    %br/
+%ul.nav.nav-pills.nav-stacked
+  - if @project.repository.valida?
+    %ul.nav.nav-pills.nav-stacked
+      %li
+        = link_to project_url(@project) do
+          -# %span.badge.pull-right#synopsis-help ?
+          %span.badge.pull-right
+          %i.icon-film
+          Project summary
+      %li
+        = link_to project_reports_url(@project) do
+          -# %span.badge.pull-right#report-help ?
+          %span.badge.pull-right= @project.reports.count
+          %i.icon-bar-chart
+          Reports
+      %li
+        = link_to project_commits_url(@project) do
+          -#- %span.badge.pull-right#files-help ?
+          %span.badge.pull-right= @report.commit_stat
+          %i.icon-list-alt
+          Activities
+      %li
+        = link_to project_committers_url(@project) do
+          %i.icon-group
+          Committers
+      -# %li
+      -#   = link_to project_report_timeline_url(@project, @report) do
+      -#     -# %span.badge.pull-right#timeline-help ?
+      -#     %span.badge.pull-right
+      -#     %i.icon-calendar
+      -#     Timeline
+      %hr
+      %li
+        = link_to project_report_url(@project, @report) do
+          -# %span.badge.pull-right#synopsis-help ?
+          %span.badge.pull-right
+          %i.icon-film
+          Current report
+      %br/
+      %li
+        = link_to project_report_classes_url(@project, @report) do
+          -# %span.badge.pull-right#classes-help ?
+          %span.badge.pull-right= @report.class_stat
+          %i.icon-inbox
+          Classes
+      -# %li
+        -# = link_to project_report_methods_url(@project, @report) do
+        -#   -# %span.badge.pull-right#methods-help ?
+        -#   %span.badge.pull-right= @report.method_stat
+        -#   %i.icon-code
+        -#   Methods
+      %br/
 
 
-    %li
-      = link_to project_report_complexity_url(@project, @report) do
-        -# %span.badge.pull-right#complexity-help ?
-        %span.badge.pull-right= @report.complexity_stat
-        %i.icon-superscript
-        Complexities
-    %li
-      = link_to project_report_smells_url(@project, @report) do
-        -# %span.badge.pull-right#smells-help ?
-        %span.badge.pull-right= @report.smell_stat
-        %i.icon-bug
-        Smells
-    %li
-      = link_to project_report_duplicity_url(@project, @report) do
-        -# %span.badge.pull-right#duplicity-help ?
-        %span.badge.pull-right= @report.duplication_stat
-        %i.icon-copy
-        Duplications
-    %li
-      = link_to project_report_churn_url(@project, @report) do
-        -# %span.badge.pull-right#churn-help ?
-        %span.badge.pull-right= @report.churn_stat
-        %i.icon-th
-        Churns
+      %li
+        = link_to project_report_complexity_url(@project, @report) do
+          -# %span.badge.pull-right#complexity-help ?
+          %span.badge.pull-right= @report.complexity_stat
+          %i.icon-superscript
+          Complexities
+      %li
+        = link_to project_report_smells_url(@project, @report) do
+          -# %span.badge.pull-right#smells-help ?
+          %span.badge.pull-right= @report.smell_stat
+          %i.icon-bug
+          Smells
+      %li
+        = link_to project_report_duplicity_url(@project, @report) do
+          -# %span.badge.pull-right#duplicity-help ?
+          %span.badge.pull-right= @report.duplication_stat
+          %i.icon-copy
+          Duplications
+      %li
+        = link_to project_report_churn_url(@project, @report) do
+          -# %span.badge.pull-right#churn-help ?
+          %span.badge.pull-right= @report.churn_stat
+          %i.icon-th
+          Churns
 
-    %hr
-    -# %li
-    -#   = link_to project_report_branches_url(@project, @report) do
-    -#     %span.badge.pull-right#files-help ?
-    -#     %span.badge.pull-right= @report.branche_stat
-    -#     Branches
+      %hr
+      -# %li
+      -#   = link_to project_report_branches_url(@project, @report) do
+      -#     %span.badge.pull-right#files-help ?
+      -#     %span.badge.pull-right= @report.branche_stat
+      -#     Branches
 
-    -# %li
-    -#   = link_to project_report_files_url(@project, @report) do
-    -#     -# %span.badge.pull-right#files-help ?
-    -#     %span.badge.pull-right= @report.file_stat
-    -#     %i.icon-file
-    -#     Files
-
+      -# %li
+      -#   = link_to project_report_files_url(@project, @report) do
+      -#     -# %span.badge.pull-right#files-help ?
+      -#     %span.badge.pull-right= @report.file_stat
+      -#     %i.icon-file
+      -#     Files
+  - else
     %li
-      = link_to @project.repository.repository_url do
-        -# %span.badge.pull-right#repository-help ?
-        %span.badge.pull-right
-        %i.icon-github-alt
-        Repository
-    %li
-      = link_to project_settings_path(project_id: @project.id) do
-        -# %span.badge.pull-right#settings-help ?
-        %span.badge.pull-right
-        %i.icon-wrench
-        Settings
-- else
-  .panel
-    .panel-heading
-      Warning
-    .panel-body
       Your repository not valid.
+  %li
+    = link_to @project.repository.repository_url do
+      -# %span.badge.pull-right#repository-help ?
+      %span.badge.pull-right
+      %i.icon-github-alt
+      Repository
+  %li
+    = link_to project_settings_path(project_id: @project.id) do
+      -# %span.badge.pull-right#settings-help ?
+      %span.badge.pull-right
+      %i.icon-wrench
+      Settings
