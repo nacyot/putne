@@ -44,7 +44,7 @@ Putne::Application.routes.draw do
     end
 
     namespace :graph do
-      get "index" => "projects#index"
+      get "sunburst_chart" => "projects#sunburst_chart"
     end
   end
 

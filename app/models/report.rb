@@ -67,4 +67,43 @@ class Report < ActiveRecord::Base
   def sum_methods
     target_methods.count
   end
+
+  def register_class_scores(category, source)
+    register_class_score("COMPLEXITY", "FLOG")
+    register_class_score("COMPLEXITY", "SAIKURO")
+    register_class_score("LOC", "SAIKURO")
+  end
+  
+  def register_class_score(category, source)
+    category = ScoreCategory.find_by(name: category) if category.instance_of?(String)
+    source = ScoreSource.find_by(name: source) if source.instance_of?(String)
+    
+    target_classes.includes(:target_methods).each do |klass|
+      class_score =  klass.target_methods.includes(:scores).inject(0) do |sum, method|
+        method_score = method.scores.find_by(score_category: category, score_source: source)
+        sum += method_score.nil? ? 0 : method_score.score
+      end
+      
+      Score.create!(score_category: category,
+                    score_source: source,
+                    score: (class_score ? class_score : 0),
+                    report: self,
+                    targetable: klass
+                    )
+
+      
+    end
+  end
+
+  def flog_scores
+    target_classes.map { |klass| {name: klass.name, size: klass.scores.flogs[0].score, path: klass.target_file.path } }
+      .delete_if { |hash| hash[:size] == 0} 
+    
+  end
+
+  def flog_scores_group_by_path
+    flogs = flog_scores.group_by { |score| File.dirname(score[:path]) }
+    flogs.map {|key, content| {name: key, children: content} }
+  end
 end
+
