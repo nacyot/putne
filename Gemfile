@@ -28,6 +28,9 @@ gem 'rabl'
 # gravatar
 gem 'gravatar_image_tag' 
 
+# dotenv
+gem 'dotenv-rails'
+
 # authentication
 gem 'devise'
 

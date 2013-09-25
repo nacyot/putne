@@ -21,5 +21,10 @@ def find_secure_token
   end
 end
 
-Putne::Application.config.secret_token = find_secure_token
-Putne::Application.config.secret_key_base = find_secure_token
+# Putne::Application.config.secret_token = find_secure_token
+if 
+  Putne::Application.config.secret_key_base = find_secure_token
+else
+  Putne::Application.config.secret_key_base = ENV['SECRET_KEY_BASE']
+end
+
