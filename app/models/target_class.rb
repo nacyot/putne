@@ -9,4 +9,5 @@ class TargetClass < ActiveRecord::Base
   validates_presence_of :report, :name, :target_file
   
   default_scope order("name")
+
 end
