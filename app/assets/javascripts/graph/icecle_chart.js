@@ -1,13 +1,17 @@
 // This code based on d3 example(http://bl.ocks.org/mbostock/1005873).
 
-function icecle(selector = "#icecle", data_file = "/d3js/readme.json"){
-    var w = 960,
-    h = 500,
-    x = d3.scale.linear().range([0, w]),
-    y = d3.scale.linear().range([0, h]),
-    color = d3.scale.category20c();
+this.d3_icecle_chart = function(selector, data_file = "/d3js/readme.json"){
+    var target = d3.select(selector);
+    var parentWidth = target[0][0].parentNode.clientWidth;
 
-    var vis = d3.select("#icecle").append("svg:svg")
+    var w = parentWidth - margin.left - margin.right;
+    var h = (parentWidth * 0.47) - margin.top - margin.bottom;
+
+    var x = d3.scale.linear().range([0, w]);
+    var y = d3.scale.linear().range([0, h]);
+    var color = d3.scale.category20c();
+
+    var vis = target.append("svg:svg")
         .attr("width", w)
         .attr("height", h);
 

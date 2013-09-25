@@ -1,17 +1,21 @@
 // This code based on d3 example(http://bl.ocks.org/tjdecke/5558084).
 
-function day_hour_heatmap(selector, data_file){
-    var margin = { top: 50, right: 0, bottom: 100, left: 30 },
-    width = 960 - margin.left - margin.right,
-    height = 430 - margin.top - margin.bottom,
-    gridSize = Math.floor(width / 24),
+d3_day_hour_heatmap = function(selector, data_file = "/d3js/day_hour_heatmap.tsv"){
+    var target = d3.select(selector);
+    var parentWidth = target[0][0].parentNode.clientWidth;
+
+    var margin = {top: 50, right: 0, bottom: 100, left: 30};
+    var width = parentWidth - margin.left - margin.right;
+    var height = (parentWidth * 0.45) - margin.top - margin.bottom;
+
+    var gridSize = Math.floor(width / 24),
     legendElementWidth = gridSize*2,
     buckets = 9,
     colors = ["#ffffd9","#edf8b1","#c7e9b4","#7fcdbb","#41b6c4","#1d91c0","#225ea8","#253494","#081d58"], // alternatively colorbrewer.YlGnBu[9]
     days = ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"],
     times = ["1a", "2a", "3a", "4a", "5a", "6a", "7a", "8a", "9a", "10a", "11a", "12a", "1p", "2p", "3p", "4p", "5p", "6p", "7p", "8p", "9p", "10p", "11p", "12p"];
 
-    d3.tsv(data_falie,
+    d3.tsv(data_file,
            function(d) {
                return {
                    day: +d.day,
@@ -24,7 +28,7 @@ function day_hour_heatmap(selector, data_file){
                    .domain([0, buckets - 1, d3.max(data, function (d) { return d.value; })])
                    .range(colors);
 
-               var svg = d3.select(selector).append("svg")
+               var svg = target.append("svg")
                    .attr("width", width + margin.left + margin.right)
                    .attr("height", height + margin.top + margin.bottom)
                    .append("g")

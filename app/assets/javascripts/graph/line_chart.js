@@ -1,9 +1,12 @@
 // This code based on d3 example(http://bl.ocks.org/mbostock/3883245).
  
-function line_graph(selector = "#line-graph", data_file = "/d3js/line_graph.tsv"){
-    var margin = {top: 20, right: 20, bottom: 30, left: 50},
-    width = 500 - margin.left - margin.right,
-    height = 350 - margin.top - margin.bottom;
+this.d3_line_chart = function(selector = "#line-graph", data_file = "/d3js/line_graph.tsv"){
+    var target = d3.select(selector);
+    var parentWidth = target[0][0].parentNode.clientWidth;
+
+    var margin = {top: 20, right: 80, bottom: 30, left: 50};
+    var width = parentWidth - margin.left - margin.right;
+    var height = (parentWidth * 0.7) - margin.top - margin.bottom;
 
     var parseDate = d3.time.format("%d-%b-%y").parse;
 
@@ -25,7 +28,7 @@ function line_graph(selector = "#line-graph", data_file = "/d3js/line_graph.tsv"
         .x(function(d) { return x(d.date); })
         .y(function(d) { return y(d.close); });
 
-    var svg = d3.select(selector).append("svg")
+    var svg = target.append("svg")
         .attr("width", width + margin.left + margin.right)
         .attr("height", height + margin.top + margin.bottom)
         .append("g")

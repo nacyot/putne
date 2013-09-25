@@ -1,10 +1,13 @@
 // This code based on d3 example(http://mbostock.github.io/d3/talk/20111018/calendar.html).
 
-function calender_view(selector, data_file){
-    var m = [29, 20, 20, 19], // top right bottom left margin
-    w = 620 - m[1] - m[3], // width
-    h = 90 - m[0] - m[2], // height
-    z = 11; // cell size
+this.calendar_chart = function(selector, data_file = "/d3js/dji.csv"){
+    var target = d3.select(selector);
+    var parentWidth = target[0][0].parentNode.clientWidth;
+
+    var m = {top: 29, right: 20, bottom: 20, left: 19};
+    var w = parentWidth - margin.left - margin.right;
+    var h = (parentWidth * 0.15) - margin.top - margin.bottom;
+    var z = 11 // cell size
 
     var day = d3.time.format("%w"),
     week = d3.time.format("%U"),
@@ -15,7 +18,7 @@ function calender_view(selector, data_file){
     formatNumber = d3.format(",d"),
     formatPercent = d3.format("+.1%");
 
-    var svg = d3.select(selector).selectAll(".year")
+    var svg = target.selectAll(".year")
         .data(d3.range(1995, 2009))
         .enter().append("div")
         .attr("class", "year")

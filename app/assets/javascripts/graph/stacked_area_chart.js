@@ -1,9 +1,12 @@
 // This code based on d3 example(http://bl.ocks.org/mbostock/3885211/).
 
-function stacked_area_chart(selector, data_file){
+this.d3_stacked_area_chart = function(selector, data_file){
+    var target = d3.select(selector);
+    var parentWidth = target[0][0].parentNode.clientWidth;
+
     var margin = {top: 20, right: 20, bottom: 30, left: 50},
-    width = 960 - margin.left - margin.right,
-    height = 500 - margin.top - margin.bottom;
+    var width = parentWidth - margin.left - margin.right;
+    var height = (parentWidth * 0.45) - margin.top - margin.bottom;
 
     var parseDate = d3.time.format("%y-%b-%d").parse,
     formatPercent = d3.format(".0%");
@@ -33,7 +36,7 @@ function stacked_area_chart(selector, data_file){
     var stack = d3.layout.stack()
         .values(function(d) { return d.values; });
 
-    var svg = d3.select(selector).append("svg")
+    var svg = target.append("svg")
         .attr("width", width + margin.left + margin.right)
         .attr("height", height + margin.top + margin.bottom)
         .append("g")
