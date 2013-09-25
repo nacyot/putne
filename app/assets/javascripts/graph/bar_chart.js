@@ -1,9 +1,12 @@
-[// This code based on d3 example(http://bl.ocks.org/mbostock/3885304).
+// This code based on d3 example(http://bl.ocks.org/mbostock/3885304).
 
-function bar_graph(selector, data_file){
-    var margin = {top: 20, right: 20, bottom: 30, left: 40},
-    width = 960 - margin.left - margin.right,
-    height = 500 - margin.top - margin.bottom;
+this.d3_bar_chart = function(selector, data_file = "/d3js/bar_graph.tsv"){
+    var target = d3.select(selector);
+    var parentWidth = target[0][0].parentNode.clientWidth;
+
+    var margin = {top: 20, right: 20, bottom: 30, left: 40};
+    var width = parentWidth - margin.left - margin.right;
+    var height = (parentWidth * 0.47) - margin.top - margin.bottom;
 
     var formatPercent = d3.format(".0%");
 
