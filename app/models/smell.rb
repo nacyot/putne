@@ -7,5 +7,7 @@ class Smell < ActiveRecord::Base
 
   validates_presence_of :targetable_id, :targetable_type, :report, :smell_category, :smell_source
 
+  # Ruby smell
   scope :reeks, -> { where(smell_category: SmellCategory.find_by(name: "SMELL"), smell_source: SmellSource.find_by(name: "REEK") ) }
+  scope :roodis, -> { where(smell_category: SmellCategory.find_by(name: "SMELL"), smell_source: SmellSource.find_by(name: "ROODI") ) }
 end
