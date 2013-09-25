@@ -22,8 +22,9 @@ gem 'rails_admin', github: "sferik/rails_admin"
 gem 'therubyracer'
 gem 'execjs'
 gem 'jquery-rails'
-gem 'jbuilder'
+gem 'json_builder', github: "dewski/json_builder"
 gem 'rabl'
+
 
 # gravatar
 gem 'gravatar_image_tag' 

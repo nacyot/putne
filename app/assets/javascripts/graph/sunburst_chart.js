@@ -2,8 +2,8 @@
 
 this.d3_sunburst_chart = function(selector, data_file = "/d3js/flare.json") {
     var target = d3.select(selector);
-    var width = target[0][0].parentNode.clientWidth;
-    var height = width;
+    var width = target[0][0].parentNode.clientWidth - 40 ;
+    var height = width + 40;
     var radius = Math.min(width, height) / 2;
     var color = d3.scale.category20c();
 
@@ -16,7 +16,7 @@ this.d3_sunburst_chart = function(selector, data_file = "/d3js/flare.json") {
     var partition = d3.layout.partition()
         .sort(null)
         .size([2 * Math.PI, radius * radius])
-        .value(function(d) { return 1; });
+        .value(function(d) { return d.size; });
 
     var arc = d3.svg.arc()
         .startAngle(function(d) { return d.x; })
@@ -46,9 +46,7 @@ this.d3_sunburst_chart = function(selector, data_file = "/d3js/flare.json") {
             .text(function(d) { return d.name; });
 
         d3.selectAll("input").on("change", function change() {
-            var value = this.value === "count"
-                ? function() { return 1; }
-            : function(d) { return d.size; };
+            var value = function(d) { return d.size; };
 
             path
                 .data(partition.value(value).nodes)
