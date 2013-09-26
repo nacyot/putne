@@ -8,6 +8,6 @@ class Project < ActiveRecord::Base
   acts_as_taggable
 
   def latest_report
-    reports[-1]
+    reports.last
   end
 end
