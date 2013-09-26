@@ -71,8 +71,6 @@ class Report < ActiveRecord::Base
   def flog_scores
     target_classes.map { |klass| {name: klass.name, size: klass.scores.flogs[0].score, path: klass.target_file.path } }
       .delete_if { |hash| hash[:size] == 0} 
-    
   end
-
 end
 

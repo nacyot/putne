@@ -14,4 +14,9 @@ class ProjectDecorator < Draper::Decorator
     flogs = latest_report.flog_scores.group_by { |score| File.dirname(score[:path]) }
     flogs.map {|key, content| {name: key, children: content} }
   end
+
+  def flog_scores_for_klass_donut
+    latest_report.flog_scores
+  end
+  
 end

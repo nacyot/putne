@@ -45,6 +45,7 @@ Putne::Application.routes.draw do
 
     namespace :graph do
       get "sunburst_chart" => "projects#sunburst_chart"
+      get "class_donut_chart" => "projects#class_donut_chart"
       get "git_dates" => "git#dates"
     end
   end

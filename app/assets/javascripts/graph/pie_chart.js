@@ -1,12 +1,11 @@
 // This code based on d3 example(http://bl.ocks.org/mbostock/raw/3887235/).
 
-this.d3_pie_chart = function(selcetor, data_file = "/d3js/pie.csv"){
+this.d3_pie_chart = function(selector, data_file = "/d3js/pie.csv"){
     var target = d3.select(selector);
     var parentWidth = target[0][0].parentNode.clientWidth;
 
-    var margin = {top: 50, right: 0, bottom: 100, left: 30};
-    var width = parentWidth - margin.left - margin.right;
-    var height = (parentWidth * 0.45) - margin.top - margin.bottom;
+    var width = parentWidth;
+    var height = (parentWidth * 0.45);
     var radius = Math.min(width, height) / 2;
 
     var color = d3.scale.ordinal()
