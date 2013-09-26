@@ -24,9 +24,9 @@ class ProjectDecorator < Draper::Decorator
       {
         date: report.commit.committed_at.strftime("%Y%m%d"),
         date_original: report.commit.committed_at,
-        complexity: 0,
+        complexity: report.complexity_stat,
         duplication: report.duplication_stat,
-        smell: 0,
+        smell: report.smell_stat,
         churn: report.churn_stat
       }
     end.sort { |a,b| a[:date_original] <=> b[:date_original] } 

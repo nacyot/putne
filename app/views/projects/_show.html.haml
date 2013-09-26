@@ -2,11 +2,11 @@
   .list-group-item
     .row
       .col-lg-4.col-mg-4.col-sm-4
-        = render partial: "report_module/project_summary_4", locals: { project: project, report: project.latest_report }
+        = render partial: "report_module/project_summary_4", locals: { project: project, report: project.latest_report }      
         %br/
         = render partial: "report_module/project_hotspot_4", locals: { report: project.latest_report }
       .col-lg-8.col-mg-8.col-sm-8
-        %div#project-sunburst
+        = render partial: "report_module/project_sunburst", locals: { project: project }
 
   %h4.list-group-item Commit trend
   .list-group-item
@@ -21,7 +21,7 @@
   .list-group-item
     .row
       .col-lg-4.col-mg-4.col-sm-4
-        = render partial: "report_module/project_summary_4", locals: { project: project, report: project.latest_report }
+        = render partial: "report_module/project_summary_4", locals: { project: project, report: project.latest_report}      
       .col-lg-8.col-mg-8.col-sm-8
         #code-quality-line-chart
         -#%img{src: "/images/line_chart.jpg", style: "width: 100%; height: 250px;"}
@@ -54,7 +54,6 @@
 :javascript
   $(function(){
     //d3_sunburst_chart("#project-sunburst");
-    d3_sunburst_chart("#project-sunburst", "#{project_graph_sunburst_chart_path(project_id: @project)}" );
     d3_calendar_chart("#commit-trend-calendar-chart", "#{project_graph_git_dates_path(project_id: @project)}");
     d3_multi_line_chart("#code-quality-line-chart", "#{project_graph_stats_line_chart_path(project_id: @project)}");
     d3_multi_line_chart("#class-complexity-line-chart");

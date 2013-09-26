@@ -16,10 +16,15 @@ class Graph::ProjectsController < ApplicationController
 
   def stats_line_chart
     project = Project.find(params[:project_id]).decorate
+    columns = params[columns] ? params[:columns].split(",") : %w(date Complexity Duplication Smell Churn)
+    
     text = CSV.generate(col_sep: "\t") do |csv|
-      csv << %w(date Complexity Duplication Smell Churn)
+      csv << columns
       text = project.stats_line_data.each do |stats|
-        csv << [stats[:date], stats[:complexity], stats[:duplication], stats[:smell], stats[:churn]]
+        data = []
+        columns.each {|column| data << stats[column.downcase.to_sym] }
+        csv << data
+        
       end
     end
     
@@ -28,4 +33,6 @@ class Graph::ProjectsController < ApplicationController
     # churn, complexity, duplication, smell, commit, branches, file,
     # classes, methods
   end
+
+  
 end

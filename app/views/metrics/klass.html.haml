@@ -27,11 +27,9 @@
         %h4 Index
   .list-group-item
     .row
-      .col-lg-9.col-md-9.col-sm-9
-        -#= CodeRay.scan(@file, :ruby).div.html_safe
-        = @file
-      .col-lg-3.col-md-3.col-sm-3
-        %h4 Index
+      .col-lg-12.col-md-12.col-sm-12
+        = CodeRay.scan(@file, :ruby).div.html_safe
+
 
 
 

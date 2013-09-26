@@ -1,0 +1,6 @@
+%div#project-sunburst
+
+:javascript
+  $(function(){
+    d3_sunburst_chart("#project-sunburst", "#{project_graph_sunburst_chart_path(project_id: project)}" );
+  });

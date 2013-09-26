@@ -20,10 +20,10 @@
         = "/"
         Bugspots
       .col-lg-12.col-mg-12.col-sm-12
-        %img{src: "/images/sunbrust.jpg", style: "width: 100%"}
+        = render partial: "report_module/project_sunburst", locals: { project: @project }
   %h4.list-group-item Listing classes
   .list-group-item
-    %table{style: "width: 100%"}
+    %table.table.table-striped{style: "width: 100%"}
       %tr
         %th Class name
         %th LOC
