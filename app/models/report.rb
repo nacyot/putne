@@ -13,7 +13,7 @@ class Report < ActiveRecord::Base
   has_many :smells, dependent: :destroy
 
   has_many :duplications, dependent: :destroy
-
+  
   validates_presence_of :project, :branch, :commit, :repository
   validates_uniqueness_of :commit
 
@@ -66,33 +66,6 @@ class Report < ActiveRecord::Base
 
   def sum_methods
     target_methods.count
-  end
-
-  def register_class_scores(category, source)
-    register_class_score("COMPLEXITY", "FLOG")
-    register_class_score("COMPLEXITY", "SAIKURO")
-    register_class_score("LOC", "SAIKURO")
-  end
-  
-  def register_class_score(category, source)
-    category = ScoreCategory.find_by(name: category) if category.instance_of?(String)
-    source = ScoreSource.find_by(name: source) if source.instance_of?(String)
-    
-    target_classes.includes(:target_methods).each do |klass|
-      class_score =  klass.target_methods.includes(:scores).inject(0) do |sum, method|
-        method_score = method.scores.find_by(score_category: category, score_source: source)
-        sum += method_score.nil? ? 0 : method_score.score
-      end
-      
-      Score.create!(score_category: category,
-                    score_source: source,
-                    score: (class_score ? class_score : 0),
-                    report: self,
-                    targetable: klass
-                    )
-
-      
-    end
   end
 
   def flog_scores
