@@ -7,6 +7,7 @@ class Project < ActiveRecord::Base
   accepts_nested_attributes_for :repository
   acts_as_taggable
 
+  #TODO
   def latest_report
     reports.last
   end

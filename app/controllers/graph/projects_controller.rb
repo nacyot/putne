@@ -1,5 +1,9 @@
 class Graph::ProjectsController < ApplicationController
   def sunburst_chart
-    render :json => {name: "Putne", children: Project.find(params[:project_id]).reports.last.flog_scores_group_by_path }
+    project = Project.find(params[:project_id]).decorate
+    render :json => {name: project.title, children: project.flog_scores_for_two_level_sunburst }
+  end
+
+  def class_donut
   end
 end

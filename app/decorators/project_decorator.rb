@@ -10,4 +10,8 @@ class ProjectDecorator < Draper::Decorator
   #     end
   #   end
 
+  def flog_scores_for_two_level_sunburst
+    flogs = latest_report.flog_scores.group_by { |score| File.dirname(score[:path]) }
+    flogs.map {|key, content| {name: key, children: content} }
+  end
 end

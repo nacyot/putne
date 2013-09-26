@@ -74,9 +74,5 @@ class Report < ActiveRecord::Base
     
   end
 
-  def flog_scores_group_by_path
-    flogs = flog_scores.group_by { |score| File.dirname(score[:path]) }
-    flogs.map {|key, content| {name: key, children: content} }
-  end
 end
 
