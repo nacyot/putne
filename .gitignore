@@ -8,6 +8,8 @@
 /vendor/bundler
 /vendor/bundler/*
 
+/config/database.yml
+
 /log/*.log
 /report/*
 /tmp
