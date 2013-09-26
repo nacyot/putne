@@ -56,7 +56,7 @@
     //d3_sunburst_chart("#project-sunburst");
     d3_sunburst_chart("#project-sunburst", "#{project_graph_sunburst_chart_path(project_id: @project)}" );
     d3_calendar_chart("#commit-trend-calendar-chart", "#{project_graph_git_dates_path(project_id: @project)}");
-    d3_multi_line_chart("#code-quality-line-chart");
+    d3_multi_line_chart("#code-quality-line-chart", "#{project_graph_stats_line_chart_path(project_id: @project)}");
     d3_multi_line_chart("#class-complexity-line-chart");
     d3_multi_line_chart("#code-smell-line-chart");
   });

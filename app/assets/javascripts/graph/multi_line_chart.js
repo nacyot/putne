@@ -73,7 +73,7 @@ this.d3_multi_line_chart = function(selector, data_file = "/d3js/line_graph_mult
             .attr("y", 6)
             .attr("dy", ".71em")
             .style("text-anchor", "end")
-            .text("Temperature (ºF)");
+            .text("Stats");
 
         var city = svg.selectAll(".city")
             .data(cities)

@@ -47,6 +47,7 @@ Putne::Application.routes.draw do
       get "sunburst_chart" => "projects#sunburst_chart"
       get "class_donut_chart" => "projects#class_donut_chart"
       get "git_dates" => "git#dates"
+      get "stats_line_chart" => "projects#stats_line_chart"
     end
   end
 
