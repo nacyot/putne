@@ -9,8 +9,10 @@ class Git
   end
 
   def dates
-    commits("master", nil).map { |commit| commit.date.strftime("%Y-%m-%d") }
-      .group_by{|date| date}.map{|key, value| [key, value.count] }
+    tmp = commits("master", 500)
+    tmp = map { |commit| commit.date.strftime("%Y-%m-%d") }
+    tmp = tmp.group_by{|date| date}
+    tmp.map{|key, value| [key, value.count] }
   end
 
   def dates_csv
@@ -25,18 +27,12 @@ class Git
     @repo.tree([path])
   end
   
-  def commit_stats(num)
-    @repo_stats || @repo_stats = @repo.commit_stats("master", 10000)
+  def commit_stats(num = 10000)
+    @repo.commit_stats("master", 10000)
   end
   
-  def commits(branch, num = 10000)
-    if @commits.nil?
-      @commits = @repo.commits("master", num)
-    elsif @commits.count != num
-      @commits = @repo.commits("master", num)
-    else
-      @commits
-    end
+  def commits(branch = "master", num = 10)
+    @repo.commits(branch, num) 
   end
 
   def branches

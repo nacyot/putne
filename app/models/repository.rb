@@ -6,6 +6,13 @@ class Repository < ActiveRecord::Base
 
   validates_uniqueness_of :repository_url
 
+  after_create :create_workspace
+  after_destroy :delete_workspace
+
+  def self.workspace_path
+    Rails.root.join('.', 'tmp', 'workspace')
+  end
+  
   def git
     #@git || (`git pull`; @git = Git.new(self))
     @git || @git = Git.new(self)
@@ -13,16 +20,12 @@ class Repository < ActiveRecord::Base
     false
   end
 
-  def remove_workspace
-    Dir.chdir Rails.root
-    `rm -rf tmp/workspace/#{ git_project_name }`
-  end
-
   def recent_commit
     git.head.commit
   end
 
   def register_recent_commits
+    puts "1.5"
     git.commits.each do |commit|
       Commit.find_or_create_by!(repository: self,
                                 commit_hash: commit.id,
@@ -31,6 +34,8 @@ class Repository < ActiveRecord::Base
                                 author_email: commit.author.email
                                 )
     end
+
+    puts "1.6"
   end
   
   def workspace_path
@@ -42,9 +47,11 @@ class Repository < ActiveRecord::Base
   end
   
   def init_repository
-    create_workspace
+    puts "1"
     register_recent_commits
+    puts "2"
     branches << Branch.create!(name: "master", repository: self)
+    puts "3"
   end
 
   def create_recent_report
@@ -71,26 +78,35 @@ class Repository < ActiveRecord::Base
     validates_repository
   end
   
-  def reset_repository(hash)
-    Dir.chdir Rails.root
+  def reset_repository(hash = File.read(".git/refs/remotes/origin/master"))
     Dir.chdir workspace_path
     `git reset --hard #{ hash }`
   end
 
   def cancle_reset_repository
-    Dir.chdir Rails.root
     Dir.chdir workspace_path
     `git reflog`
     `git reset --hard HEAD@{1}`
   end
-  
+
   def create_workspace
-    Dir.chdir Rails.root
-    `mkdir -p tmp/workspace`
-    Dir.chdir 'tmp/workspace'
+    Dir.mkdir Repository.workspace_path unless Dir.exists?(Repository.workspace_path)
+    Dir.chdir Repository.workspace_path
     `git clone #{ repository_url }`
+  rescue Errno::EEXIST => e
+    pp e
+    puts "This path already created."
   end
 
+  def delete_workspace
+    `rm -rf #{ workspace_path }`
+  end
+
+  def pull(branch = "master")
+    Dir.chdir workspace_path
+    `git pull origin #{ branch }`
+  end
+  
   def validates_repository
     Dir.chdir Rails.root
     Grit::Repo.new workspace_path
@@ -99,7 +115,6 @@ class Repository < ActiveRecord::Base
     update_attribute(:valida, false)
   rescue Grit::NoSuchPathError
     update_attribute(:valida, false)
-  end
-  
+  end 
 end
 
