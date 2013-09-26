@@ -1,15 +1,15 @@
 class Git
-  attr_accessor :repo, :stat
+  attr_accessor :repo, :repo_stats
   
   def initialize(repository)
     @repository = repository
     Dir.chdir Rails.root
     @repo = Grit::Repo.new @repository.workspace_path
-    @stat = GitStats::GitData::Repo.new(path: @repository.workspace_path)
+    @repo_stats = GitStats::GitData::Repo.new(path: @repository.workspace_path)
   end
 
   def dates
-    @repo.commits("master", nil).map { |commit| commit.date.strftime("%Y-%m-%d") }
+    commits("master", nil).map { |commit| commit.date.strftime("%Y-%m-%d") }
       .group_by{|date| date}.map{|key, value| [key, value.count] }
   end
 
@@ -25,12 +25,18 @@ class Git
     @repo.tree([path])
   end
   
-  def stats
-    @repo.commit_stats("master", 2000)        
+  def commit_stats(num)
+    @repo_stats || @repo_stats = @repo.commit_stats("master", 10000)
   end
   
-  def commits(num = 10)
-    @repo.commits("master", num)
+  def commits(num = 10000)
+    if @commits.nil?
+      @commits = @repo.commits("master", num)
+    elsif @commits.count != num
+      @commits = @repo.commits("master", num)
+    else
+      @commits
+    end
   end
 
   def branches
@@ -38,10 +44,14 @@ class Git
   end
 
   def last_commit
-    @repo.commits.first
+    commits.first
   end
   
   def head
     @repo.head
+  end
+
+  def count
+    commits.count
   end
 end
