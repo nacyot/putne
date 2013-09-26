@@ -5,7 +5,6 @@
         %h1 Dashboard
       .list-group
         .list-group-item
-          %img{src: "/images/calendar_chart.jpg", style: "width: 100%;"}
         - @projects.each do |project|
           = render partial: "shared/project_card", locals: { project: project }
     = paginate @projects

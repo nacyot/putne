@@ -1,0 +1,3 @@
+class ProjectsDecorator < Draper::CollectionDecorator
+  delegate :current_page, :total_pages, :limit_value, :num_pages
+end

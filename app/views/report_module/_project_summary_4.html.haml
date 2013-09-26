@@ -5,22 +5,22 @@
       %th # of files
       %td= report.sum_files
       %td  
-        %span.file-sparkline
+        %span.file-sparkline{class: "file-sparkline-#{project.title}"}
     %tr
       %th # of classes
       %td= report.sum_classes
       %td
-        %span.class-sparkline
+        %span.class-sparkline{class: "class-sparkline-#{project.title}"}
     %tr
       %th # of methods
       %td= report.sum_methods
       %td
-        %span.method-sparkline
+        %span.method-sparkline{class: "method-sparkline-#{project.title}"}
     %tr
       %th Complexities
       %td= report.sum_complexities
       %td
-        %span.complexity-sparkline
+        %span.complexity-sparkline{class: "complexity-sparkline-#{project.title}"}
     %tr
       %th Com / Methods
       %td= report.sum_complexities / report.sum_methods if report.sum_methods > 0
@@ -30,24 +30,24 @@
       %th Duplications
       %td= report.sum_duplications
       %td
-        %span.duplication-sparkline
+        %span.duplication-sparkline{class: "duplication-sparkline-#{project.title}"}
     %tr
       %th Smells
       %td= report.sum_smells
       %td
-        %span.smell-sparkline
+        %span.smell-sparkline{class: "smell-sparkline-#{project.title}"}
     %tr
       %th Churns
       %td= report.sum_churns
       %td
-        %span.churn-sparkline
+        %span.churn-sparkline{class: "churn-sparkline-#{project.title}"}
 
 :javascript
   $(function(){
   #{ 
     result = ""
       %w{churn complexity duplication smell commit file class method}.each do |item|
-      result += "to_sparkline('." + item + "-sparkline', " + project.get_stats(item + "_stat").to_s + ");\n"
+      result += "to_sparkline('." + item + "-sparkline-" + project.title + "', " + project.get_stats(item + "_stat").to_s + ");\n"
     end
 
   result
