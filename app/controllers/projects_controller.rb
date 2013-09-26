@@ -13,7 +13,7 @@ class ProjectsController < ApplicationController
   # GET /projects/1
   # GET /projects/1.json
   def show
-    @project = Project.find params[:id]
+    @project = Project.find(params[:id]).decorate
     @title = "Project - #{@project.title}"
     @report = @project.latest_report
   end
@@ -100,7 +100,6 @@ class ProjectsController < ApplicationController
   end
 
   def commit_hook
-    puts params[:project_id]
     @project = Project.find params[:project_id]
     key = @project.user.secret_key.key
     ReportWorker.perform_async @project.repository.id, params[:hash] if params[:ci_key] == key

@@ -2,7 +2,7 @@
   .list-group-item
     .row
       .col-lg-4.col-mg-4.col-sm-4
-        = render partial: "report_module/project_summary_4", locals: { report: project.latest_report }      
+        = render partial: "report_module/project_summary_4", locals: { project: project, report: project.latest_report }
         %br/
         = render partial: "report_module/project_hotspot_4", locals: { report: project.latest_report }
       .col-lg-8.col-mg-8.col-sm-8
@@ -21,7 +21,7 @@
   .list-group-item
     .row
       .col-lg-4.col-mg-4.col-sm-4
-        = render partial: "report_module/project_summary_4", locals: { report: project.latest_report}      
+        = render partial: "report_module/project_summary_4", locals: { project: project, report: project.latest_report }
       .col-lg-8.col-mg-8.col-sm-8
         #code-quality-line-chart
         -#%img{src: "/images/line_chart.jpg", style: "width: 100%; height: 250px;"}

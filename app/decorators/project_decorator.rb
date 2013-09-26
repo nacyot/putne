@@ -20,7 +20,7 @@ class ProjectDecorator < Draper::Decorator
   end
 
   def stats_line_data
-    tmp = reports.map do |report|
+    reports.map do |report|
       {
         date: report.commit.committed_at.strftime("%Y%m%d"),
         date_original: report.commit.committed_at,
@@ -29,8 +29,13 @@ class ProjectDecorator < Draper::Decorator
         smell: 0,
         churn: report.churn_stat
       }
-    end
+    end.sort { |a,b| a[:date_original] <=> b[:date_original] } 
+  end
 
-    tmp.sort { |a,b| a[:date_original] <=> b[:date_original] } 
+  def get_stats(name)
+    reports.map do |report|
+      report[name]
+    end.reverse
   end
 end
+

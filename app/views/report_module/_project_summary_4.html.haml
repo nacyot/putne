@@ -5,39 +5,52 @@
       %th # of files
       %td= report.sum_files
       %td  
-        %span.sparkline-test
+        %span.file-sparkline
     %tr
       %th # of classes
       %td= report.sum_classes
       %td
-        %span.sparkline-test
+        %span.class-sparkline
     %tr
       %th # of methods
       %td= report.sum_methods
       %td
-        %span.sparkline-test
+        %span.method-sparkline
     %tr
       %th Complexities
       %td= report.sum_complexities
       %td
-        %span.sparkline-test
+        %span.complexity-sparkline
     %tr
       %th Com / Methods
-      %td= report.sum_complexities / report.sum_methods
+      %td= report.sum_complexities / report.sum_methods if report.sum_methods > 0
       %td
-        %span.sparkline-test
+        %span
     %tr
       %th Duplications
       %td= report.sum_duplications
       %td
-        %span.sparkline-test
+        %span.duplication-sparkline
     %tr
       %th Smells
       %td= report.sum_smells
       %td
-        %span.sparkline-test
+        %span.smell-sparkline
     %tr
       %th Churns
       %td= report.sum_churns
       %td
-        %span.sparkline-test
+        %span.churn-sparkline
+
+:javascript
+  $(function(){
+  #{ 
+    result = ""
+      %w{churn complexity duplication smell commit file class method}.each do |item|
+      result += "to_sparkline('." + item + "-sparkline', " + project.get_stats(item + "_stat").to_s + ");\n"
+    end
+
+  result
+  }
+  });
+
