@@ -88,6 +88,8 @@ ALTER USER <USERNAME> CREATEDB
 cp config/database.yml.sample config/database.yml
 ```
 
+프로그램을 실행합니다.
+
 ## Documentation
 http://rubydoc.info/github/nacyot/putne/
 
