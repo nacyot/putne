@@ -14,13 +14,8 @@
         %h5 Complexity
         .text-center
           -# %img{src: "/images/donut_chart.png", style: "width: 60%;"}
-
-            
 :javascript
   $(function(){
-  d3_donut_chart("##{ project.title + "-class-donut"}", "#{project_graph_class_donut_chart_path(project_id: project)}")
+    d3_donut_chart("##{ project.title + "-class-donut"}", "#{project_graph_class_donut_chart_path(project_id: project)}")
   });
-
-
-
 

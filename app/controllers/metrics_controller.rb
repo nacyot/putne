@@ -98,7 +98,7 @@ class MetricsController < ApplicationController
   def smell
     @title = "Smell"
     @project = Project.find(params[:project_id])
-    @report = Report.find(params[:report_id])
+    @report = Report.find(params[:report_id]).includes(:smells)
   end
 
   def timeline

@@ -13,9 +13,9 @@
   .list-group-item
     .row
       .col-lg-6.col-md-6.col-sm-6.text-center
-        %img{src: "/images/pie_chart.png", style: "width: 80%;"}
+        %div{id: "#{@project.title}-smell-donut"}
       .col-lg-6.col-md-6.col-sm-6.text-center
-        %img{src: "/images/pie_chart.png", style: "width: 80%;"}
+        %div{id: "#{@project.title}-class-smell-donut"}
   .list-group-item
     %h4 Class - Smells Graph
   .list-group-item
@@ -33,7 +33,7 @@
           %th Method name
           %th Small type
           -#%th Message
-          - @report.smells.reeks.each do |smell|
+          - @report.smells.includes(:targetable).reeks.each do |smell|
             %tr
               %td= smell.targetable.name
               %td= smell.smell
@@ -51,5 +51,9 @@
       .col-lg-4.col-md-4.col-sm-4
         %img{src: "/images/slopegraph.png", style: "width: 100%;"}    
 
-
-
+:javascript
+  $(function(){
+    // d3_donut_chart("##{ @project.title + "-class-donut"}", "#{ project_graph_class_donut_chart_path(project_id: @project) }")
+    d3_donut_chart("##{ @project.title + "-smell-donut"}", "#{ project_graph_smell_pie_chart_path(project_id: @project) }")
+    d3_donut_chart("##{ @project.title + "-class-smell-donut"}", "#{ project_graph_smell_klass_chart_path(project_id: @project) }")
+  });

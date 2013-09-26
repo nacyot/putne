@@ -32,10 +32,21 @@ class ProjectDecorator < Draper::Decorator
     end.sort { |a,b| a[:date_original] <=> b[:date_original] } 
   end
 
+  def smell_count_by_klass_data
+    reports.last.smells.includes(:targetable).type_class.group_by(&:targetable)
+      .map{ |item| {name: item[0].name, count: item[1].count} }
+  end
+
+  def smell_count_by_smell_data
+    reports.last.smells.group_by(&:smell).map{ |item| {name: item[0], count: item[1].count} } 
+  end
+
+  # for sparkline
   def get_stats(name)
     reports.map do |report|
       report[name]
     end.reverse
   end
+
 end
 

@@ -17,7 +17,7 @@ this.d3_donut_chart = function(selector, data_file = "/d3js/donut.csv"){
 
     var pie = d3.layout.pie()
         .sort(null)
-        .value(function(d) { return d.Complexity; });
+        .value(function(d) { return d.Data; });
 
     var svg = target.append("svg")
         .attr("width", width)
@@ -28,7 +28,7 @@ this.d3_donut_chart = function(selector, data_file = "/d3js/donut.csv"){
     d3.csv(data_file, function(error, data) {
 
         data.forEach(function(d) {
-            d.Complexity = +d.Complexity;
+            d.Data = +d.Data;
         });
 
         var g = svg.selectAll(".arc")
@@ -38,13 +38,13 @@ this.d3_donut_chart = function(selector, data_file = "/d3js/donut.csv"){
 
         g.append("path")
             .attr("d", arc)
-            .style("fill", function(d) { return color(d.data.Complexity); });
+            .style("fill", function(d) { return color(d.data.Data); });
 
-        // g.append("text")
-        //     .attr("transform", function(d) { return "translate(" + arc.centroid(d) + ")"; })
-        //     .attr("dy", ".35em")
-        //     .style("text-anchor", "middle")
-        //     .text(function(d) { return d.data.Klass; });
+        g.append("text")
+            .attr("transform", function(d) { return "translate(" + arc.centroid(d) + ")"; })
+            .attr("dy", ".35em")
+            .style("text-anchor", "middle")
+            .text(function(d) { return d.data.Category; });
 
     });
 }
