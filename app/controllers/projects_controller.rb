@@ -36,7 +36,15 @@ class ProjectsController < ApplicationController
     @project = Project.create!(project_params)
     # @project.repository = Repository.last #Repository.create!(params[:project][:repository_attributes])
     InitRepositoryWorker.perform_async(@project.repository.id)
-
+    in_time = 120
+    
+    @project.repository.commits.each do |commit|
+      if Report.find_by(commit_id: commit.id.to_s).nil?
+        ReportWorker.perform_in in_time, @project.repository.id, commit.commit_hash
+        in_time += 120
+      end
+    end
+    
     respond_to do |format|
       if @project.id?
         format.html { redirect_to @project, notice: 'Project was successfully created.' }

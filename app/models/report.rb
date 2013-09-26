@@ -53,7 +53,7 @@ class Report < ActiveRecord::Base
   end
   
   def sum_commits
-    repository.git.stats.count
+    repository.git.commit_stats.count
   end
 
   def sum_files

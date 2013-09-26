@@ -10,7 +10,7 @@ class Git
 
   def dates
     tmp = commits("master", 500)
-    tmp = map { |commit| commit.date.strftime("%Y-%m-%d") }
+    tmp = tmp.map { |commit| commit.date.strftime("%Y-%m-%d") }
     tmp = tmp.group_by{|date| date}
     tmp.map{|key, value| [key, value.count] }
   end
@@ -27,8 +27,8 @@ class Git
     @repo.tree([path])
   end
   
-  def commit_stats(num = 10000)
-    @repo.commit_stats("master", 10000)
+  def commit_stats(num = 1000)
+    @repo.commit_stats("master", 1000)
   end
   
   def commits(branch = "master", num = 10)

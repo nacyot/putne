@@ -6,7 +6,7 @@ class Repository < ActiveRecord::Base
 
   validates_uniqueness_of :repository_url
 
-  after_create :create_workspace
+  # after_create :create_workspace => InitRepositoryWorker
   after_destroy :delete_workspace
 
   def self.workspace_path
@@ -25,7 +25,6 @@ class Repository < ActiveRecord::Base
   end
 
   def register_recent_commits
-    puts "1.5"
     git.commits.each do |commit|
       Commit.find_or_create_by!(repository: self,
                                 commit_hash: commit.id,
@@ -35,7 +34,6 @@ class Repository < ActiveRecord::Base
                                 )
     end
 
-    puts "1.6"
   end
   
   def workspace_path
@@ -47,11 +45,8 @@ class Repository < ActiveRecord::Base
   end
   
   def init_repository
-    puts "1"
     register_recent_commits
-    puts "2"
     branches << Branch.create!(name: "master", repository: self)
-    puts "3"
   end
 
   def create_recent_report
