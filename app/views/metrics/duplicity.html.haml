@@ -5,7 +5,7 @@
     Duplications
 .list-group
   .list-group-item
-    %img{src: "/images/line_one_chart.png"}
+    #duplication-line-chart
   .list-group-item
     %img{src: "/images/horison_sunbrust.jpg", style: "width: 100%;"}    
   .list-group-item
@@ -19,6 +19,11 @@
           %tr
             %td= line.target_file.path
             %td= line.line_num
+
+:javascript
+  $(function(){
+    d3_multi_line_chart("#duplication-line-chart", "#{project_graph_stats_line_chart_path(project_id: @project, columns: 'date,Duplication')}");
+  });
 
 
 
