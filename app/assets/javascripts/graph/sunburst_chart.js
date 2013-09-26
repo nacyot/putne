@@ -4,7 +4,7 @@ this.d3_sunburst_chart = function(selector, data_file = "/d3js/flare.json") {
     var target = d3.select(selector);
     var width = target[0][0].parentNode.clientWidth - 40 ;
     var height = width + 40;
-    var radius = Math.min(width, height) / 2;
+    var radius = (Math.min(width, height) - 50) / 2;
     var color = d3.scale.category20c();
 
     var svg = target.append("svg")

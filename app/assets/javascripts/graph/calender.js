@@ -6,7 +6,7 @@ this.d3_calendar_chart = function(selector, data_file = "/d3js/dji.csv"){
 
     var width = parentWidth;
     var height = parentWidth * 0.16;
-    var cellSize = 13; // cell size
+    var cellSize = 10; // cell size
 
     var day = d3.time.format("%w"),
     week = d3.time.format("%U"),
