@@ -29,7 +29,7 @@ class Git
     @repo_stats || @repo_stats = @repo.commit_stats("master", 10000)
   end
   
-  def commits(num = 10000)
+  def commits(branch, num = 10000)
     if @commits.nil?
       @commits = @repo.commits("master", num)
     elsif @commits.count != num
