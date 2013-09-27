@@ -90,6 +90,14 @@ cp config/database.yml.sample config/database.yml
 
 프로그램을 실행합니다.
 
+``
+# sidekiq 서버 실행
+bundle exec sidekiq -e development -c 1 
+
+#
+bundle exec rails server
+``
+
 ## Documentation
 http://rubydoc.info/github/nacyot/putne/
 
