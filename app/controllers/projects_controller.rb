@@ -60,6 +60,7 @@ class ProjectsController < ApplicationController
     @project = Project.find params[:project_id]
     in_time = 5
 
+    @project.repository.register_recent_commits(200)
     @project.repository.commits.each do |commit|
       if Report.find_by(commit_id: commit.id.to_s).nil?
         ReportWorker.perform_in in_time, @project.repository.id, commit.commit_hash
