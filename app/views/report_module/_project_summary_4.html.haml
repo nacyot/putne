@@ -23,7 +23,8 @@
         %span.complexity-sparkline{class: "complexity-sparkline-#{project.title}"}
     %tr
       %th Com / Methods
-      %td= report.sum_complexities / report.sum_methods unless report.nil? && report.sum_methods == 0
+      -# TODO
+      %td= report.sum_complexities / report.sum_methods + 1 unless report.nil?
       %td
         %span
     %tr
