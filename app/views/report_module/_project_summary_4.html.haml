@@ -3,27 +3,27 @@
   %table.table.table-striped
     %tr
       %th # of files
-      %td= report.sum_files if report.sum_files 
+      %td= report.sum_files unless report.nil?
       %td  
         %span.file-sparkline{class: "file-sparkline-#{project.title}"}
     %tr
       %th # of classes
-      %td= report.sum_classes if report.sum_classes
+      %td= report.sum_classes unless report.nil? 
       %td
         %span.class-sparkline{class: "class-sparkline-#{project.title}"}
     %tr
       %th # of methods
-      %td= report.sum_methods if report.sum_methods
+      %td= report.sum_methods unless report.nil? 
       %td
         %span.method-sparkline{class: "method-sparkline-#{project.title}"}
     %tr
       %th Complexities
-      %td= report.sum_complexities if report.sum_complexities
+      %td= report.sum_complexities unless report.nil? 
       %td
         %span.complexity-sparkline{class: "complexity-sparkline-#{project.title}"}
     %tr
       %th Com / Methods
-      %td= report.sum_complexities / report.sum_methods if report.sum_methods > 0
+      %td= report.sum_complexities / report.sum_methods unless report.nil? 
       %td
         %span
     %tr
