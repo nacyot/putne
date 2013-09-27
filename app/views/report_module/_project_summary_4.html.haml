@@ -23,22 +23,22 @@
         %span.complexity-sparkline{class: "complexity-sparkline-#{project.title}"}
     %tr
       %th Com / Methods
-      %td= report.sum_complexities / report.sum_methods unless report.nil? 
+      %td= report.sum_complexities / report.sum_methods unless report.nil? && report.sum_methods != 0
       %td
         %span
     %tr
       %th Duplications
-      %td= report.sum_duplications unless report.nil?
+      %td= report.sum_duplications if report.sum_duplications 
       %td
         %span.duplication-sparkline{class: "duplication-sparkline-#{project.title}"}
     %tr
       %th Smells
-      %td= report.sum_smells unless report.nil?
+      %td= report.sum_smells if report.sum_smells
       %td
         %span.smell-sparkline{class: "smell-sparkline-#{project.title}"}
     %tr
       %th Churns
-      %td= report.sum_churns unless report.nil?
+      %td= report.sum_churns if report.sum_churns
       %td
         %span.churn-sparkline{class: "churn-sparkline-#{project.title}"}
 
