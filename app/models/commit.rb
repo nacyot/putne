@@ -8,6 +8,8 @@ class Commit < ActiveRecord::Base
   validates :commit_hash, :uniqueness => {
     :scope => :repository_id,
     :message => 'cannot have two category with same path and report_id'}
+
+  scope :commit_day, -> { select "*, to_char(committed_at, 'YYYYMMDD') as commit_day" }
   
   def rebase
     Dir.chdir Rails.root
