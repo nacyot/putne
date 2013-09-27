@@ -28,8 +28,8 @@
         %h4 Slophgraph
   .list-group-item
     .row
-      .col-lg-8.col-md-8.col-sm-8
-        %table{style: "width: 100%;"}
+      .col-lg-12.col-md-12.col-sm-12
+        %table.table.table-striped{style: "width: 100%;"}
           %th Method name
           %th Small type
           -#%th Message
@@ -48,8 +48,7 @@
         -#       %td= roodi.file_line_info.target_file.path
         -#       %td= roodi.file_line_info.line_num
         -#       %td= roodi.message
-      .col-lg-4.col-md-4.col-sm-4
-        %img{src: "/images/slopegraph.png", style: "width: 100%;"}    
+
 
 :javascript
   $(function(){

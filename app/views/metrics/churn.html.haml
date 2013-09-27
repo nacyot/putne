@@ -7,7 +7,7 @@
   .list-group-item
     %h4 File churns
   .list-group-item
-    %img{src: "/images/horison_sunbrust.jpg", style: "width: 100%;"}    
+    #file-churn-icecle
   .list-group-item
     %table.table.table-striped.churn
       %th.name File path
@@ -42,3 +42,9 @@
         %tr
           %td= churn.targetable.name
           %td= churn.score
+
+:javascript
+  $(function(){
+    //d3_multi_line_chart("#file-churn-icecle");
+    d3_icecle_chart("#file-churn-icecle");
+  });

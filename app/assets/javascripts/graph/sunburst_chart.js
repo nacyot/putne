@@ -6,6 +6,11 @@ this.d3_sunburst_chart = function(selector, data_file = "/d3js/flare.json") {
     var height = width + 40;
     var radius = (Math.min(width, height) - 50) / 2;
     var color = d3.scale.category20c();
+    
+    var tooltip = d3.select("body")
+        .append("div")
+        .style("position", "absolute")
+        .style("visibility", "hidden");
 
     var svg = target.append("svg")
         .attr("width", width)
@@ -35,11 +40,31 @@ this.d3_sunburst_chart = function(selector, data_file = "/d3js/flare.json") {
             .style("stroke", "#fff")
             .style("fill", function(d) { return color((d.children ? d : d.parent).name); })
             .style("fill-rule", "evenodd")
+            .on("mouseover", function(d, i) {
+                d3.select(this);
+                tooltip
+                    .html('<div class="mini-helper well well-lg"><span style="font-size:1.6em;font-family:Patua One;">'+d.name+'<br></span><span style="font-family:Open Sans;">' + (d.size ? d.size : "") );
+                if(tooltip.style("visibility") == "hidden" ){
+                    return tooltip
+                        .style("visibility", "visible")
+                        .style("top", (d3.event.pageY - 100) + "px")
+                        .style("left",(d3.event.pageX - 13) + "px");
+                }
+                })
+            .on("mousemove", function(d, i){
+                
+            })
+            .on("mouseout", function(d, i) {
+                d3.select(this)
+                    .style("opacity","1");
+                return tooltip.style("visibility", "hidden");
+                })
             .each(stash);
         
         g.append("text")
-            .attr("transform", function(d) { return "rotate(" + (d.x + d.dx / 2 - Math.PI / 2) / Math.PI * 180 + ")"; })
-            .attr("x", function(d) { return Math.sqrt(d.y); })
+            .attr("transform", function(d) { return "rotate(" + (d.x + (d.dx / 2) - Math.PI / 2) / Math.PI * 180 + ")";})
+                //return "rotate(" + (d.x + (d.dx / 2) - Math.PI / 2) / Math.PI * 180 + ")"; 
+            .attr("x", function(d) { return d.children ? Math.sqrt(d.y)- 50 : Math.sqrt(d.y) + 0; })
             .attr("dx", "6") // margin
             .attr("dy", ".35em") // vertical-align
             .attr("font-size", "10px")

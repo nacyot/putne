@@ -36,7 +36,7 @@ class Graph::ProjectsController < ApplicationController
   
   def stats_line_chart
     project = Project.find(params[:project_id]).decorate
-    columns = params[columns].nil? ? params[:columns].split(",") : %w(date Complexity Duplication Smell Churn)
+    columns = params[:columns].nil? ? %w(date Complexity Duplication Smell Churn) : params[:columns].split(",")
     
     text = CSV.generate(col_sep: "\t") do |csv|
       csv << columns

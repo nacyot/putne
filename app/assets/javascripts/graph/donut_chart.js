@@ -32,7 +32,7 @@ this.d3_donut_chart = function(selector, data_file = "/d3js/donut.csv"){
         });
 
         var g = svg.selectAll(".arc")
-            .data(pie(data))
+            .data( pie(data) )
             .enter().append("g")
             .attr("class", "arc");
 
@@ -44,6 +44,7 @@ this.d3_donut_chart = function(selector, data_file = "/d3js/donut.csv"){
             .attr("transform", function(d) { return "translate(" + arc.centroid(d) + ")"; })
             .attr("dy", ".35em")
             .style("text-anchor", "middle")
+            //.text(function(d) { return d.data.Category; });
             .text(function(d) { return d.data.Category; });
 
     });
