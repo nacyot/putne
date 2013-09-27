@@ -93,19 +93,23 @@ bundle exec rake db:seed
 
 프로그램을 실행합니다.
 
-``
+```
 # sidekiq 서버 실행
 bundle exec sidekiq -e development -c 1 
 
-#
+# Putne 서버를 실행합니다.
 bundle exec rails server
-``
+```
 
 ## Documentation
 http://rubydoc.info/github/nacyot/putne/
 
 ## Usage
-
+```
+# Default 아이디 / 패스워드
+id : admin@example.com
+password : abcd1234
+```
 
 ## Contributing
 
