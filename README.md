@@ -26,7 +26,7 @@ Putne는 현재 아래와 같은 코드 메트릭스를 지원합니다.
 
 * ...
 
-현재 공식적으로 SCM은 Git을 지원하며 언어는 Ruby를 지원합니다. 각 레포트 모듈화를 통해 다른 언어의 분석 결과도 통합할 수 있도록 지원할 예정입니다.
+현재 공식적으로 SCM은 Git을 지원하며 언어는 Ruby를 지원합니다. 레포트 부분을 모듈화 과정에 있으며 추후 다른 언어에서 분석한 결과도 지원할 예정입니다.
 
 ### Report
 
@@ -82,10 +82,13 @@ ALTER USER <USERNAME> CREATEDB
 
 ```
 
-다음으로 먼저 레일스의 데이터베이스 설정 샘플 파일을 복사하고, 자신의 환경에 맞도록 설정해줍니다.
+다음으로 먼저 레일스의 데이터베이스 설정 샘플 파일을 복사하고, 자신의 환경에 맞도록 설정해줍니다. 추가적으로 데이터베이스를 초기화 해줍니다.
 
 ```
 cp config/database.yml.sample config/database.yml
+bundle exec rake db:create
+bundle exec rake db:migrate
+bundle exec rake db:seed
 ```
 
 프로그램을 실행합니다.
