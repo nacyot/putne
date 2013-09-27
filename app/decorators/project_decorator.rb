@@ -55,7 +55,7 @@ class ProjectDecorator < Draper::Decorator
   end
 
   def latest_commit_day
-    latest_report.commit.committed_at.strftime("%Y-%m-%d")
+    latest_report.commit.committed_at.strftime("%Y-%m-%d") if latest_report
   end
 end
 
