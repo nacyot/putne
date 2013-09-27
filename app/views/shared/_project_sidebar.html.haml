@@ -1,13 +1,13 @@
-.panel.panel-default
-  .panel-heading Time machine
-  .panel-body
-    ID: 
-    = params[:report_id]
-    %br/
-    Hash:
-    -#= @report.commit.commit_hash[0..15]
-    \..
-%ul.nav.nav-pills.nav-stacked
+-# .panel.panel-default
+-#   .panel-heading Time machine
+-#   .panel-body
+-#     ID: 
+-#     = params[:report_id]
+-#     %br/
+-#     Hash:
+-#     -#= @report.commit.commit_hash[0..15]
+-#     \..
+%ul.nav.nav-pills.nav-stacked{style: "margin-top: 20px;"}
   - if @project.repository.valida?
     %ul.nav.nav-pills.nav-stacked
       %li

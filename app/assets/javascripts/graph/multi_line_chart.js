@@ -4,7 +4,7 @@ this.d3_multi_line_chart = function(selector, data_file = "/d3js/line_graph_mult
     var target = d3.select(selector);
     var parentWidth = target[0][0].parentNode.clientWidth;
 
-    var margin = {top: 20, right: 80, bottom: 30, left: 50};
+    var margin = {top: 20, right: 120, bottom: 50, left: 50};
     var width = parentWidth - margin.left - margin.right;
     var height = (parentWidth * 0.47) - margin.top - margin.bottom;
 
