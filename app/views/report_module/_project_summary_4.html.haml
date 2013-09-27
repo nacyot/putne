@@ -29,17 +29,17 @@
         %span
     %tr
       %th Duplications
-      %td= report.sum_duplications if report.sum_duplications 
+      %td= report.sum_duplications unless report.nil?
       %td
         %span.duplication-sparkline{class: "duplication-sparkline-#{project.title}"}
     %tr
       %th Smells
-      %td= report.sum_smells if report.sum_smells
+      %td= report.sum_smells unless report.nil?
       %td
         %span.smell-sparkline{class: "smell-sparkline-#{project.title}"}
     %tr
       %th Churns
-      %td= report.sum_churns if report.sum_churns
+      %td= report.sum_churns unless report.nil?
       %td
         %span.churn-sparkline{class: "churn-sparkline-#{project.title}"}
 
