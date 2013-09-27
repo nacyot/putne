@@ -22,16 +22,16 @@
           %span.badge.pull-right= @project.reports.count
           %i.icon-bar-chart
           Reports
-      %li
-        = link_to project_commits_url(@project) do
-          -#- %span.badge.pull-right#files-help ?
-          %span.badge.pull-right= @report.commit_stat
-          %i.icon-list-alt
-          Activities
-      %li
-        = link_to project_committers_url(@project) do
-          %i.icon-group
-          Committers
+      -# %li
+      -#   = link_to project_commits_url(@project) do
+      -#     -#- %span.badge.pull-right#files-help ?
+      -#     %span.badge.pull-right= @report.commit_stat
+      -#     %i.icon-list-alt
+      -#     Activities
+      -# %li
+      -#   = link_to project_committers_url(@project) do
+      -#     %i.icon-group
+      -#     Committers
       -# %li
       -#   = link_to project_report_timeline_url(@project, @report) do
       -#     -# %span.badge.pull-right#timeline-help ?
@@ -39,13 +39,13 @@
       -#     %i.icon-calendar
       -#     Timeline
       %hr
-      %li
-        = link_to project_report_url(@project, @report) do
-          -# %span.badge.pull-right#synopsis-help ?
-          %span.badge.pull-right
-          %i.icon-film
-          Current report
-      %br/
+      -# %li
+      -#   = link_to project_report_url(@project, @report) do
+      -#     -# %span.badge.pull-right#synopsis-help ?
+      -#     %span.badge.pull-right
+      -#     %i.icon-film
+      -#     Current report
+      -# %br/
       %li
         = link_to project_report_classes_url(@project, @report) do
           -# %span.badge.pull-right#classes-help ?

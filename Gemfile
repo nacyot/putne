@@ -12,7 +12,7 @@ gem 'activerecord-deprecated_finders'
 
 # database
 gem 'pg'
-gem 'activerecord-postgres-hstore', github: "engageis/activerecord-postgres-hstore", branch: "master"
+#gem 'activerecord-postgres-hstore', github: "engageis/activerecord-postgres-hstore", branch: "master"
 gem 'acts-as-taggable-on'
 
 # rails_admin
@@ -108,6 +108,7 @@ group :test do
   gem 'database_cleaner'
   gem 'factory_girl', :require => false
   gem 'factory_girl_rails', :require => false
+  gem 'sqlite3'
 end
 
 group :development, :test do

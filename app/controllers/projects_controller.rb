@@ -13,7 +13,7 @@ class ProjectsController < ApplicationController
   # GET /projects/1
   # GET /projects/1.json
   def show
-    @project = Project.find params[:id]
+    @project = Project.find(params[:id]).decorate
     @title = "Project - #{@project.title}"
     @report = @project.latest_report
   end
@@ -36,7 +36,15 @@ class ProjectsController < ApplicationController
     @project = Project.create!(project_params)
     # @project.repository = Repository.last #Repository.create!(params[:project][:repository_attributes])
     InitRepositoryWorker.perform_async(@project.repository.id)
-
+    in_time = 120
+    
+    @project.repository.commits.each do |commit|
+      if Report.find_by(commit_id: commit.id.to_s).nil?
+        ReportWorker.perform_in in_time, @project.repository.id, commit.commit_hash
+        in_time += 120
+      end
+    end
+    
     respond_to do |format|
       if @project.id?
         format.html { redirect_to @project, notice: 'Project was successfully created.' }
@@ -52,6 +60,7 @@ class ProjectsController < ApplicationController
     @project = Project.find params[:project_id]
     in_time = 5
 
+    @project.repository.register_recent_commits(200)
     @project.repository.commits.each do |commit|
       if Report.find_by(commit_id: commit.id.to_s).nil?
         ReportWorker.perform_in in_time, @project.repository.id, commit.commit_hash
@@ -92,7 +101,6 @@ class ProjectsController < ApplicationController
   end
 
   def commit_hook
-    puts params[:project_id]
     @project = Project.find params[:project_id]
     key = @project.user.secret_key.key
     ReportWorker.perform_async @project.repository.id, params[:hash] if params[:ci_key] == key

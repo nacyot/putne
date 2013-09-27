@@ -22,8 +22,8 @@ class Repository < ActiveRecord::Base
     git.head.commit
   end
 
-  def register_recent_commits
-    git.commits.each do |commit|
+  def register_recent_commits(num = 10)
+    git.commits("master", num).each do |commit|
       Commit.find_or_create_by!(repository: self,
                                 commit_hash: commit.id,
                                 committed_at: commit.committed_date,
