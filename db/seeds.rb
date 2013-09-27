@@ -47,3 +47,5 @@ def create_category
   SmellSource.create(name: "REEK")
 end
 
+create_user
+create_category

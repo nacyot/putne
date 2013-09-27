@@ -5,12 +5,11 @@
         %h1 Dashboard
       .list-group
         .list-group-item
-          %img{src: "/images/calendar_chart.jpg", style: "width: 100%;"}
         - @projects.each do |project|
           = render partial: "shared/project_card", locals: { project: project }
     = paginate @projects
   .col-lg-2.col-md-3.col-sm-3
-    .panel.panel-success.projects
+    .panel.panel-success
       .panel-heading
         Summary
       .panel-body
@@ -24,5 +23,5 @@
             %h5= project.title
             %div 
               %span.sparkline-test
-              2013-09-12
+                = project.latest_commit_day
 

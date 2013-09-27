@@ -56,8 +56,8 @@ this.d3_multi_line_chart = function(selector, data_file = "/d3js/line_graph_mult
         x.domain(d3.extent(data, function(d) { return d.date; }));
 
         y.domain([
-            d3.min(cities, function(c) { return d3.min(c.values, function(v) { return v.temperature; }); }),
-            d3.max(cities, function(c) { return d3.max(c.values, function(v) { return v.temperature; }); })
+            d3.min(cities, function(c) { return d3.min(c.values, function(v) { return v.temperature - 15; }); }),
+            d3.max(cities, function(c) { return d3.max(c.values, function(v) { return v.temperature + 15; }); })
         ]);
 
         svg.append("g")
@@ -73,7 +73,7 @@ this.d3_multi_line_chart = function(selector, data_file = "/d3js/line_graph_mult
             .attr("y", 6)
             .attr("dy", ".71em")
             .style("text-anchor", "end")
-            .text("Temperature (ºF)");
+            .text("Stats");
 
         var city = svg.selectAll(".city")
             .data(cities)

@@ -7,7 +7,8 @@ class CommitHookController < ApplicationController
     key = @project.user.secret_key.key
     puts "key_org : " + key.to_s
     puts "key_rem : " + params[:ci_key].to_s
-    ReportWorker.perform_async @project.repository.id, params[:hash] if params[:ci_key] == key
+    #TODO : refine params name
+    ReportWorker.perform_async @project.repository.id, params["after"] if params[:ci_key] == key
 
     respond_to do |format|
       if @project.id?

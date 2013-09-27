@@ -5,7 +5,7 @@
     Complexity
 .list-group
   .list-group-item
-    %img{src: "/images/line_one_chart.png", style: "width: 100%;"}
+    #complexity-line-chart
   .list-group-item
     .row
       .col-lg-4.col-md-4.col-sm-4
@@ -17,7 +17,7 @@
   .list-group-item
     .row
       .col-lg-4.col-md-4.col-sm-4
-        %table
+        %table.table.table-striped
           %tr
             %th 1.
             %td Git
@@ -28,7 +28,7 @@
             %th 3. 
             %td ReportCreator
       .col-lg-4.col-md-4.col-sm-4
-        %table
+        %table.table.table-striped
           %tr
             %th 1.
             %td Git
@@ -39,7 +39,7 @@
             %th 3. 
             %td ReportCreator
       .col-lg-4.col-md-4.col-sm-4
-        %table
+        %table.table.table-striped
           %tr
             %th 1.
             %td Git#report
@@ -52,7 +52,7 @@
   .list-group-item
     %h4 Listing Complex ( classes, methods )
   .list-group-item
-    %table{style: "width: 100%;"}
+    %table.table.table.striped{style: "width: 100%;"}
       %th Methods
       %th Lines
       %th Flog score
@@ -68,3 +68,11 @@
           %td= method.scores.flogs[0].score unless method.scores.flogs.empty?
           %td= method.scores.saikuros[0].score unless method.scores.saikuros.empty?
     = paginate @methods
+
+:javascript
+  $(function(){
+    d3_multi_line_chart("#complexity-line-chart", "#{project_graph_stats_line_chart_path(project_id: @project, columns: 'date,Complexity')}");
+  });
+
+
+
