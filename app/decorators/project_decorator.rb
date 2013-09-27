@@ -44,7 +44,7 @@ class ProjectDecorator < Draper::Decorator
   # for sparkline
   def get_stats(name)
     reports.map do |report|
-      report[name]
+      report[name].nil? ? 0 : report[name]
     end.reverse
   end
 
