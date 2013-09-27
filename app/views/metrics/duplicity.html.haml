@@ -13,8 +13,8 @@
       %h4.list-group-item= "Duplication ##{index + 1}"
 
       %table.table.table-striped
-        %th File path
-        %th Line
+        %th{style: "width: 65%;"} File path
+        %th{style: "width: 35%;"} Line
         - duplication.file_line_infos.each do |line|
           %tr
             %td= line.target_file.path

@@ -18,7 +18,7 @@ class Report < ActiveRecord::Base
   validates_uniqueness_of :commit
 
   default_scope -> { order("") }
-  
+
   def input_stats
     update_attributes(churn_stat: sum_churns,
                       complexity_stat: sum_complexities,

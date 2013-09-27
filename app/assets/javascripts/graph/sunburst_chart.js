@@ -68,7 +68,10 @@ this.d3_sunburst_chart = function(selector, data_file = "/d3js/flare.json") {
             .attr("dx", "6") // margin
             .attr("dy", ".35em") // vertical-align
             .attr("font-size", "10px")
-            .text(function(d) { return d.name; });
+            .text(function(d) { 
+                if(d.size > 30 || d.size == undefined)
+                    return d.name; 
+            });
 
         d3.selectAll("input").on("change", function change() {
             var value = function(d) { return d.size; };

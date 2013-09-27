@@ -6,7 +6,7 @@ this.d3_donut_chart = function(selector, data_file = "/d3js/donut.csv"){
 
     var width = parentWidth - 20;
     var height = (parentWidth) - 20;
-    var radius = Math.min(width, height) / 2;
+    var radius = (Math.min(width, height) / 2) - 20;
 
     var color = d3.scale.ordinal()
         .range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]);
@@ -40,12 +40,14 @@ this.d3_donut_chart = function(selector, data_file = "/d3js/donut.csv"){
             .attr("d", arc)
             .style("fill", function(d) { return color(d.data.Data); });
 
-        g.append("text")
-            .attr("transform", function(d) { return "translate(" + arc.centroid(d) + ")"; })
-            .attr("dy", ".35em")
-            .style("text-anchor", "middle")
-            //.text(function(d) { return d.data.Category; });
-            .text(function(d) { return d.data.Category; });
+        // g.append("text")
+        //     .attr("transform", function(d) { return "translate(" + arc.centroid(d) + ")"; })
+        //     .attr("dy", ".35em")
+        //     .style("text-anchor", "middle")
+        //     //.text(function(d) { return d.data.Category; });
+        //     .text(function(d) { 
+        //         return d.data.Category; 
+        //     });
 
     });
 }

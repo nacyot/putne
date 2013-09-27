@@ -17,31 +17,31 @@
           %td= link_to churn.targetable.path, project_report_file_path(@project, @report, file_id: churn.targetable)
           %td= churn.score
 
-  .list-group-item
-    %h4 Class churns
-  .list-group-item
-    %img{src: "/images/horison_sunbrust.jpg", style: "width: 100%;"}    
-  .list-group-item
-    %table.table.table-striped.churn
-      %th.name Class name
-      %th.times Times changed
-      - @report.scores.class_churns.each do |churn|
-        %tr
-          %td= churn.targetable.name
-          %td= churn.score
+  -# .list-group-item
+  -#   %h4 Class churns
+  -# .list-group-item
+  -#   %img{src: "/images/horison_sunbrust.jpg", style: "width: 100%;"}    
+  -# .list-group-item
+  -#   %table.table.table-striped.churn
+  -#     %th.name Class name
+  -#     %th.times Times changed
+  -#     - @report.scores.class_churns.each do |churn|
+  -#       %tr
+  -#         %td= churn.targetable.name
+  -#         %td= churn.score
 
-  .list-group-item
-    %h4 Method churns
-  .list-group-item
-    %img{src: "/images/horison_sunbrust.jpg", style: "width: 100%;"}    
-  .list-group-item
-    %table.table.table-striped.churn
-      %th.name Method name
-      %th.times Times changed
-      - @report.scores.method_churns.each do |churn|
-        %tr
-          %td= churn.targetable.name
-          %td= churn.score
+  -# .list-group-item
+  -#   %h4 Method churns
+  -# .list-group-item
+  -#   %img{src: "/images/horison_sunbrust.jpg", style: "width: 100%;"}    
+  -# .list-group-item
+  -#   %table.table.table-striped.churn
+  -#     %th.name Method name
+  -#     %th.times Times changed
+  -#     - @report.scores.method_churns.each do |churn|
+  -#       %tr
+  -#         %td= churn.targetable.name
+  -#         %td= churn.score
 
 :javascript
   $(function(){

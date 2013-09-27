@@ -3,22 +3,22 @@
   %table.table.table-striped
     %tr
       %th # of files
-      %td= report.sum_files
+      %td= report.sum_files if report.sum_files 
       %td  
         %span.file-sparkline{class: "file-sparkline-#{project.title}"}
     %tr
       %th # of classes
-      %td= report.sum_classes
+      %td= report.sum_classes if report.sum_classes
       %td
         %span.class-sparkline{class: "class-sparkline-#{project.title}"}
     %tr
       %th # of methods
-      %td= report.sum_methods
+      %td= report.sum_methods if report.sum_methods
       %td
         %span.method-sparkline{class: "method-sparkline-#{project.title}"}
     %tr
       %th Complexities
-      %td= report.sum_complexities
+      %td= report.sum_complexities if report.sum_complexities
       %td
         %span.complexity-sparkline{class: "complexity-sparkline-#{project.title}"}
     %tr
@@ -28,17 +28,17 @@
         %span
     %tr
       %th Duplications
-      %td= report.sum_duplications
+      %td= report.sum_duplications if report.sum_duplications 
       %td
         %span.duplication-sparkline{class: "duplication-sparkline-#{project.title}"}
     %tr
       %th Smells
-      %td= report.sum_smells
+      %td= report.sum_smells if report.sum_smells
       %td
         %span.smell-sparkline{class: "smell-sparkline-#{project.title}"}
     %tr
       %th Churns
-      %td= report.sum_churns
+      %td= report.sum_churns if report.sum_churns
       %td
         %span.churn-sparkline{class: "churn-sparkline-#{project.title}"}
 
@@ -47,7 +47,7 @@
   #{ 
     result = ""
       %w{churn complexity duplication smell commit file class method}.each do |item|
-      result += "to_sparkline('." + item + "-sparkline-" + project.title + "', " + project.get_stats(item + "_stat").to_s + ");\n"
+      result += "to_sparkline('." + item + "-sparkline-" + project.title + "', " + project.get_stats_by_day(item + "_stat").to_s + ");\n"
     end
 
   result

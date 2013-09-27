@@ -42,11 +42,20 @@ class ProjectDecorator < Draper::Decorator
   end
 
   # for sparkline
-  def get_stats(name)
-    reports.map do |report|
+  def get_stats(name, limit = 30)
+    reports.limit(limit).map do |report|
       report[name].nil? ? 0 : report[name]
     end.reverse
   end
 
+  def get_stats_by_day(name, limit = 30)
+    reports_by_day.map do |report|
+      report[name].nil? ? 0 : report[name]
+    end.reverse
+  end
+
+  def latest_commit_day
+    latest_report.commit.committed_at.strftime("%Y-%m-%d")
+  end
 end
 

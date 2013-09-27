@@ -4,7 +4,11 @@
     %i.icon-bar-chart
     = @project.title
 .list-group-item
-  %img{src: "/images/line_chart.jpg", style: "height: 300px;width: 100%;"}
+  -#%img{src: "/images/line_chart.jpg", style: "height: 300px;width: 100%;"}
+  .row
+    .col-lg-12.col-mg-12.col-sm-12
+      #code-quality-line-chart
+
 %table.table.table-striped
   %th At
   -#%th Commit
@@ -24,3 +28,8 @@
       %td= report.complexity_stat
       %td= report.smell_stat
 = paginate(@reports)
+
+:javascript
+  $(function(){
+    d3_multi_line_chart("#code-quality-line-chart", "#{project_graph_stats_line_chart_path(project_id: @project)}");
+  });
