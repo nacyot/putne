@@ -5,8 +5,12 @@ this.d3_sunburst_chart = function(selector, data_file = "/d3js/flare.json") {
     var width = target[0][0].parentNode.clientWidth - 40 ;
     var height = width + 40;
     var radius = (Math.min(width, height) - 50) / 2;
-    var color = d3.scale.category20c();
-    
+    //var color = d3.scale.category20c();
+
+    var quantize = d3.scale.quantize()
+        .domain([1.0,0])
+        .range(d3.range(10).map(function(d) { return "sunburst" + d + "-10"; }));
+
     var tooltip = d3.select("body")
         .append("div")
         .style("position", "absolute")
@@ -36,9 +40,18 @@ this.d3_sunburst_chart = function(selector, data_file = "/d3js/flare.json") {
         
         g.append("path")
             .attr("display", function(d) { return d.depth ? null : "none"; }) // hide inner ring
+            .attr("class", function(d) { 
+                if(d.children){
+                }else{
+                    return quantize(convertToColor(d.size)); 
+                }
+            })
+            .attr("fill", function(d){
+                if(d.children)
+                    return "#fff"; })
             .attr("d", arc)
-            .style("stroke", "#fff")
-            .style("fill", function(d) { return color((d.children ? d : d.parent).name); })
+            .style("stroke", "#aaa")
+            //.style("fill", function(d) { return color((d.children ? d : d.parent).size); })
             .style("fill-rule", "evenodd")
             .on("mouseover", function(d, i) {
                 d3.select(this);
@@ -83,6 +96,19 @@ this.d3_sunburst_chart = function(selector, data_file = "/d3js/flare.json") {
                 .attrTween("d", arcTween);
         });
     });
+
+    function convertToColor(data){
+        var max = 250
+        var min = 50
+        
+        if(data > 0){
+            return data / max;
+        }else{
+            return 0
+        }
+
+
+    }
 
     // Stash the old values for transition.
     function stash(d) {

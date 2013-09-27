@@ -233,17 +233,41 @@ svg {
   stroke-width: 2px;
 }
 
-.RdYlGn .q0-11{fill:rgb(165,0,38)}
-.RdYlGn .q1-11{fill:rgb(215,48,39)}
-.RdYlGn .q2-11{fill:rgb(244,109,67)}
-.RdYlGn .q3-11{fill:rgb(253,174,97)}
-.RdYlGn .q4-11{fill:rgb(254,224,139)}
-.RdYlGn .q5-11{fill:rgb(255,255,191)}
-.RdYlGn .q6-11{fill:rgb(217,239,139)}
-.RdYlGn .q7-11{fill:rgb(166,217,106)}
-.RdYlGn .q8-11{fill:rgb(102,189,99)}
-.RdYlGn .q9-11{fill:rgb(26,152,80)}
-.RdYlGn .q10-11{fill:rgb(0,104,55)}
+.q0-11{fill:rgb(165,0,38)}
+.q1-11{fill:rgb(215,48,39)}
+.q2-11{fill:rgb(244,109,67)}
+.q3-11{fill:rgb(253,174,97)}
+.q4-11{fill:rgb(254,224,139)}
+.q5-11{fill:rgb(255,255,191)}
+.q6-11{fill:rgb(217,239,139)}
+.q7-11{fill:rgb(166,217,106)}
+.q8-11{fill:rgb(102,189,99)}
+.q9-11{fill:rgb(26,152,80)}
+.q10-11{fill:rgb(0,104,55)}
+
+.sunburst{fill:rgb(0,0,0)}
+.sunburst0-10{fill:rgb(139, 35, 35)}
+.sunburst1-10{fill:rgb(205, 51, 51)}
+.sunburst2-10{fill:rgb(238, 59, 59)}
+.sunburst3-10{fill:rgb(255, 64, 64)}
+.sunburst4-10{fill:rgb(255, 215, 0)}
+.sunburst5-10{fill:rgb(238, 238, 209)}
+.sunburst6-10{fill:rgb(84, 255, 154)}
+.sunburst7-10{fill:rgb(78, 248, 138)}
+.sunburst8-10{fill:rgb(67, 205, 128)}
+.sunburst9-10{fill:rgb(46, 139, 87)}
+
+
+
+.q0-9 { fill:rgb(247,251,255); }
+.q1-9 { fill:rgb(222,235,247); }
+.q2-9 { fill:rgb(198,219,239); }
+.q3-9 { fill:rgb(158,202,225); }
+.q4-9 { fill:rgb(107,174,214); }
+.q5-9 { fill:rgb(66,146,198); }
+.q6-9 { fill:rgb(33,113,181); }
+.q7-9 { fill:rgb(8,81,156); }
+.q8-9 { fill:rgb(8,48,107); }
 
 .arc path {
   stroke: #fff;
