@@ -33,7 +33,7 @@ class ProjectsController < ApplicationController
   # POST /projects
   # POST /projects.json
   def create
-    @project = Project.create!(project_params)
+    @project = Project.create(project_params)
     # @project.repository = Repository.last #Repository.create!(params[:project][:repository_attributes])
     InitRepositoryWorker.perform_async(@project.repository.id)
     in_time = 120
