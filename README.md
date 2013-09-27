@@ -49,10 +49,11 @@ Putne를 설치하기 위해서는 아래와 같은 것들이 설치되어 있�
 
 ```
 # ubuntu
-sudo apt-get install libicu-dev postgresql redis -y
+sudo apt-get install libicu-dev postgresql redis nodejs npm -y
+npm install bower
 
 # mac
-brew install 
+brew install ... 
 ```
 
 다음으로 Putne 어플리케이션을 github에서 clone 하고 bundle을 통해 필요한 gem들을 설치합니다.
@@ -61,6 +62,7 @@ brew install
 git clone https://github.com/nacyot/putne.git
 cd putne
 bundle install
+bower install
 ```
 
 다음으로 데이터베이스를 설정해줍니다. Putne에서 사용할 사용자를 등록하고 데이터베이스 생성권한을 부여합니다.
@@ -74,7 +76,7 @@ CREATE DATABASE <DATABASE_NAME> ENCODING 'UTF8' OWNER <USERNAME>;
 ALTER USER <USERNAME> CREATEDB
 
 # mac
-postgres psql -d template1
+psql -d template1
 
 CREATE USER <USERNAME> WITH ENCRYPTED PASSWORD '<PASSWORD>';
 CREATE DATABASE <DATABASE_NAME> ENCODING 'UTF8' OWNER <USERNAME>; 
