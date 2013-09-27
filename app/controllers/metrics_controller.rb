@@ -93,12 +93,13 @@ class MetricsController < ApplicationController
     @title = "Smells"
     @project = Project.find(params[:project_id])
     @report = Report.find(params[:report_id])
+    @smells = @report.smells.includes(:targetable).reeks.page(params[:page]).per(25)
   end
 
   def smell
     @title = "Smell"
     @project = Project.find(params[:project_id])
-    @report = Report.find(params[:report_id])
+    @report = Report.find(params[:report_id]).includes(:smells)
   end
 
   def timeline

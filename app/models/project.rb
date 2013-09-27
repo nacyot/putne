@@ -7,7 +7,11 @@ class Project < ActiveRecord::Base
   accepts_nested_attributes_for :repository
   acts_as_taggable
 
+  def reports_by_day
+    reports.includes(:commit).to_a.uniq{ |report| report.commit.committed_at.strftime("%Y%m%d")}
+  end
+
   def latest_report
-    reports[-1]
+    reports.includes(:commit).to_a.uniq{ |report| report.commit.committed_at.strftime("%Y%m%d")}[-1]
   end
 end
